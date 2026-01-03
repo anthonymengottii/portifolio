@@ -212,8 +212,8 @@ const about: About = {
             href: "/work/upay-payment-gateway",
           },
           {
-            src: "/images/projects/paguestream/dashboard.jpeg",
-            alt: "PagueStream Dashboard",
+            src: "/images/projects/paguestream/landingpage.png",
+            alt: "PagueStream Landing Page",
             width: 16,
             height: 8,
             href: "/work/paguestream",
@@ -243,8 +243,8 @@ const about: About = {
         ],
         images: [
           {
-            src: "/images/projects/paguestream/dashboard.jpeg",
-            alt: "PagueStream Dashboard",
+            src: "/images/projects/paguestream/landingpage.png",
+            alt: "PagueStream Landing Page",
             width: 16,
             height: 8,
             href: "/work/paguestream",
