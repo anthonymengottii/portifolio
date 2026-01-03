@@ -1,0 +1,144 @@
+---
+title: "Desafios Técnicos em Fintech: Construindo Sistemas Críticos de Alto Risco"
+publishedAt: "2026-01-03"
+summary: "Reflexões sobre os desafios únicos de desenvolver sistemas financeiros: conformidade regulatória, segurança, performance e a importância de arquitetar para falhas."
+tag: "Fintech"
+image: "/api/og/generate?title=Desafios%20Técnicos%20em%20Fintech"
+---
+
+## Quando Cada Linha de Código Importa
+
+Desenvolver software para fintech é diferente de qualquer outro domínio. Não é exagero dizer que cada linha de código pode impactar diretamente o dinheiro de pessoas e empresas. Não há espaço para "funciona na minha máquina" ou "vamos corrigir depois em produção".
+
+Quando você trabalha com dinheiro real, os erros custam caro. Literalmente. E não estou falando só de bugs estou falando de decisões de arquitetura, escolhas de tecnologia, e até mesmo como você escreve seus logs.
+
+## Conformidade: O Desafio que Não é Técnico (Mas Afeta Tudo)
+
+Um dos maiores desafios em fintech não é técnico: é regulatório. No Brasil, precisamos estar em conformidade com o Banco Central, LGPD, PCI-DSS e uma lista interminável de outras regulamentações.
+
+E aqui está a parte chata: essas regulamentações mudam. E quando mudam, você precisa adaptar seu código. Não é opcional.
+
+### PCI-DSS: Quando Segurança Vira Requisito Legal
+
+Processar pagamentos com cartão exige conformidade com PCI-DSS. Isso não é "legal ter", é obrigatório. E não é fácil conseguir.
+
+O que isso significa na prática:
+
+- **CVV nunca toca nossos servidores** - Simples assim. O número de segurança do cartão nunca é armazenado, nem mesmo temporariamente. Ele vai direto do frontend para o adquirente, passando por nós apenas criptografado.
+
+- **Criptografia em todas as camadas** - Dados em trânsito? Criptografado. Dados em repouso? Criptografado. Logs? Criptografados ou sem dados sensíveis. Não tem meio termo.
+
+- **Auditorias que dão medo** - Todo ano temos auditorias. Eles testam tudo: segurança da rede, controles de acesso, como tratamos dados. Se falhar, você não processa mais cartões. Simples assim.
+
+- **Rede isolada** - Sistemas que processam pagamentos estão em redes completamente isoladas. Não tem como acessar de qualquer lugar. Precisa de VPN, autenticação forte, e logs de tudo que acontece.
+
+A primeira vez que passamos por uma auditoria PCI-DSS, foi estressante. Mas depois você entende: essas regras existem por um motivo. E seguir elas desde o início é muito mais fácil que tentar adaptar depois.
+
+### LGPD: Privacidade Não é Opcional
+
+A LGPD adiciona outra camada de complexidade. Agora você precisa:
+
+- Tratar dados pessoais com consentimento explícito
+- Permitir que usuários acessem, corrijam e deletem seus dados
+- Ter processos claros de retenção e exclusão
+- Garantir que logs e auditorias respeitem privacidade
+
+Implementamos endpoints específicos para LGPD: usuário quer ver seus dados? `GET /user/data`. Quer deletar? `DELETE /user/data`. Tudo rastreado, tudo auditado.
+
+O mais interessante é que isso mudou como pensamos em logs. Antes, logávamos tudo. Agora, precisamos ser seletivos não podemos logar dados pessoais sem necessidade, mas precisamos logar o suficiente para debug.
+
+## Arquitetando para Falhas (Porque Elas Vão Acontecer)
+
+Em sistemas financeiros, falhas não são opcionais são inevitáveis. A questão não é "se" vai falhar, mas "quando" e "como vamos lidar".
+
+### Circuit Breakers: Quando Desistir é a Melhor Opção
+
+Implementamos circuit breakers em todas as integrações externas. A ideia é simples: se um adquirente está com problemas (muitas falhas em pouco tempo), "abrimos o circuito" e paramos de tentar por um tempo.
+
+Depois de alguns minutos, tentamos de novo. Se funcionar, fechamos o circuito. Se não, mantemos aberto.
+
+Isso nos salvou várias vezes. Um adquirente ficou offline por algumas horas, e nosso sistema automaticamente roteou tudo para outros adquirentes. Zero impacto para os usuários finais.
+
+### Retry Inteligente: Não é Só Tentar de Novo
+
+Falhas temporárias são comuns. Rede instável, timeout, servidor sobrecarregado. Implementamos retry com backoff exponencial esperamos 1 segundo, depois 2, depois 4, até um máximo.
+
+Mas aqui está o segredo: não retentamos tudo. Se é um erro 400 (bad request), não adianta tentar de novo o problema é com a requisição, não com o servidor. Só retentamos erros que fazem sentido (500, timeouts, etc).
+
+### Idempotência: A Melhor Amiga em Sistemas Distribuídos
+
+Cada transação tem um ID único. Se uma requisição falhar e você tentar de novo com o mesmo ID, o sistema reconhece e retorna o resultado original. Não cria transação duplicada.
+
+Isso é crucial quando você tem sistemas distribuídos. Requisições podem chegar duplicadas, timeouts podem fazer você pensar que falhou quando na verdade funcionou. Idempotência resolve isso.
+
+## Performance: Não é Só Ser Rápido
+
+Performance em fintech não é sobre ser rápido é sobre ser consistente e previsível. Se 99% das transações são instantâneas mas 1% demora 10 segundos, você tem um problema.
+
+### P95 e P99: Os Números que Realmente Importam
+
+Não basta medir latência média. Se você tem 100 transações, 99 em 100ms e 1 em 10 segundos, a média é 199ms. Parece ok, mas aquele 1% que demora 10 segundos vai gerar reclamações.
+
+Por isso medimos P95 (95% das requisições são mais rápidas que X) e P99 (99% são mais rápidas que Y). Se o P99 está alto, você tem um problema, mesmo que a média esteja ok.
+
+### Processamento em Lote: Nem Tudo Precisa Ser Real-Time
+
+Nem tudo precisa ser processado em tempo real. Geração de relatórios, cálculos de comissões, atualizações de analytics tudo isso pode esperar alguns segundos ou minutos.
+
+Separamos o que é crítico (processar pagamento) do que não é (gerar relatório). Isso libera recursos para o que realmente importa e melhora a performance geral do sistema.
+
+## Segurança: Não é Recurso, é Base
+
+Segurança não é algo que você adiciona depois é a base de tudo. E não estou falando só de criptografia. Estou falando de como você pensa o sistema desde o início.
+
+### Autenticação Multi-Fator: Para Tudo que Importa
+
+Operações sensíveis (criar transação, alterar configurações, acessar dados financeiros) exigem MFA. Não é opcional. Se alguém conseguir sua API key, ainda precisa do segundo fator.
+
+Implementamos isso desde o início, e foi uma das melhores decisões. Mesmo que alguém vaze uma credencial, não consegue fazer nada crítico sem o segundo fator.
+
+### Rate Limiting: Proteção Contra Abuso
+
+Rate limiting não é só sobre performance é sobre segurança. Implementamos limites por IP, por API key, por endpoint. Isso previne ataques de força bruta, abuse de API, e até mesmo bugs que fazem requisições em loop.
+
+Mas aqui está o desafio: balancear segurança com usabilidade. Limite muito baixo e você bloqueia usuários legítimos. Muito alto e não protege nada. Ajustamos baseado em métricas reais de uso.
+
+### Monitoramento de Anomalias: Detectando o Estranho
+
+Implementamos detecção de anomalias que monitora padrões suspeitos: muitas transações de um mesmo IP, valores muito altos, horários incomuns. Quando detecta algo estranho, alerta a equipe.
+
+Já pegamos tentativas de fraude assim. Um IP tentando criar centenas de transações pequenas em minutos padrão clássico de teste de cartões roubados. Bloqueamos antes que causasse dano.
+
+## Coisas que Aprendi (e que Você Deveria Saber)
+
+### Documentação Salva Vidas (e Dinheiro)
+
+Em sistemas críticos, documentação clara não é luxo é necessidade. Quando algo dá errado em produção às 3h da manhã, você não quer estar tentando entender código mal documentado.
+
+Documentamos decisões de arquitetura, por que escolhemos certas tecnologias, como os sistemas se comunicam. Isso ajuda não só quando algo quebra, mas também quando novos desenvolvedores entram no time.
+
+### Testes Não São Opcionais
+
+Cobertura de testes alta não é luxo em fintech é necessidade. Cada bug pode custar dinheiro real. Testamos unitários, integração, e até testes de carga para garantir que o sistema aguenta picos.
+
+Mas aqui está o segredo: testes bons são mais importantes que muitos testes. Um teste de integração que testa o fluxo completo vale mais que 10 unitários que testam funções isoladas.
+
+### Observabilidade > Logs
+
+Logs são importantes, mas não são suficientes. Métricas (quantas transações por segundo, latência, taxa de erro), traces (seguir uma requisição por todo o sistema) e alertas (avisar quando algo está errado) são essenciais.
+
+Implementamos dashboards em tempo real que mostram saúde do sistema. Se algo começa a dar errado, sabemos antes que os usuários reclamem.
+
+### Simplicidade é Complexidade Resolvida
+
+A melhor arquitetura é a mais simples que resolve o problema. Não adianta ter microserviços super complexos se um monólito bem feito resolveria. Não adianta usar a tecnologia mais nova se não agrega valor.
+
+Sempre pergunte: isso realmente resolve um problema, ou só adiciona complexidade? Se não resolve um problema real, não faça.
+
+## Conclusão: É Desafiador, Mas Vale a Pena
+
+Construir sistemas financeiros é desafiador. Cada decisão técnica tem impacto real no negócio e nas pessoas que dependem do sistema. É uma responsabilidade grande, mas também uma oportunidade de criar soluções que realmente fazem diferença.
+
+O que mais me motiva é ver desenvolvedores integrando com nossa API em minutos, empresas processando pagamentos confiáveis, e saber que por trás disso há uma arquitetura sólida que aguenta o tranco.
+
+Se você está pensando em entrar em fintech, minha dica é: comece pensando em segurança e confiabilidade desde o primeiro dia. Não é algo que você adiciona depois. E sempre pergunte: "o que acontece se isso falhar?" Se a resposta te assusta, você precisa repensar.

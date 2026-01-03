@@ -17,6 +17,15 @@ const nextConfig = {
         pathname: "**",
       },
     ],
+    localPatterns: [
+      {
+        pathname: "/api/og/generate",
+        search: "?title=*",
+      },
+      {
+        pathname: "/images/**",
+      },
+    ],
   },
   sassOptions: {
     compiler: "modern",

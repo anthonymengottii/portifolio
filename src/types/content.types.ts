@@ -1,5 +1,5 @@
-import { IconName } from "@/resources/icons";
-import { zones } from "tzdata";
+import type { IconName } from "@/resources/icons";
+import type { zones } from "tzdata";
 
 /**
  * IANA time zone string (e.g., 'Asia/Calcutta', 'Europe/Vienna').
@@ -206,6 +206,8 @@ export interface About extends BasePageConfig {
         width: number;
         /** Image height ratio */
         height: number;
+        /** Link to project page */
+        href?: string;
       }>;
     }>;
   };

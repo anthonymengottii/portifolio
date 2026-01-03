@@ -1,0 +1,42 @@
+---
+title: "Upay Hopy Middleware - Integração de Pagamentos Hopy Split"
+publishedAt: "2024-03-10"
+summary: "Middleware de pagamentos para integração Hopy Split. Suporta Pagar.me, Citrex e Zendry. TypeScript, Express, SQLite. Sistema em produção processando transações reais."
+images: []
+team:
+  - name: "Anthony Mengotti de Oliveira"
+    role: "Desenvolvedor & Arquiteto"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/anthony-mengotti-50026424a"
+---
+
+## Visão Geral
+
+Middleware especializado para integração com o sistema Hopy Split, permitindo o processamento de pagamentos através de múltiplos gateways (Pagar.me, Citrex e Zendry). Sistema desenvolvido em TypeScript com Express e SQLite, atualmente em produção processando transações reais.
+
+## Funcionalidades Principais
+
+- **Integração Multi-Gateway**: Suporte unificado para Pagar.me, Citrex e Zendry
+- **Sistema de Split de Pagamento**: Divisão automática de valores entre múltiplos recebedores
+- **API RESTful**: Interface clara e documentada para integração
+- **Processamento Assíncrono**: Sistema otimizado para alta performance
+- **Logging e Monitoramento**: Rastreamento completo de transações para auditoria
+- **Banco de Dados SQLite**: Solução leve e eficiente para armazenamento local
+
+## Tecnologias Utilizadas
+
+- **TypeScript**: Type-safety e melhor experiência de desenvolvimento
+- **Express.js**: Framework web para Node.js
+- **SQLite**: Banco de dados leve e eficiente
+- **Node.js**: Runtime para processamento assíncrono
+- **Webhooks**: Notificações em tempo real de status de transações
+
+## Desafios e Aprendizados
+
+A principal complexidade foi criar uma abstração unificada para três gateways diferentes, cada um com suas próprias particularidades de API, autenticação e formatos de resposta. A solução envolveu a criação de uma camada de adaptadores que normaliza todas as operações.
+
+O sistema de split de pagamento exigiu lógica complexa para garantir que os valores sejam distribuídos corretamente, respeitando taxas e limites de cada gateway.
+
+## Resultado
+
+Middleware em produção processando transações reais com alta confiabilidade. O sistema permite que aplicações integrem facilmente com o Hopy Split, abstraindo a complexidade de múltiplos gateways através de uma única API.

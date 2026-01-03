@@ -1,5 +1,7 @@
 import { ImageResponse } from "next/og";
-import { baseURL, person } from "@/resources";
+import { readFile } from "fs/promises";
+import { join } from "path";
+import { person } from "@/resources";
 
 export const runtime = "nodejs";
 
@@ -20,6 +22,16 @@ export async function GET(request: Request) {
     }
 
     throw new Error("failed to load font data");
+  }
+
+  // Carregar avatar localmente
+  let avatarData: string | null = null;
+  try {
+    const avatarPath = join(process.cwd(), "public", person.avatar);
+    const avatarBuffer = await readFile(avatarPath);
+    avatarData = `data:image/png;base64,${avatarBuffer.toString("base64")}`;
+  } catch (error) {
+    console.error("Failed to load avatar:", error);
   }
 
   return new ImageResponse(
@@ -62,15 +74,19 @@ export async function GET(request: Request) {
             gap: "5rem",
           }}
         >
-          <img
-            src={baseURL + person.avatar}
-            style={{
-              width: "12rem",
-              height: "12rem",
-              objectFit: "cover",
-              borderRadius: "100%",
-            }}
-          />
+          {avatarData && (
+            <img
+              src={avatarData}
+              width={192}
+              height={192}
+              style={{
+                width: "12rem",
+                height: "12rem",
+                objectFit: "cover",
+                borderRadius: "100%",
+              }}
+            />
+          )}
           <div
             style={{
               display: "flex",

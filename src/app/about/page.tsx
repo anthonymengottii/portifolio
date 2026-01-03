@@ -11,6 +11,7 @@ import {
   Meta,
   Schema,
   Row,
+  SmartLink,
 } from "@once-ui-system/core";
 import { baseURL, about, person, social } from "@/resources";
 import TableOfContents from "@/components/about/TableOfContents";
@@ -133,7 +134,7 @@ export default function About() {
                 }}
               >
                 <Icon paddingLeft="12" name="calendar" onBackground="brand-weak" />
-                <Row paddingX="8">Schedule a call</Row>
+                <Row paddingX="8">Agendar uma chamada</Row>
                 <IconButton
                   href={about.calendar.link}
                   data-border="rounded"
@@ -311,23 +312,33 @@ export default function About() {
                     )}
                     {skill.images && skill.images.length > 0 && (
                       <Row fillWidth paddingTop="m" gap="12" wrap>
-                        {skill.images.map((image, index) => (
-                          <Row
-                            key={index}
-                            border="neutral-medium"
-                            radius="m"
-                            minWidth={image.width}
-                            height={image.height}
-                          >
-                            <Media
-                              enlarge
+                        {skill.images.map((image, index) => {
+                          const imageContent = (
+                            <Row
+                              border="neutral-medium"
                               radius="m"
-                              sizes={image.width.toString()}
-                              alt={image.alt}
-                              src={image.src}
-                            />
-                          </Row>
-                        ))}
+                              minWidth={image.width}
+                              height={image.height}
+                              style={{ cursor: image.href ? "pointer" : "default" }}
+                            >
+                              <Media
+                                enlarge={!image.href}
+                                radius="m"
+                                sizes={image.width.toString()}
+                                alt={image.alt}
+                                src={image.src}
+                              />
+                            </Row>
+                          );
+
+                          return image.href ? (
+                            <SmartLink key={index} href={image.href}>
+                              {imageContent}
+                            </SmartLink>
+                          ) : (
+                            <React.Fragment key={index}>{imageContent}</React.Fragment>
+                          );
+                        })}
                       </Row>
                     )}
                   </Column>

@@ -1,0 +1,48 @@
+---
+title: "PagueStream - Plataforma de Pagamentos PIX para Streamers"
+publishedAt: "2023-09-15"
+summary: "Plataforma completa para streamers receberem pagamentos PIX durante transmissões ao vivo. Sistema integrado com overlay, notificações em tempo real e gestão de doações."
+images:
+  - "/images/projects/paguestream/dashboard.jpeg"
+  - "/images/projects/paguestream/metrics.png"
+  - "/images/projects/paguestream/widget-qrcode.png"
+  - "/images/projects/paguestream/widget-alert.png"
+  - "/images/projects/paguestream/kyc.png"
+  - "/images/projects/paguestream/settings.png"
+team:
+  - name: "Anthony Mengotti de Oliveira"
+    role: "Desenvolvedor Full Stack"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/anthony-mengotti-50026424a"
+---
+
+## Visão Geral
+
+PagueStream é uma plataforma desenvolvida especificamente para streamers receberem pagamentos PIX durante suas transmissões ao vivo. O sistema integra-se com OBS e outras ferramentas de streaming, exibindo doações em tempo real através de overlays personalizáveis.
+
+## Funcionalidades Principais
+
+- **Integração com OBS**: Overlay personalizável para exibição de doações durante streams
+- **Pagamentos PIX em Tempo Real**: Processamento instantâneo de pagamentos via PIX
+- **Notificações Visuais**: Alertas animados quando uma doação é recebida
+- **Dashboard para Streamers**: Painel de controle para gestão de doações e estatísticas
+- **Sistema de Metas**: Definição e acompanhamento de metas de arrecadação
+- **Histórico de Doações**: Registro completo de todas as transações recebidas
+
+## Tecnologias Utilizadas
+
+- **Next.js**: Framework para frontend e backend
+- **TypeScript**: Type-safety em todo o projeto
+- **WebSockets**: Comunicação em tempo real para notificações
+- **API PIX**: Integração com sistema de pagamentos instantâneos brasileiro
+- **OBS WebSocket**: Integração com OBS Studio para overlays
+
+## Desafios e Aprendizados
+
+O maior desafio foi criar um sistema que processasse pagamentos PIX e atualizasse a interface do streamer em tempo real, sem latência perceptível. A solução envolveu WebSockets para comunicação bidirecional e processamento assíncrono de webhooks.
+
+A integração com OBS exigiu conhecimento profundo da API WebSocket do OBS Studio e criação de overlays HTML/CSS que funcionassem perfeitamente durante transmissões.
+
+## Resultado
+
+Plataforma funcional que permite streamers receberem doações PIX durante suas transmissões, com notificações visuais em tempo real. O sistema melhora significativamente a experiência de monetização para criadores de conteúdo brasileiros.
