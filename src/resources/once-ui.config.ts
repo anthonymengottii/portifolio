@@ -12,6 +12,7 @@ import type {
   StyleConfig,
 } from "@/types";
 import { home } from "./index";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 // IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
 const baseURL: string = "https://anthonymengotti.com";
@@ -77,14 +78,14 @@ const style: StyleConfig = {
   accent: "red", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
   solid: "contrast", // color | contrast
   solidStyle: "flat", // flat | plastic
-  border: "playful", // rounded | playful | conservative
+  border: "rounded", // rounded | playful | conservative
   surface: "translucent", // filled | translucent
   transition: "micro", // all | micro | macro
   scaling: "110", // 90 | 95 | 100 | 105 | 110
 };
 
 const dataStyle: DataStyleConfig = {
-  variant: "gradient", // flat | gradient | outline
+  variant: "flat", // flat | gradient | outline
   mode: "categorical", // categorical | divergent | sequential
   height: 24, // default chart height
   axis: {

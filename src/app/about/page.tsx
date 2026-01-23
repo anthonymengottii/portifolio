@@ -17,6 +17,7 @@ import { baseURL, about, person, social } from "@/resources";
 import TableOfContents from "@/components/about/TableOfContents";
 import styles from "@/components/about/about.module.scss";
 import React from "react";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export async function generateMetadata() {
   return Meta.generate({
