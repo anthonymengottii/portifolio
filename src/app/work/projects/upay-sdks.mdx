@@ -1,0 +1,57 @@
+---
+title: "Upay Official SDKs"
+publishedAt: "2024-01-20"
+summary: "Bibliotecas oficiais para integração facilitada com a Upay Gateway em TypeScript/Node.js, Python e PHP. Inclui documentação completa, tipagem estática e suporte a todas as funcionalidades da API."
+images: []
+link: "https://github.com/anthonymengottii/upay-sdks"
+team:
+  - name: "Anthony Mengotti de Oliveira"
+    role: "Maintainer"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/anthony-mengotti-50026424a"
+---
+
+<div align="center">
+  # SDKs Oficiais da Upay
+</div>
+
+Conjunto de bibliotecas oficiais desenvolvidas para facilitar a integração de desenvolvedores com a plataforma de pagamentos Upay. Disponível para as principais linguagens de backend do mercado.
+
+## Linguagens Suportadas
+
+- **JavaScript/TypeScript** (`@upay/upay-js`)
+- **Python** (`upay-python`)
+- **PHP** (`upay/upay-php`)
+
+## Funcionalidades Implementadas
+
+Os SDKs abstraem a complexidade das chamadas HTTP e autenticação, oferecendo métodos tipados e intuitivos para:
+
+- **Links de Pagamento**: Criação e gestão completa.
+- **Transações**: Consulta e listagem com filtros.
+- **Produtos e Clientes**: Gerenciamento de catálogo e base de clientes.
+- **Cupons**: Validação e aplicação de descontos.
+- **Webhooks**: Verificação de assinaturas de segurança para processamento de eventos.
+
+## Exemplo de Uso (TypeScript)
+
+```typescript
+import UpayClient from '@upay/upay-js';
+
+const upay = new UpayClient({
+  apiKey: 'sua_api_key_secreta'
+});
+
+// Criar link de pagamento em 3 linhas
+const paymentLink = await upay.paymentLinks.create({
+  title: 'Assinatura Premium',
+  amount: 9990, // R$ 99,90
+  description: 'Acesso mensal à plataforma'
+});
+
+console.log(paymentLink.checkoutUrl);
+```
+
+## Documentação
+
+Cada SDK possui documentação dedicada com exemplos de instalação e uso, acelerando o tempo de setup para novos parceiros e integradores.
