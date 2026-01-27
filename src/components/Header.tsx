@@ -8,6 +8,7 @@ import { Fade, Flex, Line, Row, ToggleButton } from "@once-ui-system/core";
 import { routes, display, person, about, blog, work, gallery } from "@/resources";
 import { ThemeToggle } from "./ThemeToggle";
 import styles from "./Header.module.scss";
+import { LanguageSwitcher } from "@/i18n/LanguageSwitcher";
 
 type TimeDisplayProps = {
   timeZone: string;
@@ -85,6 +86,7 @@ export const Header = () => {
             horizontal="center"
             zIndex={1}
           >
+            
             <Row gap="4" vertical="center" textVariant="body-default-s" suppressHydrationWarning>
               {routes["/"] && (
                 <ToggleButton prefixIcon="home" href="/" selected={pathname === "/"} />
