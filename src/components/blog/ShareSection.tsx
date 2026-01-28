@@ -2,7 +2,6 @@
 
 import { Row, Text, Button, useToast } from "@once-ui-system/core";
 import { socialSharing } from "@/resources";
-import { useLanguage } from "@/i18n/LanguageContext"; // ← importe seu hook de idioma (se não tiver, veja fallback abaixo)
 
 interface ShareSectionProps {
   title: string;
@@ -19,7 +18,7 @@ interface SocialPlatform {
 const socialPlatforms: Record<string, SocialPlatform> = {
   x: {
     name: "x",
-    icon: "twitter", // ou "x" se o icon set tiver atualizado
+    icon: "twitter",
     label: "X",
     generateUrl: (title, url) =>
       `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`,
@@ -77,12 +76,7 @@ const socialPlatforms: Record<string, SocialPlatform> = {
 
 export function ShareSection({ title, url }: ShareSectionProps) {
   const { addToast } = useToast();
-  const { t, language } = useLanguage(); // ← seu contexto/hook de tradução (ajuste se o nome for diferente)
-
-  // Fallback simples caso não tenha o contexto de idioma
-  const shareText = language === 'en' ? "Share this post:" : "Compartilhar este post:";
-
-  // Não renderiza se compartilhamento estiver desativado
+  // Don't render if sharing is disabled
   if (!socialSharing.display) {
     return null;
   }
@@ -92,47 +86,36 @@ export function ShareSection({ title, url }: ShareSectionProps) {
       await navigator.clipboard.writeText(url);
       addToast({
         variant: "success",
-        message: language === 'en' ? "Link copied to clipboard" : "Link copiado para a área de transferência",
+        message: "Link copiado para a área de transferência",
       });
     } catch (err) {
-      console.error("Failed to copy:", err);
+      console.error('Failed to copy: ', err);
       addToast({
         variant: "danger",
-        message: language === 'en' ? "Failed to copy link" : "Falha ao copiar link",
+        message: "Falha ao copiar link",
       });
     }
   };
 
-  // Plataformas ativadas + filtro de existência
+  // Get enabled platforms
   const enabledPlatforms = Object.entries(socialSharing.platforms)
-    .filter(([key, enabled]) => enabled && key !== 'copyLink')
-    .map(([key]) => socialPlatforms[key])
-    .filter(Boolean); // remove undefined (plataformas não definidas)
+    .filter(([_, enabled]) => enabled && _ !== 'copyLink')
+    .map(([platformKey]) => ({ key: platformKey, ...socialPlatforms[platformKey] }))
+    .filter(platform => platform.name);
 
   return (
     <Row fillWidth center gap="16" marginTop="32" marginBottom="16">
       <Text variant="label-default-m" onBackground="neutral-weak">
-        {shareText}
+        Compartilhar este post:
       </Text>
-
-      <Row
-        data-border="rounded"
-        gap="12"
-        horizontal="center"
-        wrap
-        padding="8"
-        background="neutral-weak-alpha-5" // opcional: fundo sutil para destacar
-      >
-        {enabledPlatforms.map((platform) => (
+      <Row data-border="rounded" gap="16" horizontal="center" wrap padding="8">
+        {enabledPlatforms.map((platform, index) => (
           <Button
             key={platform.name}
             variant="secondary"
             size="s"
             href={platform.generateUrl(title, url)}
             prefixIcon={platform.icon}
-            aria-label={`Compartilhar no ${platform.label}`}
-            target="_blank"
-            rel="noopener noreferrer"
           />
         ))}
 
@@ -141,8 +124,7 @@ export function ShareSection({ title, url }: ShareSectionProps) {
             variant="secondary"
             size="s"
             onClick={handleCopy}
-            prefixIcon="link" // ou "openLink" se preferir
-            aria-label={language === 'en' ? "Copy link" : "Copiar link"}
+            prefixIcon="openLink"
           />
         )}
       </Row>
