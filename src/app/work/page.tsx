@@ -54,14 +54,6 @@ export default async function Work() {
 
       <Projects projects={projects} />
 
-      {/* Opcional: fallback visual se não tiver projetos */}
-      {projects.length === 0 && (
-        <Text align="center" onBackground="neutral-weak" marginTop="xl">
-          {language === 'pt' 
-            ? "Nenhum projeto encontrado ainda." 
-            : "No projects found yet."}
-        </Text>
-      )}
     </Column>
   );
 }
