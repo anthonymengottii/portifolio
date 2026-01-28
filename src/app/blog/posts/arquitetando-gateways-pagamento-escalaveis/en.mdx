@@ -1,0 +1,101 @@
+---
+title: "Architecting Scalable Payment Gateways: Lessons Learned at Upay"
+publishedAt: "2026-01-01"
+summary: "How to design and implement a payment gateway architecture that processes thousands of transactions per second while maintaining security, reliability, and ease of integration."
+tag: "Architecture"
+image: "/api/og/generate?title=Architecting%20Scalable%20Payment%20Gateways"
+---
+
+## Where to Start?
+Building a payment gateway is not just about processing transactions. It’s about creating an infrastructure that is robust, scalable, and above all, simple to integrate. When I started architecting Upay, I had a clear idea: developers already have too many problems — they don’t need yet another complicated API.
+
+The truth is that behind a simple API lies a complex architecture managing multiple acquirers, payment methods, and business rules. The challenge is to hide that complexity without losing flexibility.
+
+## The Dilemma: Simplicity vs. Complexity
+One of the biggest challenges in fintech is finding the right balance. You want the developer to complete an integration in minutes, but you also need a system that can handle traffic spikes, multiple acquirers, and complex business rules.
+
+Our solution was to create an intention-based API: each endpoint does exactly what its name says. Want to create a payment link? Call `POST /payment-links`. Simple as that.
+
+### The 3 Principles We Followed
+**1. Idempotency Is Sacred**  
+Every request in our API is idempotent. This means you can execute the same call 10 times and get the same result. In financial systems, this is crucial — imagine if a duplicated request created two transactions? Total chaos.
+
+How do we do it? Every request can receive an `idempotency-key`. If you send the same key twice, the second call returns the result of the first one without reprocessing.
+
+**2. Responses That Make Sense**  
+We standardized all API responses in a single format. It doesn’t matter if you’re creating a link, listing products, or querying a transaction — the structure is always the same:
+
+```typescript
+{
+  "success": true,
+  "data": { /* your data here */ },
+  "error": null
+}
+```
+
+This makes the developer's life MUCH easier. You write error handling once and it works for all endpoints.
+
+**3. Abstract Without Hiding Too Much**  
+Here’s the key insight: we hide the complexity, but not the flexibility. You don’t need to know which acquirer we’re using, but you can set specific rules if you want. It’s like an automatic car with manual mode — it drives itself, but you can take control whenever you need to.
+
+## Architecture: Microservices That Actually Work
+We chose microservices, but not in the “let’s do microservices because everyone else is doing it” way. Each service has a clear, single responsibility and can scale independently.
+
+### The Main Services
+**API Gateway** — The doorman of the system. Handles authentication, rate limiting, and routing. If someone is hammering the system with too many requests, it blocks them before they even reach the internal services.
+
+**Orchestration Service** — The brain. Decides which acquirer to use based on business rules, fees, availability, etc. This is where the magic happens — you don’t have to worry about any of it, but the system automatically picks the best option.
+
+**Processing Service** — The worker. Actually executes the transactions with the acquirers. This one needs to be fast and extremely reliable because it’s the part that really moves money.
+
+**Webhooks Service** — The notifier. When a transaction changes status, it tells whoever needs to know. We implemented automatic retries because we know external systems fail sometimes.
+
+**Analytics Service** — The observer. Collects metrics, generates reports, and helps understand what’s happening across the system. Essential for making data-driven decisions.
+
+## Lessons I Learned (That You Can Take Advantage Of)
+### Cache Is Your Friend (But Use It Wisely)
+We implemented multiple layers of caching: Redis for distributed cache, in-memory for super-hot data. But here’s the secret: not everything should be cached the same way.
+
+Product configurations? 1-hour cache — fine. Transaction status? Max 30-second cache. And we always invalidate when anything important changes.
+
+The first time I forgot to invalidate a transaction cache, a client saw the wrong status for several minutes. I learned the hard way that poorly managed cache is worse than no cache at all.
+
+### Asynchronous Processing Saves Lives
+Not everything needs to be synchronous. When a client creates a payment link, we return immediately. But webhook processing, report generation, and other heavy tasks go into queues.
+
+We use prioritized queues — critical transactions go first, less urgent tasks wait their turn. This lets us handle traffic spikes without degrading the user experience.
+
+### Observability Is Not Optional
+We instrumented everything from day one: structured logs (always JSON), detailed metrics, and distributed tracing. When something goes wrong in production, we can diagnose it in minutes, not hours.
+
+I learned this the hard way after spending an entire night trying to figure out why some transactions were failing. If we had tracing from the beginning, it would’ve been solved in 10 minutes.
+
+## Mistakes I Made (So You Don’t Have To)
+**Underestimating Integration Complexity**  
+Each acquirer has its own API, its own formats, its own quirks. In the beginning I tried to create an overly generic abstraction. Result? Complicated code that didn’t work well with any acquirer.
+
+The solution was specific adapters for each acquirer, but all sharing a common interface. More code? Yes. Much more reliable? Absolutely.
+
+**Not Thinking About Rollback From Day One**  
+When you’re developing, rollback feels far away. But in production you need to revert changes quickly. We implemented feature flags and API versioning early — and it saved us multiple times.
+
+**Documentation as an Afterthought**  
+Classic mistake. I started documenting after the code was already written. Result? Outdated docs and confused developers. Now documentation is part of the development process — not something we do afterward.
+
+## What Worked Extremely Well
+**TypeScript Everywhere**  
+Type-safety in financial systems isn’t a luxury — it’s a necessity. TypeScript saved us from countless bugs that would have only appeared in production. Plus the developer experience is much better with autocomplete and compile-time validation.
+
+**Realistic Integration Tests**  
+Unit tests matter, but integration tests that cover the full flow are what really count. We created a staging environment that mirrors production and run integration tests there before every deploy.
+
+**Gradual Deployment**  
+We don’t deploy everything at once. We use canary deployments — 10% of traffic goes to the new version first. If everything looks good, we gradually increase. If something goes wrong, we revert quickly without affecting all users.
+
+## Conclusion: It’s About Balance
+Architecting a payment gateway is a constant balancing act: between simplicity and robustness, performance and security, flexibility and standardization.
+
+The result? A platform that developers actually enjoy using (we’ve received consistent positive feedback about how simple the API is) and that companies trust to process their payments.
+
+If I had to summarize it in one sentence: **make the right thing the easy thing**.  
+If integrating with your API is simple, developers will use it. If the system is reliable, companies will trust it. It’s that simple (but far from easy to achieve).

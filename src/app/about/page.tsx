@@ -13,13 +13,21 @@ import {
   Row,
   SmartLink,
 } from "@once-ui-system/core";
-import { baseURL, about, person, social } from "@/resources";
+import { cookies } from "next/headers";
+import { baseURL, social } from "@/resources";
 import TableOfContents from "@/components/about/TableOfContents";
 import styles from "@/components/about/about.module.scss";
 import React from "react";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { getContent } from "@/resources/content";  // ← Importe a função de conteúdo traduzido
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export async function generateMetadata() {
+  const cookieStore = await cookies();
+  const language = (cookieStore.get("language")?.value as 'pt' | 'en') || 'pt';
+
+  const content = getContent(language);
+  const { about, person } = content;
+
   return Meta.generate({
     title: about.title,
     description: about.description,
@@ -29,7 +37,14 @@ export async function generateMetadata() {
   });
 }
 
-export default function About() {
+export default async function About() {
+  const cookieStore = await cookies();
+  const language = (cookieStore.get("language")?.value as 'pt' | 'en') || 'pt';
+
+  // Carrega todo o conteúdo traduzido
+  const content = getContent(language);
+  const { about, person } = content;
+
   const structure = [
     {
       title: about.intro.title,
@@ -52,6 +67,7 @@ export default function About() {
       items: about.technical.skills.map((skill) => skill.title),
     },
   ];
+
   return (
     <Column maxWidth="m">
       <Schema
@@ -67,6 +83,7 @@ export default function About() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
+
       {about.tableOfContent.display && (
         <Column
           left="0"
@@ -79,6 +96,7 @@ export default function About() {
           <TableOfContents structure={structure} about={about} />
         </Column>
       )}
+
       <Row fillWidth s={{ direction: "column" }} horizontal="center">
         {about.avatar.display && (
           <Column
@@ -111,6 +129,7 @@ export default function About() {
             )}
           </Column>
         )}
+
         <Column className={styles.blockAlign} flex={9} maxWidth={40}>
           <Column
             id={about.intro.title}
@@ -135,7 +154,9 @@ export default function About() {
                 }}
               >
                 <Icon paddingLeft="12" name="calendar" onBackground="brand-weak" />
-                <Row paddingX="8">Agendar uma chamada</Row>
+                <Row paddingX="8">
+                  {language === 'pt' ? "Agendar uma chamada" : "Schedule a call"}
+                </Row>
                 <IconButton
                   href={about.calendar.link}
                   data-border="rounded"
@@ -144,9 +165,11 @@ export default function About() {
                 />
               </Row>
             )}
+
             <Heading className={styles.textAlign} variant="display-strong-xl">
               {person.name}
             </Heading>
+
             <Text
               className={styles.textAlign}
               variant="display-default-xs"
@@ -154,6 +177,7 @@ export default function About() {
             >
               {person.role}
             </Text>
+
             {social.length > 0 && (
               <Row
                 className={styles.blockAlign}
@@ -295,7 +319,7 @@ export default function About() {
               </Heading>
               <Column fillWidth gap="l">
                 {about.technical.skills.map((skill, index) => (
-                  <Column key={`${skill}-${index}`} fillWidth gap="4">
+                  <Column key={`${skill.title}-${index}`} fillWidth gap="4">
                     <Text id={skill.title} variant="heading-strong-l">
                       {skill.title}
                     </Text>
@@ -349,6 +373,8 @@ export default function About() {
           )}
         </Column>
       </Row>
+
+      <SpeedInsights />
     </Column>
   );
 }

@@ -9,6 +9,7 @@ import {
   SmartLink,
   Text,
 } from "@once-ui-system/core";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 interface ProjectCardProps {
   href: string;
@@ -30,6 +31,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   avatars,
   link,
 }) => {
+  const { t } = useLanguage();
   return (
     <Column fillWidth gap="m">
       {images && images.length > 0 && (
@@ -71,7 +73,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   style={{ margin: "0", width: "fit-content" }}
                   href={href}
                 >
-                  <Text variant="body-default-s">Ler estudo de caso</Text>
+                  <Text variant="body-default-s">{t('work.readCaseStudy')}</Text>
                 </SmartLink>
               )}
               {link && (
@@ -80,7 +82,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   style={{ margin: "0", width: "fit-content" }}
                   href={link}
                 >
-                  <Text variant="body-default-s">Ver projeto</Text>
+                  <Text variant="body-default-s">{t('work.viewProject')}</Text>
                 </SmartLink>
               )}
             </Flex>

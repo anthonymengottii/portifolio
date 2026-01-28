@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
 import { CustomMDX, ScrollToHash } from "@/components";
 import {
   Meta,
@@ -22,9 +23,11 @@ import React from "react";
 import { Posts } from "@/components/blog/Posts";
 import { ShareSection } from "@/components/blog/ShareSection";
 import { BlogImage } from "@/components/blog/BlogImage";
+import { getContent } from "@/resources/content";  // ← para traduções
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  const posts = getPosts(["src", "app", "blog", "posts"]);
+  // Gera params em PT (padrão para build), mas pode ser expandido se quiser multi-idioma
+  const posts = getPosts(["src", "app", "blog", "posts"], "pt");
   return posts.map((post) => ({
     slug: post.slug,
   }));
@@ -35,36 +38,51 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string | string[] }>;
 }): Promise<Metadata> {
+  const cookieStore = await cookies();
+  const language = (cookieStore.get("language")?.value as 'pt' | 'en') || 'pt';
+
   const routeParams = await params;
   const slugPath = Array.isArray(routeParams.slug)
     ? routeParams.slug.join("/")
     : routeParams.slug || "";
 
-  const posts = getPosts(["src", "app", "blog", "posts"]);
-  const post = posts.find((post) => post.slug === slugPath);
+  const posts = getPosts(["src", "app", "blog", "posts"], language);
+  const post = posts.find((p) => p.slug === slugPath);
 
   if (!post) return {};
+
+  const content = getContent(language);
+  const { blog } = content;
 
   return Meta.generate({
     title: post.metadata.title,
     description: post.metadata.summary,
     baseURL: baseURL,
-    image: post.metadata.image || `/api/og/generate?title=${post.metadata.title}`,
+    image: post.metadata.image || `/api/og/generate?title=${encodeURIComponent(post.metadata.title)}`,
     path: `${blog.path}/${post.slug}`,
   });
 }
 
 export default async function Blog({ params }: { params: Promise<{ slug: string | string[] }> }) {
+  const cookieStore = await cookies();
+  const language = (cookieStore.get("language")?.value as 'pt' | 'en') || 'pt';
+
   const routeParams = await params;
   const slugPath = Array.isArray(routeParams.slug)
     ? routeParams.slug.join("/")
     : routeParams.slug || "";
 
-  const post = getPosts(["src", "app", "blog", "posts"]).find((post) => post.slug === slugPath);
+  // Carrega o post no idioma correto
+  const posts = getPosts(["src", "app", "blog", "posts"], language);
+  const post = posts.find((p) => p.slug === slugPath);
 
   if (!post) {
     notFound();
   }
+
+  // Carrega conteúdo traduzido para textos da página
+  const content = getContent(language);
+  const { blog: blogContent, person } = content;
 
   const avatars =
     post.metadata.team?.map((person) => ({
@@ -79,7 +97,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
           <Schema
             as="blogPosting"
             baseURL={baseURL}
-            path={`${blog.path}/${post.slug}`}
+            path={`${blogContent.path}/${post.slug}`}
             title={post.metadata.title}
             description={post.metadata.summary}
             datePublished={post.metadata.publishedAt}
@@ -94,9 +112,10 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
               image: `${baseURL}${person.avatar}`,
             }}
           />
+
           <Column maxWidth="s" gap="16" horizontal="center" align="center">
             <SmartLink href="/blog">
-              <Text variant="label-strong-m">Blog</Text>
+              <Text variant="label-strong-m">{blogContent.label || "Blog"}</Text>
             </SmartLink>
             <Text variant="body-default-xs" onBackground="neutral-weak" marginBottom="12">
               {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
@@ -113,6 +132,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
               </Text>
             )}
           </Column>
+
           <Row marginBottom="32" horizontal="center">
             <Row gap="16" vertical="center">
               <Avatar size="s" src={person.avatar} />
@@ -121,6 +141,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
               </Text>
             </Row>
           </Row>
+
           {post.metadata.image && (
             <BlogImage
               src={post.metadata.image}
@@ -134,25 +155,36 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
               marginBottom="8"
             />
           )}
+
           <Column as="article" maxWidth="s">
             <CustomMDX source={post.content} />
           </Column>
           
           <ShareSection 
             title={post.metadata.title} 
-            url={`${baseURL}${blog.path}/${post.slug}`} 
+            url={`${baseURL}${blogContent.path}/${post.slug}`} 
           />
 
           <Column fillWidth gap="40" horizontal="center" marginTop="40">
             <Line maxWidth="40" />
             <Text as="h2" id="recent-posts" variant="heading-strong-xl" marginBottom="24">
-              Posts recentes
+              {language === 'pt' ? "Posts recentes" : "Recent posts"}
             </Text>
-            <Posts exclude={[post.slug]} range={[1, 2]} columns="2" thumbnail direction="column" />
+            {/* Passa os posts traduzidos para a seção relacionada */}
+            <Posts 
+              posts={posts} 
+              exclude={[post.slug]} 
+              range={[1, 2]} 
+              columns="2" 
+              thumbnail 
+              direction="column" 
+            />
           </Column>
+
           <ScrollToHash />
         </Column>
       </Row>
+
       <Column
         maxWidth={12}
         paddingLeft="40"

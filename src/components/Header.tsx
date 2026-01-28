@@ -9,8 +9,10 @@ import { routes, display, person, about, blog, work, gallery } from "@/resources
 import { ThemeToggle } from "./ThemeToggle";
 import styles from "./Header.module.scss";
 import { LanguageSwitcher } from "@/i18n/LanguageSwitcher";
+import { useLanguage } from "@/i18n/LanguageContext";
 
-type TimeDisplayProps = {
+
+type TimeDisplayProps = { 
   timeZone: string;
   locale?: string; // Optionally allow locale, defaulting to 'en-GB'
 };
@@ -45,7 +47,7 @@ export default TimeDisplay;
 
 export const Header = () => {
   const pathname = usePathname() ?? "";
-
+  const { t, language } = useLanguage();
   return (
     <>
       <Fade s={{ hide: true }} fillWidth position="fixed" height="80" zIndex={9} />
@@ -98,7 +100,7 @@ export const Header = () => {
                     <ToggleButton
                       prefixIcon="person"
                       href="/about"
-                      label={about.label}
+                      label={t('nav.about')}
                       selected={pathname === "/about"}
                     />
                   </Row>
@@ -117,7 +119,7 @@ export const Header = () => {
                     <ToggleButton
                       prefixIcon="grid"
                       href="/work"
-                      label={work.label}
+                      label={t('nav.work')}
                       selected={pathname.startsWith("/work")}
                     />
                   </Row>
@@ -136,7 +138,7 @@ export const Header = () => {
                     <ToggleButton
                       prefixIcon="book"
                       href="/blog"
-                      label={blog.label}
+                      label={t('nav.blog')}
                       selected={pathname.startsWith("/blog")}
                     />
                   </Row>
@@ -155,7 +157,7 @@ export const Header = () => {
                     <ToggleButton
                       prefixIcon="gallery"
                       href="/gallery"
-                      label={gallery.label}
+                      label={t('nav.gallery')}
                       selected={pathname.startsWith("/gallery")}
                     />
                   </Row>
@@ -169,11 +171,16 @@ export const Header = () => {
                 </>
               )}
               {display.themeSwitcher && (
-                <>
-                  <Line background="neutral-alpha-medium" vert maxHeight="24" />
-                  <ThemeToggle />
-                </>
-              )}
+  <>
+    <Line background="neutral-alpha-medium" vert maxHeight="24" />
+
+    <Row gap="4" vertical="center">
+      <ThemeToggle />
+      <LanguageSwitcher />
+    </Row>
+  </>
+)}
+
             </Row>
           </Row>
         </Row>

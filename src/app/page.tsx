@@ -11,12 +11,18 @@ import {
   Meta,
   Line,
 } from "@once-ui-system/core";
-import { home, about, person, baseURL, routes } from "@/resources";
+import { cookies } from "next/headers";
+import { baseURL, routes } from "@/resources";
 import { Mailchimp } from "@/components";
 import { Projects } from "@/components/work/Projects";
 import { Posts } from "@/components/blog/Posts";
+import { getPosts } from "@/utils/utils";
+import { getContent } from "@/resources/content";
 
 export async function generateMetadata() {
+  const content = getContent('pt'); // metadata em PT por padrão (SEO)
+  const { home } = content;
+
   return Meta.generate({
     title: home.title,
     description: home.description,
@@ -26,7 +32,19 @@ export async function generateMetadata() {
   });
 }
 
-export default function Home() {
+export default async function Home() {
+  const cookieStore = await cookies();
+  const language = (cookieStore.get("language")?.value as 'pt' | 'en') || 'pt';
+
+  const content = getContent(language);
+  const { home, person, about } = content;
+
+  // Projetos no idioma atual
+  const projects = getPosts(["src", "app", "work", "projects"], language);
+
+  // Posts do blog no idioma atual (para a seção "Últimas do blog")
+  const blogPosts = getPosts(["src", "app", "blog", "posts"], language);
+
   return (
     <Column maxWidth="m" gap="xl" paddingY="12" horizontal="center">
       <Schema
@@ -42,6 +60,7 @@ export default function Home() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
+
       <Column fillWidth horizontal="center" gap="m">
         <Column maxWidth="s" horizontal="center" align="center">
           {home.featured.display && (
@@ -65,16 +84,19 @@ export default function Home() {
               </Badge>
             </RevealFx>
           )}
+
           <RevealFx translateY="4" fillWidth horizontal="center" paddingBottom="16">
             <Heading wrap="balance" variant="display-strong-l">
               {home.headline}
             </Heading>
           </RevealFx>
+
           <RevealFx translateY="8" delay={0.2} fillWidth horizontal="center" paddingBottom="32">
             <Text wrap="balance" onBackground="neutral-weak" variant="heading-default-xl">
               {home.subline}
             </Text>
           </RevealFx>
+
           <RevealFx paddingTop="12" delay={0.4} horizontal="center" paddingLeft="12">
             <Button
               id="about"
@@ -100,9 +122,11 @@ export default function Home() {
           </RevealFx>
         </Column>
       </Column>
+
       <RevealFx translateY="16" delay={0.6}>
-        <Projects range={[1, 1]} />
+        <Projects range={[1, 1]} projects={projects} />
       </RevealFx>
+
       {routes["/blog"] && (
         <Column fillWidth gap="24" marginBottom="l">
           <Row fillWidth paddingRight="64">
@@ -111,11 +135,12 @@ export default function Home() {
           <Row fillWidth gap="24" marginTop="40" s={{ direction: "column" }}>
             <Row flex={1} paddingLeft="l" paddingTop="24">
               <Heading as="h2" variant="display-strong-xs" wrap="balance">
-                Últimas do blog
+                {language === 'pt' ? "Últimas do blog" : "Latest from the blog"}
               </Heading>
             </Row>
             <Row flex={3} paddingX="20">
-              <Posts range={[1, 2]} columns="2" />
+              {/* Agora passa os posts traduzidos → títulos mudam com o idioma */}
+              <Posts posts={blogPosts} range={[1, 2]} columns="2" />
             </Row>
           </Row>
           <Row fillWidth paddingLeft="64" horizontal="end">
@@ -123,7 +148,9 @@ export default function Home() {
           </Row>
         </Column>
       )}
-      <Projects range={[2]} />
+
+      <Projects range={[2]} projects={projects} />
+
       <Mailchimp />
     </Column>
   );

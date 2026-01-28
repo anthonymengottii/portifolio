@@ -1,8 +1,17 @@
 import { Column, Heading, Meta, Schema } from "@once-ui-system/core";
-import { baseURL, about, person, work } from "@/resources";
+import { cookies } from "next/headers";
+import { baseURL, about, person } from "@/resources";  // remova 'work' daqui
 import { Projects } from "@/components/work/Projects";
+import { getPosts } from "@/utils/utils";
+import { getContent } from "@/resources/content";  // ← importe a função de conteúdo traduzido
 
 export async function generateMetadata() {
+  const cookieStore = await cookies();
+  const language = (cookieStore.get("language")?.value as 'pt' | 'en') || 'pt';
+
+  const content = getContent(language);
+  const { work } = content;
+
   return Meta.generate({
     title: work.title,
     description: work.description,
@@ -12,7 +21,17 @@ export async function generateMetadata() {
   });
 }
 
-export default function Work() {
+export default async function Work() {
+  const cookieStore = await cookies();
+  const language = (cookieStore.get("language")?.value as 'pt' | 'en') || 'pt';
+
+  // Carrega projetos no idioma atual
+  const projects = getPosts(["src", "app", "work", "projects"], language);
+
+  // Carrega o conteúdo traduzido
+  const content = getContent(language);
+  const { work, person, about } = content;
+
   return (
     <Column maxWidth="m" paddingTop="24">
       <Schema
@@ -28,10 +47,21 @@ export default function Work() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
+
       <Heading marginBottom="l" variant="heading-strong-xl" align="center">
         {work.title}
       </Heading>
-      <Projects />
+
+      <Projects projects={projects} />
+
+      {/* Opcional: fallback visual se não tiver projetos */}
+      {projects.length === 0 && (
+        <Text align="center" onBackground="neutral-weak" marginTop="xl">
+          {language === 'pt' 
+            ? "Nenhum projeto encontrado ainda." 
+            : "No projects found yet."}
+        </Text>
+      )}
     </Column>
   );
 }

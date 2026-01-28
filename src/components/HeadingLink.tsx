@@ -1,9 +1,11 @@
 "use client";
 
-import React, { JSX } from "react";
+import type React from "react";
+import type { JSX } from "react";
 import { Heading, Flex, IconButton, useToast } from "@once-ui-system/core";
 
 import styles from "@/components/HeadingLink.module.scss";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 interface HeadingLinkProps {
   id: string;
@@ -14,20 +16,20 @@ interface HeadingLinkProps {
 
 export const HeadingLink: React.FC<HeadingLinkProps> = ({ id, level, children, style }) => {
   const { addToast } = useToast();
-
+  const { t } = useLanguage();
   const copyURL = (id: string): void => {
     const url = `${window.location.origin}${window.location.pathname}#${id}`;
     navigator.clipboard.writeText(url).then(
       () => {
         addToast({
           variant: "success",
-          message: "Link copiado para a área de transferência",
+          message: t('headingLink.copySuccess'),
         });
       },
       () => {
         addToast({
           variant: "danger",
-          message: "Falha ao copiar link",
+          message: t('headingLink.copyError'),
         });
       },
     );

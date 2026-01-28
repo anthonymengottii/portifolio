@@ -1,30 +1,46 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { Row, ToggleButton, useTheme } from "@once-ui-system/core";
+import { useEffect, useState } from "react";
+import { ToggleButton } from "@once-ui-system/core";
 
-export const ThemeToggle: React.FC = () => {
-  const { theme, setTheme } = useTheme();
+export function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
-  const [currentTheme, setCurrentTheme] = useState("light");
+  const [theme, setTheme] = useState<"light" | "dark">("light");
 
+  // Roda só no client
   useEffect(() => {
     setMounted(true);
-    setCurrentTheme(document.documentElement.getAttribute("data-theme") || "light");
+
+    // Exemplo comum: theme salvo no localStorage
+    const storedTheme = window.localStorage.getItem("theme") as
+      | "light"
+      | "dark"
+      | null;
+
+    if (storedTheme) {
+      setTheme(storedTheme);
+      document.documentElement.dataset.theme = storedTheme;
+    }
   }, []);
 
-  useEffect(() => {
-    setCurrentTheme(document.documentElement.getAttribute("data-theme") || "light");
-  }, [theme]);
+  if (!mounted) return null;
 
-  const icon = currentTheme === "dark" ? "light" : "dark";
-  const nextTheme = currentTheme === "light" ? "dark" : "light";
+  const isDark = theme === "dark";
+  const nextTheme = isDark ? "light" : "dark";
+
+  function toggleTheme() {
+    const newTheme = nextTheme;
+
+    setTheme(newTheme);
+    document.documentElement.dataset.theme = newTheme;
+    window.localStorage.setItem("theme", newTheme);
+  }
 
   return (
     <ToggleButton
-      prefixIcon={icon}
-      onClick={() => setTheme(nextTheme)}
+      prefixIcon={isDark ? "light" : "dark"}
+      onClick={toggleTheme}
       aria-label={`Switch to ${nextTheme} mode`}
     />
   );
-};
+}

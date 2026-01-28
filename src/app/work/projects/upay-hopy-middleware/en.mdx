@@ -1,0 +1,37 @@
+---
+title: "Upay Hopy Middleware - Hopy Split Payment Integration"
+publishedAt: "2024-03-10"
+summary: "Payment middleware for Hopy Split integration. Supports Pagar.me, Citrex and Zendry. TypeScript, Express, SQLite. System in production processing real transactions."
+images: []
+link: "https://github.com/anthonymengottii/upay-hopy-middleware_public"
+team:
+  - name: "Anthony Mengotti de Oliveira"
+    role: "Developer & Architect"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/anthony-mengotti-50026424a"
+---
+## Overview
+Specialized middleware for integration with the Hopy Split system, enabling payment processing through multiple gateways (Pagar.me, Citrex and Zendry). System developed in TypeScript with Express and SQLite, currently in production processing real transactions.
+
+## Key Features
+- **Multi-Gateway Integration**: Unified support for Pagar.me, Citrex and Zendry
+- **Payment Split System**: Automatic division of amounts among multiple recipients
+- **RESTful API**: Clear and documented interface for integration
+- **Asynchronous Processing**: System optimized for high performance
+- **Logging and Monitoring**: Complete transaction tracking for auditing
+- **SQLite Database**: Lightweight and efficient solution for local storage
+
+## Technologies Used
+- **TypeScript**: Type-safety and better development experience
+- **Express.js**: Web framework for Node.js
+- **SQLite**: Lightweight and efficient database
+- **Node.js**: Runtime for asynchronous processing
+- **Webhooks**: Real-time transaction status notifications
+
+## Challenges and Learnings
+The main complexity was creating a unified abstraction for three different gateways, each with its own API particularities, authentication methods and response formats. The solution involved building an adapter layer that normalizes all operations.
+
+The payment split system required complex logic to ensure values are correctly distributed while respecting fees and limits of each gateway.
+
+## Outcome
+Production middleware reliably processing real transactions. The system allows applications to easily integrate with Hopy Split, abstracting the complexity of multiple gateways through a single unified API.

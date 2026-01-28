@@ -2,10 +2,12 @@
 
 import { mailchimp, newsletter } from "@/resources";
 import { Button, Heading, Input, Text, Background, Column, Row } from "@once-ui-system/core";
-import { opacity, SpacingToken } from "@once-ui-system/core";
+import type { opacity, SpacingToken } from "@once-ui-system/core";
 import { useState } from "react";
 
-function debounce<T extends (...args: any[]) => void>(func: T, delay: number): T {
+import { useLanguage } from "@/i18n/LanguageContext";
+
+function debounce<T extends (...args: unknown[]) => void>(func: T, delay: number): T {
   let timeout: ReturnType<typeof setTimeout>;
   return ((...args: Parameters<T>) => {
     clearTimeout(timeout);
@@ -14,9 +16,12 @@ function debounce<T extends (...args: any[]) => void>(func: T, delay: number): T
 }
 
 export const Mailchimp: React.FC<React.ComponentProps<typeof Column>> = ({ ...flex }) => {
+  const { t } = useLanguage();
+
   const [email, setEmail] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [touched, setTouched] = useState<boolean>(false);
+
 
   const validateEmail = (email: string): boolean => {
     if (email === "") {
@@ -32,18 +37,18 @@ export const Mailchimp: React.FC<React.ComponentProps<typeof Column>> = ({ ...fl
     setEmail(value);
 
     if (!validateEmail(value)) {
-      setError("Por favor, insira um endereço de email válido.");
+      setError(t('mailchimp.error'));
     } else {
       setError("");
     }
   };
 
-  const debouncedHandleChange = debounce(handleChange, 2000);
+  const debouncedHandleChange = debounce((e: unknown) => handleChange(e as React.ChangeEvent<HTMLInputElement>), 2000);
 
   const handleBlur = () => {
     setTouched(true);
     if (!validateEmail(email)) {
-      setError("Por favor, insira um endereço de email válido.");
+      setError(t('mailchimp.error'));
     }
   };
 
@@ -158,8 +163,8 @@ export const Mailchimp: React.FC<React.ComponentProps<typeof Column>> = ({ ...fl
             />
           </div>
           <div id="mce-responses" className="clearfalse">
-            <div className="response" id="mce-error-response" style={{ display: "none" }}></div>
-            <div className="response" id="mce-success-response" style={{ display: "none" }}></div>
+            <div className="response" id="mce-error-response" style={{ display: "none" }} />
+            <div className="response" id="mce-success-response" style={{ display: "none" }} />
           </div>
           <div aria-hidden="true" style={{ position: "absolute", left: "-5000px" }}>
             <input
@@ -173,7 +178,7 @@ export const Mailchimp: React.FC<React.ComponentProps<typeof Column>> = ({ ...fl
           <div className="clear">
             <Row height="48" vertical="center">
               <Button id="mc-embedded-subscribe" value="Inscrever-se" size="m" fillWidth>
-                Inscrever-se
+                {t('mailchimp.subscribe')}
               </Button>
             </Row>
           </div>

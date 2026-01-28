@@ -1,0 +1,43 @@
+---
+title: "Upay - Payment Gateway & Digital Banking Infrastructure"
+publishedAt: "2024-01-15"
+summary: "Complete white-label payment platform with a simple and intuitive API. Full support for PIX, Credit/Debit Card and Boleto, personalized payment links, product management, coupons, and real-time webhooks."
+images:
+  - "/images/projects/upay/og-image.png"
+  - "/images/projects/upay/dashboard.png"
+  - "/images/projects/upay/login.png"
+link: "https://app.upaybr.com/"
+team:
+  - name: "Anthony Mengotti de Oliveira"
+    role: "CTO & Architect"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/anthony-mengotti-50026424a"
+---
+## Overview
+The UPay Gateway API is a complete white-label payment platform designed to provide a robust and flexible transaction processing solution. Unlike overly complex platforms, UPay was built by developers for developers, prioritizing simplicity, intuitiveness, and ease of integration.
+
+## Key Features
+- **Simple and Intuitive API**: Clear, well-documented endpoints based on intention — each endpoint does exactly what its name suggests
+- **Multiple Payment Methods**: Full support for PIX, Credit/Debit Card, and Boleto
+- **Personalized Payment Links**: Create unique links with flexible settings for each transaction
+- **Complete Product Management**: Full catalog with create, list, update, and delete operations
+- **Coupon System**: Complete discount coupon management with real-time validation
+- **Real-Time Webhooks**: Receive instant notifications about payment events
+- **Administrative Dashboard**: Full control over transactions, reports, and settings
+- **Idempotent API**: Execute the same request multiple times with no side effects
+- **Consistent Responses**: Standardized structure makes error handling and integration straightforward
+
+## Technologies Used
+- **TypeScript**: Type-safety and improved developer experience
+- **Node.js**: Runtime for high-performance processing
+- **Next.js**: Framework for the admin interface and documentation
+- **RESTful Architecture**: Modern and well-structured REST API
+- **Mintlify Documentation**: Interactive and comprehensive developer documentation
+
+## Challenges and Learnings
+The main challenge was creating an API that was extremely simple to use without sacrificing robustness and flexibility. The solution was to develop an intention-based architecture where each endpoint clearly represents its purpose, eliminating the ambiguities common in other platforms.
+
+Implementing idempotency ensured developers could safely retry requests multiple times without concern, significantly improving the integration experience and reducing production errors.
+
+## Outcome
+The UPay Gateway API is live in production, processing real transactions through a [complete and interactive documentation](https://upayltda.mintlify.app/pages/introduction). The platform offers fast integration with step-by-step guides, code examples in multiple languages, and dedicated support, allowing developers to start processing payments in minutes.
