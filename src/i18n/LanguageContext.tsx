@@ -226,26 +226,33 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
     }
   }, [language]);
 
-  const setLanguage = (lang: Language) => {
-    setIsTransitioning(true);
-    document.body.style.opacity = '0';
-    document.body.style.filter = 'blur(8px)'; // ← Adicionar
-    
+// No setLanguage, adicione logs:
+const setLanguage = (lang: Language) => {
+  if (lang === language) return;
+
+  console.log('🌍 Trocando idioma para:', lang);
+
+  setIsTransitioning(true);
+
+  const root = document.getElementById('page-transition-root');
+  root?.classList.add('is-hidden');
+
+  setTimeout(() => {
+    setLanguageState(lang);
+    localStorage.setItem('language', lang);
+    document.documentElement.lang = lang;
+    document.cookie = `language=${lang}; path=/; max-age=31536000`;
+
+    router.refresh();
+
     setTimeout(() => {
-      setLanguageState(lang);
-      localStorage.setItem('language', lang);
-      document.documentElement.lang = lang;
-      document.cookie = `language=${lang}; path=/; max-age=31536000`;
-      
-      router.refresh();
-      
-      setTimeout(() => {
-        document.body.style.opacity = '1';
-        document.body.style.filter = 'blur(0px)'; // ← Adicionar
-        setIsTransitioning(false);
-      }, 100);
-    }, 400); // ← Aumentar para 400ms
-  };
+      root?.classList.remove('is-hidden');
+      setIsTransitioning(false);
+      console.log('✅ Idioma aplicado');
+    }, 200);
+  }, 400);
+};
+
 
   const t = <K extends keyof TranslationKeys>(key: K): TranslationKeys[K] => {
     return translations[language][key];

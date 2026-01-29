@@ -59,12 +59,13 @@
    ======================================== */
 
 /* Transição suave para o body durante troca de idioma */
-body {
-  transition: opacity 400ms ease-in-out, filter 400ms ease-in-out;
-  will-change: opacity, filter;
+/* page-transition.css */
+.page-transition {
+  transition: opacity 400ms ease-in-out;
+  will-change: opacity;
 }
 
-body[style*="opacity: 0"] {
-  filter: blur(8px);
+.page-transition.is-hidden {
+  opacity: 0;
   pointer-events: none;
 }
