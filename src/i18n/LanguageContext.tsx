@@ -10,6 +10,7 @@ interface LanguageContextType {
     language: Language;
     setLanguage: (lang: Language) => void;
     t: <K extends keyof TranslationKeys>(key: K) => TranslationKeys[K];
+    isTransitioning: boolean; // ✨ NOVO
   }
   
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -123,68 +124,43 @@ const translations: Record<Language, TranslationKeys> = {
     'work.description': 'Development and architecture projects by',
     'about.studies.institution.description': 'Bachelor of Science in Computer Science - 4th semester',
     'gallery.description': 'Gallery of images by',
-    // Buttons
     'button.submit': 'Submit',
-
-    // Login
     'login.title': 'Login',
     'login.description': 'Access your account to continue',
-
-    // Navigation
     'nav.home': 'Home',
     'nav.about': 'About',
     'nav.work': 'Projects',
     'nav.blog': 'Blog',
     'nav.gallery': 'Gallery',
-    
-    // Home
     'home.greeting': 'Hi, I\'m',
     'home.role': 'Developer',
     'home.description': 'Welcome to my portfolio',
     'home.cta': 'View projects',
-    
-    // About
     'about.title': 'About Me',
     'about.resume': 'Resume',
     'about.download': 'Download CV',
-    
-    // Work
     'work.title': 'My Projects',
     'work.viewProject': 'View project',
     'work.viewAll': 'View all',
     'work.readCaseStudy': 'Read case study',
     'work.projects': 'Projects',
     'work.relatedProjects': 'Related projects',
-    
-    // Blog
     'blog.title': 'Blog',
     'blog.readMore': 'Read more',
     'blog.readTime': 'min read',
-    
-    // Contact
     'contact.title': 'Contact',
     'contact.email': 'Email',
     'contact.social': 'Social Media',
-    
-    // Footer
     'footer.rights': 'All rights reserved',
-
-    // HeadingLink
     'headingLink.copy': 'Copy link',
     'headingLink.copied': 'Link copied to clipboard',
     'headingLink.copyError': 'Failed to copy link',
     'headingLink.copySuccess': 'Link copied to clipboard',
-
-    // Mailchimp
     'mailchimp.error': 'Please enter a valid email address',
     'mailchimp.subscribe': 'Subscribe',
-
-    // Login
     'login.passwordProtected': 'This page is password protected',
     'login.password': 'Password',
     'login.incorrectPassword': 'Incorrect password',
-
-    // Not Found
     'notFound.title': 'Page not found',
     'notFound.message': 'The page you are looking for does not exist.',
     'home.headline': 'Software architect focused on fintech',
@@ -217,34 +193,30 @@ const translations: Record<Language, TranslationKeys> = {
   },
 };
 
-// ✨ ADICIONAR: Interface com prop initialLanguage
 interface LanguageProviderProps {
   children: React.ReactNode;
   initialLanguage?: Language;
 }
 
 export function LanguageProvider({ children, initialLanguage }: LanguageProviderProps) {
-  // ✨ MUDAR: Inicializa com initialLanguage se disponível
   const [language, setLanguageState] = useState<Language>(() => {
     if (initialLanguage) return initialLanguage;
     if (typeof window === 'undefined') return 'pt';
     
-    // Tenta ler do cookie
     const cookieMatch = document.cookie.match(/language=(pt|en)/);
     if (cookieMatch) return cookieMatch[1] as Language;
     
-    // Fallback: localStorage
     const saved = localStorage.getItem('language') as Language;
     if (saved && (saved === 'pt' || saved === 'en')) return saved;
     
-    // Fallback final: navegador
     const browserLang = navigator.language.split('-')[0];
     return browserLang === 'pt' ? 'pt' : 'en';
   });
 
+  // ✨ NOVO: Estado de transição
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const router = useRouter();
 
-  // ✨ ADICIONAR: Sincroniza com cookie ao montar
   useEffect(() => {
     const cookieMatch = document.cookie.match(/language=(pt|en)/);
     const cookieLang = cookieMatch?.[1] as Language;
@@ -255,20 +227,32 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
   }, [language]);
 
   const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
-    localStorage.setItem('language', lang);
-    document.documentElement.lang = lang;
-    document.cookie = `language=${lang}; path=/; max-age=31536000`;
-    router.refresh();
+    setIsTransitioning(true);
+    document.body.style.opacity = '0';
+    document.body.style.filter = 'blur(8px)'; // ← Adicionar
+    
+    setTimeout(() => {
+      setLanguageState(lang);
+      localStorage.setItem('language', lang);
+      document.documentElement.lang = lang;
+      document.cookie = `language=${lang}; path=/; max-age=31536000`;
+      
+      router.refresh();
+      
+      setTimeout(() => {
+        document.body.style.opacity = '1';
+        document.body.style.filter = 'blur(0px)'; // ← Adicionar
+        setIsTransitioning(false);
+      }, 100);
+    }, 400); // ← Aumentar para 400ms
   };
 
   const t = <K extends keyof TranslationKeys>(key: K): TranslationKeys[K] => {
     return translations[language][key];
   };
-  
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t, isTransitioning }}>
       {children}
     </LanguageContext.Provider>
   );
