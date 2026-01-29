@@ -3,7 +3,7 @@ import "@once-ui-system/core/css/tokens.css";
 import "@/resources/custom.css";
 
 import classNames from "classnames";
-import { cookies } from "next/headers"; // ✨ ADICIONAR
+import { cookies } from "next/headers";
 
 import {
   Background,
@@ -24,9 +24,11 @@ export async function generateMetadata() {
     description: home.description,
     baseURL: baseURL,
     path: home.path,
-    image: home.image,
+    image: home.image
   });
 }
+
+
 
 export default async function RootLayout({
   children,
@@ -51,6 +53,8 @@ export default async function RootLayout({
       )}
     >
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
         <script
           id="theme-init"
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Required for theme initialization before React hydration
