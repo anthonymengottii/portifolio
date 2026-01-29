@@ -9,7 +9,7 @@
 
 Professional portfolio showcasing my work in fintech, payment systems, and software architecture. Built with Next.js 16, featuring bilingual support (PT/EN), MDX-powered content, and a modern, responsive design.
 
-🌐 **Live Demo:** [magic-portfolio-for-next-js-three-tan-84.vercel.app](https://magic-portfolio-for-next-js-three-tan-84.vercel.app)
+🌐 **Live Demo:** [[https://portfolio-anthonymengottiis-projects.vercel.app/](https://portfolio-anthonymengottiis-projects.vercel.app/)]
 
 ---
 
@@ -311,3 +311,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **[Magic Portfolio](https://github.com/once-ui-system/magic-portfolio)** - Portfolio template base
 - **[Next.js](https://nextjs.org/)** - The React Framework
 - **[Vercel](https://vercel.com/)** - Deployment platform
+
