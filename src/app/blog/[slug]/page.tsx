@@ -7,15 +7,13 @@ import {
   Column,
   Heading,
   HeadingNav,
-  Icon,
   Row,
   Text,
   SmartLink,
   Avatar,
-  Media,
   Line,
 } from "@once-ui-system/core";
-import { baseURL, about, blog, person } from "@/resources";
+import { baseURL, about, person } from "@/resources";
 import { formatDate } from "@/utils/formatDate";
 import { getPosts } from "@/utils/utils";
 import type { Metadata } from "next";
@@ -23,10 +21,9 @@ import React from "react";
 import { Posts } from "@/components/blog/Posts";
 import { ShareSection } from "@/components/blog/ShareSection";
 import { BlogImage } from "@/components/blog/BlogImage";
-import { getContent } from "@/resources/content";  // ← para traduções
+import { getContent } from "@/resources/content";
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  // Gera params em PT (padrão para build), mas pode ser expandido se quiser multi-idioma
   const posts = getPosts(["src", "app", "blog", "posts"], "pt");
   return posts.map((post) => ({
     slug: post.slug,
@@ -72,7 +69,6 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
     ? routeParams.slug.join("/")
     : routeParams.slug || "";
 
-  // Carrega o post no idioma correto
   const posts = getPosts(["src", "app", "blog", "posts"], language);
   const post = posts.find((p) => p.slug === slugPath);
 
@@ -80,14 +76,8 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
     notFound();
   }
 
-  // Carrega conteúdo traduzido para textos da página
   const content = getContent(language);
-  const { blog: blogContent, person } = content;
-
-  const avatars =
-    post.metadata.team?.map((person) => ({
-      src: person.avatar,
-    })) || [];
+  const { blog: blogContent, person: personContent } = content;
 
   return (
     <Row fillWidth>
@@ -157,6 +147,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
           )}
 
           <Column as="article" maxWidth="s">
+            {/* ✅ CORRETO: Passa a string diretamente, não serializado */}
             <CustomMDX source={post.content} />
           </Column>
           
@@ -170,7 +161,6 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
             <Text as="h2" id="recent-posts" variant="heading-strong-xl" marginBottom="24">
               {language === 'pt' ? "Posts recentes" : "Recent posts"}
             </Text>
-            {/* Passa os posts traduzidos para a seção relacionada */}
             <Posts 
               posts={posts} 
               exclude={[post.slug]} 

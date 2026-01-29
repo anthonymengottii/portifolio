@@ -3,6 +3,7 @@ import "@once-ui-system/core/css/tokens.css";
 import "@/resources/custom.css";
 
 import classNames from "classnames";
+import { cookies } from "next/headers"; // ✨ ADICIONAR
 
 import {
   Background,
@@ -14,7 +15,7 @@ import {
   type SpacingToken,
 } from "@once-ui-system/core";
 import { Footer, Header, RouteGuard, Providers } from "@/components";
-import { LanguageProvider } from "@/i18n/LanguageContext"; // NOVO: Import do LanguageProvider
+import { LanguageProvider } from "@/i18n/LanguageContext";
 import { baseURL, effects, fonts, style, dataStyle, home } from "@/resources";
 
 export async function generateMetadata() {
@@ -32,11 +33,15 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // ✨ ADICIONAR: Ler idioma dos cookies no servidor
+  const cookieStore = await cookies();
+  const initialLanguage = (cookieStore.get('language')?.value as 'pt' | 'en') || 'pt';
+
   return (
     <Flex
       suppressHydrationWarning
       as="html"
-      lang="pt-BR"
+      lang={initialLanguage} // ✨ MUDAR: de "pt-BR" para variável
       fillWidth
       className={classNames(
         fonts.heading.variable,
@@ -106,8 +111,8 @@ export default async function RootLayout({
         />
       </head>
       <Providers>
-        {/* NOVO: Envolva tudo com o LanguageProvider */}
-        <LanguageProvider>
+        {/* ✨ MUDAR: Passar initialLanguage como prop */}
+        <LanguageProvider initialLanguage={initialLanguage}>
           <Column
             as="body"
             background="page"
@@ -169,7 +174,6 @@ export default async function RootLayout({
             <Footer />
           </Column>
         </LanguageProvider>
-        {/* FIM: LanguageProvider */}
       </Providers>
     </Flex>
   );

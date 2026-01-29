@@ -16,7 +16,6 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 const translations: Record<Language, TranslationKeys> = {
   pt: {
-
     // Buttons
     'button.submit': 'Enviar',
 
@@ -218,22 +217,42 @@ const translations: Record<Language, TranslationKeys> = {
   },
 };
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('pt');
+// ✨ ADICIONAR: Interface com prop initialLanguage
+interface LanguageProviderProps {
+  children: React.ReactNode;
+  initialLanguage?: Language;
+}
+
+export function LanguageProvider({ children, initialLanguage }: LanguageProviderProps) {
+  // ✨ MUDAR: Inicializa com initialLanguage se disponível
+  const [language, setLanguageState] = useState<Language>(() => {
+    if (initialLanguage) return initialLanguage;
+    if (typeof window === 'undefined') return 'pt';
+    
+    // Tenta ler do cookie
+    const cookieMatch = document.cookie.match(/language=(pt|en)/);
+    if (cookieMatch) return cookieMatch[1] as Language;
+    
+    // Fallback: localStorage
+    const saved = localStorage.getItem('language') as Language;
+    if (saved && (saved === 'pt' || saved === 'en')) return saved;
+    
+    // Fallback final: navegador
+    const browserLang = navigator.language.split('-')[0];
+    return browserLang === 'pt' ? 'pt' : 'en';
+  });
+
   const router = useRouter();
 
+  // ✨ ADICIONAR: Sincroniza com cookie ao montar
   useEffect(() => {
-    // Carregar idioma salvo do localStorage
-    const savedLanguage = localStorage.getItem('language') as Language;
-    if (savedLanguage && (savedLanguage === 'pt' || savedLanguage === 'en')) {
-      setLanguageState(savedLanguage);
-    } else {
-      // Detectar idioma do navegador
-      const browserLang = navigator.language.split('-')[0];
-      const detectedLang = browserLang === 'pt' ? 'pt' : 'en';
-      setLanguageState(detectedLang);
+    const cookieMatch = document.cookie.match(/language=(pt|en)/);
+    const cookieLang = cookieMatch?.[1] as Language;
+    
+    if (cookieLang && cookieLang !== language) {
+      setLanguageState(cookieLang);
     }
-  }, []);
+  }, [language]);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);

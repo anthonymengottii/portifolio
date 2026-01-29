@@ -20,9 +20,6 @@ import { ProjectContent } from "./ProjectContent";
 import { RelatedProjectsHeading } from "./Relatedprojectsheading";
 import { Projects } from "@/components/work/Projects";
 
-/* =========================
-   STATIC PARAMS
-========================= */
 export async function generateStaticParams(): Promise<
   { slug: string }[]
 > {
@@ -36,9 +33,6 @@ export async function generateStaticParams(): Promise<
   }));
 }
 
-/* =========================
-   METADATA
-========================= */
 export async function generateMetadata({
   params,
 }: {
@@ -75,9 +69,6 @@ export async function generateMetadata({
   });
 }
 
-/* =========================
-   PAGE
-========================= */
 export default async function Project({
   params,
 }: {
@@ -129,15 +120,13 @@ export default async function Project({
         }}
       />
 
-      {/* Header / infos (Client) */}
       <ProjectContent post={post} />
 
-      {/* Conteúdo MDX */}
+      {/* ✅ CORRETO: Passa a string diretamente, sem serialize */}
       <Column as="article" maxWidth="xs" style={{ margin: "auto" }}>
         <CustomMDX source={post.content} />
       </Column>
 
-      {/* Projetos relacionados */}
       <Column fillWidth gap="40" horizontal="center" marginTop="40">
         <Line maxWidth="40" />
         <RelatedProjectsHeading />

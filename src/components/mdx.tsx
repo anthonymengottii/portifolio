@@ -1,21 +1,16 @@
-import { MDXRemote, type MDXRemoteSerializeResult } from 'next-mdx-remote/rsc';
+import { MDXRemote } from 'next-mdx-remote/rsc';
 import type { MDXComponents } from 'mdx/types';
 import {
   Heading,
   Text,
   Row,
   Column,
-  Badge,
   SmartLink,
   Media,
 } from "@once-ui-system/core";
 
-// Tipos precisos para evitar 'any'
-type MDXChild = React.ReactNode;
-type MDXChildren = MDXChild | MDXChild[];
-
-// Componentes customizados para MDX
-const mdxComponents: MDXComponents = {
+// Componentes customizados
+const components: MDXComponents = {
   h1: ({ children, ...props }) => (
     <Heading as="h1" variant="display-strong-l" {...props}>
       {children}
@@ -45,10 +40,7 @@ const mdxComponents: MDXComponents = {
       marginY="xl"
       {...props}
     >
-      <Text
-        variant="body-default-l"
-        style={{ fontStyle: 'italic' }} // italic via style (não tem prop 'italic')
-      >
+      <Text variant="body-default-l" style={{ fontStyle: 'italic' }}>
         {children}
       </Text>
     </Row>
@@ -67,30 +59,16 @@ const mdxComponents: MDXComponents = {
       {...props}
     />
   ),
-  pre: ({ children, ...props }) => {
-    // Suporte a children string ou elemento
-    if (typeof children === 'string') {
-      return (
-        <pre {...props}>
-          <code>{children}</code>
-        </pre>
-      );
-    }
-
-    return (
-      <pre {...props}>
-        {children}
-      </pre>
-    );
-  },
-  code: ({ children, className, ...props }) => {
-    const language = className?.replace('language-', '') || '';
-    return (
-      <code className={className} {...props}>
-        {children}
-      </code>
-    );
-  },
+  pre: ({ children, ...props }) => (
+    <pre {...props}>
+      {typeof children === 'string' ? <code>{children}</code> : children}
+    </pre>
+  ),
+  code: ({ children, className, ...props }) => (
+    <code className={className} {...props}>
+      {children}
+    </code>
+  ),
   ul: ({ children, ...props }) => (
     <Column as="ul" gap="s" marginBottom="m" {...props}>
       {children}
@@ -101,20 +79,19 @@ const mdxComponents: MDXComponents = {
       {children}
     </Text>
   ),
-  // Adicione mais conforme necessário (ol, hr, table, etc.)
 };
 
-// Props tipadas
+// Interface corrigida - aceita string diretamente
 interface CustomMDXProps {
-  source: MDXRemoteSerializeResult<Record<string, unknown>>;
+  source: string; // ✅ CORRETO: string, não MDXRemoteSerializeResult
   components?: MDXComponents;
 }
 
-export function CustomMDX({ source, components = {} }: CustomMDXProps) {
+export function CustomMDX({ source, components: customComponents = {} }: CustomMDXProps) {
   return (
     <MDXRemote
-      source={source}  // ← corrigido: 'source' é obrigatório
-      components={{ ...mdxComponents, ...components }}
+      source={source}  // ✅ CORRETO: passa string diretamente
+      components={{ ...components, ...customComponents }}
     />
   );
 }
