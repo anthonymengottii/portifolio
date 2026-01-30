@@ -9,7 +9,7 @@ export function getContent(lang: Language = 'pt') {
     firstName: "Anthony",
     lastName: "Mengotti de Oliveira",
     name: "Anthony Mengotti de Oliveira",
-    role: "CTO @ Upay",
+    role: "Software Engineer @ Upay",
     avatar: "/images/avatar.png",
     email: "anthonymengottii@gmail.com",
     location: "America/Sao_Paulo",
@@ -66,7 +66,7 @@ export function getContent(lang: Language = 'pt') {
         label: "Início",
         headline: "Arquiteto de software focado em fintech",
         featuredTitle: "Projeto em destaque",
-        subline: "CTO da Upay, arquitetando sistemas financeiros de alta performance e infraestruturas de pagamento escaláveis.",
+        subline: "Software Engineer da Upay, arquitetando sistemas financeiros de alta performance e infraestruturas de pagamento escaláveis.",
       },
       about: {
         label: "Sobre",
@@ -75,7 +75,7 @@ export function getContent(lang: Language = 'pt') {
         rolePrefix: "Arquiteto de software focado em fintech",
         intro: {
           title: "Introdução",
-          description1: "Arquiteto de software e estrategista de produto com foco em fintechs. Atualmente CTO da Upay, liderando o desenvolvimento de sistemas financeiros de alta performance, gateways de pagamento e infraestruturas bancárias digitais.",
+          description1: "Arquiteto de software e estrategista de produto com foco em fintechs. Atualmente Software Engineer da Upay, liderando o desenvolvimento de sistemas financeiros de alta performance, gateways de pagamento e infraestruturas bancárias digitais.",
           description2: "Especializado em arquitetar plataformas financeiras escaláveis, com experiência comprovada em sistemas críticos e de alto risco, orquestração de pagamentos e inteligência de risco em tempo real.",
         },
         work: {
@@ -137,7 +137,7 @@ export function getContent(lang: Language = 'pt') {
         label: "Home",
         headline: "Software architect focused on fintech",
         featuredTitle: "Featured Project",
-        subline: "CTO at Upay, architecting high-performance financial systems and scalable payment infrastructures.",
+        subline: "Software Engineer at Upay, architecting high-performance financial systems and scalable payment infrastructures.",
       },
       about: {
         label: "About",
@@ -146,7 +146,7 @@ export function getContent(lang: Language = 'pt') {
         rolePrefix: "Software architect focused on fintech",
         intro: {
           title: "Introduction",
-          description1: "Software architect and product strategist focused on fintechs. Currently CTO at Upay, leading the development of high-performance financial systems, payment gateways and digital banking infrastructures.",
+          description1: "Software architect and product strategist focused on fintechs. Currently Software Engineer at Upay, leading the development of high-performance financial systems, payment gateways and digital banking infrastructures.",
           description2: "Specialized in architecting scalable financial platforms, with proven experience in critical and high-risk systems, payment orchestration and real-time risk intelligence.",
         },
         work: {
