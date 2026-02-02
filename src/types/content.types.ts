@@ -185,6 +185,8 @@ export interface About extends BasePageConfig {
     display: boolean;
     /** Title for the technical skills section */
     title: string;
+    /** Label for the "Related projects" list (e.g. "Projetos" / "Projects") */
+    projectsLabel?: string;
     /** List of technical skills */
     skills: Array<{
       /** Skill title */
@@ -196,6 +198,8 @@ export interface About extends BasePageConfig {
         name: string;
         icon?: string;
       }>;
+      /** Related project links (name + href) */
+      projects?: Array<{ name: string; href: string }>;
       /** Images related to the skill */
       images?: Array<{
         /** Image source path */

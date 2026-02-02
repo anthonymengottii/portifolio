@@ -1,7 +1,7 @@
 ---
 title: "Upay - Payment Gateway & Digital Banking Infrastructure"
 publishedAt: "2024-01-15"
-summary: "Complete white-label payment platform with a simple and intuitive API. Full support for PIX, Credit/Debit Card and Boleto, personalized payment links, product management, coupons, and real-time webhooks."
+summary: "White-label payment gateway in production at Upay. Developer-first REST API: PIX, card and boleto, payment links, products, coupons and webhooks. Mintlify docs and integration in minutes."
 images:
   - "/images/projects/upay/og-image.png"
   - "/images/projects/upay/dashboard.png"
@@ -14,7 +14,8 @@ team:
     linkedIn: "https://www.linkedin.com/in/anthony-mengotti-50026424a"
 ---
 ## Overview
-The UPay Gateway API is a complete white-label payment platform designed to provide a robust and flexible transaction processing solution. Unlike overly complex platforms, UPay was built by developers for developers, prioritizing simplicity, intuitiveness, and ease of integration.
+
+The **Upay Gateway** is Upay’s payment platform in production, used by partners and merchants to process real transactions. The project was built around a single goal: an API that is both robust and easy to integrate. Each endpoint maps to a clear intent (create link, query transaction, manage product), avoiding the complexity of typical enterprise gateways. The stack is TypeScript/Node.js on the backend, Next.js for the admin panel, and interactive documentation via Mintlify.
 
 ## Key Features
 - **Simple and Intuitive API**: Clear, well-documented endpoints based on intention — each endpoint does exactly what its name suggests
@@ -40,4 +41,5 @@ The main challenge was creating an API that was extremely simple to use without 
 Implementing idempotency ensured developers could safely retry requests multiple times without concern, significantly improving the integration experience and reducing production errors.
 
 ## Outcome
-The UPay Gateway API is live in production, processing real transactions through a [complete and interactive documentation](https://upayltda.mintlify.app/pages/introduction). The platform offers fast integration with step-by-step guides, code examples in multiple languages, and dedicated support, allowing developers to start processing payments in minutes.
+
+The gateway is **live in production** at [app.upaybr.com](https://app.upaybr.com/), with real transactions processed daily. The [public documentation](https://upayltda.mintlify.app/pages/introduction) (Mintlify) includes step-by-step guides, examples in multiple languages, and full API reference, shortening onboarding for new partners. Idempotency and consistent response shapes reduce retry errors and simplify error handling in production.

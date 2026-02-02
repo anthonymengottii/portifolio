@@ -329,6 +329,27 @@ export default async function About() {
                         ))}
                       </Row>
                     )}
+                    {skill.projects && skill.projects.length > 0 && about.technical.projectsLabel && (
+                      <Row wrap gap="8" paddingTop="8" vertical="center">
+                        <Text variant="body-default-m" onBackground="neutral-weak" style={{ whiteSpace: "nowrap" }}>
+                          {about.technical.projectsLabel}:
+                        </Text>
+                        <Row wrap gap="4" vertical="center">
+                          {skill.projects.map((project, index) => (
+                            <Row key={project.href} gap="4" vertical="center" wrap={false}>
+                              {index > 0 && (
+                                <Text variant="body-default-m" onBackground="neutral-weak"> · </Text>
+                              )}
+                              <SmartLink href={project.href}>
+                                <Text variant="body-default-m" onBackground="brand-strong" style={{ textDecoration: "underline" }}>
+                                  {project.name}
+                                </Text>
+                              </SmartLink>
+                            </Row>
+                          ))}
+                        </Row>
+                      </Row>
+                    )}
                     {skill.images && skill.images.length > 0 && (
                       <Row fillWidth paddingTop="m" gap="12" wrap>
                         {skill.images.map((image) => {

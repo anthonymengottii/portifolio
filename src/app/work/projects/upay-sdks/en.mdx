@@ -1,7 +1,7 @@
 ---
 title: "Upay Official SDKs"
 publishedAt: "2024-01-20"
-summary: "Official libraries for easy integration with the Upay Gateway in TypeScript/Node.js, Python, and PHP. Includes complete documentation, static typing, and support for all API features."
+summary: "Official Upay SDKs for integration in JavaScript, Python, PHP and Java (in development). Monorepo with @upay/upay-js, upay-python, upay/upay-php. Payment Links, transactions, products, clients, coupons, webhooks. MIT."
 images: []
 link: "https://github.com/anthonymengottii/upay-sdks"
 team:
@@ -13,12 +13,15 @@ team:
 <div align="center">
   # Upay Official SDKs
 </div>
-Official set of libraries developed to facilitate developers' integration with the Upay payment platform. Available for the main backend languages on the market.
 
-## Supported Languages
-- **JavaScript/TypeScript** (`@upay/upay-js`)
-- **Python** (`upay-python`)
-- **PHP** (`upay/upay-php`)
+Set of **official Upay SDKs** to simplify payment platform integration across multiple languages. The repo is a monorepo with published packages: instead of calling the REST API manually, the developer installs the language package and uses typed methods to create payment links, list transactions, manage products, clients, coupons and verify webhook signatures. Each SDK has its own docs under `packages/` and examples in `examples/`. Code on [GitHub](https://github.com/anthonymengottii/upay-sdks). MIT license.
+
+## Available Packages
+
+- **JavaScript/TypeScript** — `@upay/upay-js` — ✅ Ready — `npm install @upay/upay-js`
+- **Python** — `upay-python` — ✅ Ready — `pip install upay-python`
+- **PHP** — `upay/upay-php` — ✅ Ready — `composer require upay/upay-php`
+- **Java** — Java SDK — 🚧 In development
 
 ## Implemented Features
 The SDKs abstract the complexity of HTTP calls and authentication, offering typed and intuitive methods for:
@@ -28,20 +31,30 @@ The SDKs abstract the complexity of HTTP calls and authentication, offering type
 - **Coupons**: Validation and application of discounts
 - **Webhooks**: Signature verification for secure event processing
 
-## Usage Example (TypeScript)
+## Quick Start (TypeScript)
+
 ```typescript
 import UpayClient from '@upay/upay-js';
+
 const upay = new UpayClient({
-  apiKey: 'your_secret_api_key'
+  apiKey: 'your_api_key_here',
+  baseUrl: 'https://upay-sistema-api.onrender.com', // Optional
 });
-// Create a payment link in 3 lines
+
+// Create payment link
 const paymentLink = await upay.paymentLinks.create({
-  title: 'Premium Subscription',
-  amount: 9990, // R$ 99.90
-  description: 'Monthly access to the platform'
+  title: 'Premium Product',
+  amount: 10000, // R$ 100.00 in cents
+  description: 'Product description',
 });
-console.log(paymentLink.checkoutUrl);
+console.log(upay.paymentLinks.getCheckoutUrl(paymentLink.slug));
+
+// List transactions
+const { data: transactions } = await upay.transactions.list({ page: 1, limit: 10 });
 ```
 
-## Documentation
-Each SDK comes with dedicated documentation including installation and usage examples, significantly speeding up the setup time for new partners and integrators.
+API Key is obtained in the **Upay Dashboard** under Settings → API Keys. Full API documentation linked in the repo.
+
+## Outcome
+
+SDKs are published and in use by partners. Static typing (TypeScript, type hints in Python, docblocks in PHP) reduces integration errors; per-package documentation and examples/ speed up onboarding. The monorepo includes workflows (.github/workflows), CONTRIBUTING and SETUP for development. Support: suporte@upaybr.com.

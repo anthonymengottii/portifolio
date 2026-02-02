@@ -1,7 +1,7 @@
 ---
 title: "Upay Hopy Middleware - Hopy Split Payment Integration"
 publishedAt: "2024-03-10"
-summary: "Payment middleware for Hopy Split integration. Supports Pagar.me, Citrex and Zendry. TypeScript, Express, SQLite. System in production processing real transactions."
+summary: "Production middleware for Hopy Split: one API unifies Pagar.me, Citrex and Zendry. Automatic payment split, async processing and logging. TypeScript, Express, SQLite."
 images: []
 link: "https://github.com/anthonymengottii/upay-hopy-middleware_public"
 team:
@@ -11,7 +11,8 @@ team:
     linkedIn: "https://www.linkedin.com/in/anthony-mengotti-50026424a"
 ---
 ## Overview
-Specialized middleware for integration with the Hopy Split system, enabling payment processing through multiple gateways (Pagar.me, Citrex and Zendry). System developed in TypeScript with Express and SQLite, currently in production processing real transactions.
+
+The **Hopy Middleware** is an integration layer between applications and the **Hopy Split** flow (splitting payments among multiple recipients). Instead of each client integrating directly with Pagar.me, Citrex, and Zendry, the middleware exposes a single REST API that abstracts all three gateways: authentication, request formats, and value splitting. Built in TypeScript (Express, SQLite), it is in production processing real transactions.
 
 ## Key Features
 - **Multi-Gateway Integration**: Unified support for Pagar.me, Citrex and Zendry
@@ -34,4 +35,5 @@ The main complexity was creating a unified abstraction for three different gatew
 The payment split system required complex logic to ensure values are correctly distributed while respecting fees and limits of each gateway.
 
 ## Outcome
-Production middleware reliably processing real transactions. The system allows applications to easily integrate with Hopy Split, abstracting the complexity of multiple gateways through a single unified API.
+
+Middleware in production: applications that need payment split (marketplaces, multi-recipient platforms) consume a single API instead of three separate integrations. The adapter layer ensures that changes in one gateway do not break clients; SQLite keeps the system lightweight and suitable for deployment in a controlled environment. Code available in the repository linked above.

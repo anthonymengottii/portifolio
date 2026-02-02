@@ -1,7 +1,7 @@
 ---
 title: "PagueStream - PIX Payment Platform for Streamers"
 publishedAt: "2023-09-15"
-summary: "Complete platform for streamers to receive PIX payments during live streams. Integrated system with overlay, real-time notifications, and donation management."
+summary: "Platform for streamers to receive PIX in real time during live streams (project discontinued). Alert and QR code widgets, AI, dashboard, StreamElements/StreamLabs. Turborepo monorepo: Fastify, Next.js 15, React 19. Code on GitHub."
 images:
   - "/images/projects/paguestream/landingpage.png"
   - "/images/projects/paguestream/landingpage2.png"
@@ -14,6 +14,7 @@ images:
   - "/images/projects/paguestream/widget-alert.png"
   - "/images/projects/paguestream/kyc.png"
   - "/images/projects/paguestream/settings.png"
+link: "https://github.com/anthonymengottii/paguestream_public"
 team:
   - name: "Anthony Mengotti de Oliveira"
     role: "Full Stack Developer"
@@ -21,15 +22,20 @@ team:
     linkedIn: "https://www.linkedin.com/in/anthony-mengotti-50026424a"
 ---
 ## Overview
-PagueStream is a platform specifically developed for streamers to receive PIX payments during their live broadcasts. The system integrates with OBS and other streaming tools, displaying donations in real time through customizable overlays.
 
-## Key Features
-- **OBS Integration**: Customizable overlay for displaying donations during streams
-- **Real-Time PIX Payments**: Instant processing of payments via PIX
-- **Visual Notifications**: Animated alerts when a donation is received
-- **Streamer Dashboard**: Control panel for donation management and statistics
-- **Goals System**: Setting and tracking fundraising goals
-- **Donation History**: Complete record of all received transactions
+**PagueStream** is a platform for streamers and content creators to receive PIX donations in real time during live streams. Goal: connect creators with their community through a secure, fast and customizable solution without exposing donors' personal data. It includes instant PIX processing, customizable alert and QR code widgets, StreamElements and StreamLabs integration, AI content moderation (OpenAI), text-to-speech (Cartesia), real-time metrics dashboard and KYC flow. Project live at [paguestream.com](https://paguestream.com/). Reference code on [GitHub](https://github.com/anthonymengottii/paguestream_public). MIT license.
+
+## Features
+
+**Payments:** Real-time PIX, gateway integration (ExpaySolutions/PagueSafe), automatic fee calculation, transaction history, automated withdrawals.
+
+**Widgets:** Alert (animated notifications with audio), QR Code for quick checkout; customizable colors and styles; real-time updates via WebSocket. Integration with StreamElements, StreamLabs and standalone OBS widgets.
+
+**AI:** Content moderation with OpenAI; text-to-speech with Cartesia; grammatical correction for audio.
+
+**Dashboard and analytics:** Real-time donation panel, metrics and insights, best days/times, interactive charts, financial reports.
+
+**Other:** Withdrawal validation, document upload and validation (KYC), transactional emails (Resend), feedback system.
 
 ## Technologies Used
 - **Next.js**: Framework for frontend and backend
@@ -38,10 +44,13 @@ PagueStream is a platform specifically developed for streamers to receive PIX pa
 - **PIX API**: Integration with the Brazilian instant payment system
 - **OBS WebSocket**: Integration with OBS Studio for overlays
 
-## Challenges and Learnings
-The biggest challenge was building a system that processes PIX payments and updates the streamer's interface in real time with imperceptible latency. The solution involved WebSockets for bidirectional communication and asynchronous webhook processing.
+## Challenges and Solutions
 
-The OBS integration required in-depth knowledge of the OBS Studio WebSocket API and the creation of HTML/CSS overlays that work flawlessly during live broadcasts.
+- **Real time:** WebSocket for bidirectional communication → instant updates across all clients.
+- **Moderation:** OpenAI integration → inappropriate content blocked before display.
+- **Text-to-speech:** Cartesia → messages converted to natural-sounding audio.
+- **Scalability:** Turborepo monorepo → optimized build and deploy.
 
 ## Outcome
-Fully functional platform that enables streamers to receive PIX donations during their transmissions, with real-time visual notifications. The system significantly improves the monetization experience for Brazilian content creators.
+
+Platform that was live at [paguestream.com](https://paguestream.com/) and has been **discontinued**. It included custom checkout, alert and QR code widgets, real-time dashboard, metrics and StreamElements/StreamLabs integrations. Architecture with 3 main applications, 15+ technologies. The code remains available on GitHub as a reference full-stack project with real-time payments, AI and WebSocket.

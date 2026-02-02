@@ -60,7 +60,7 @@ export function getContent(lang: Language = 'pt') {
       portfolio: {
         title: "Portfolio de",
         description: "Portfolio de",
-        description2: "Construindo a próxima geração de infraestrutura fintech",
+        description2: "Infraestrutura de pagamentos, gateways e sistemas financeiros em produção",
       },
       home: {
         label: "Início",
@@ -75,16 +75,16 @@ export function getContent(lang: Language = 'pt') {
         rolePrefix: "Arquiteto de software focado em fintech",
         intro: {
           title: "Introdução",
-          description1: "Arquiteto de software e estrategista de produto com foco em fintechs. Atualmente Software Engineer da Upay, liderando o desenvolvimento de sistemas financeiros de alta performance, gateways de pagamento e infraestruturas bancárias digitais.",
-          description2: "Especializado em arquitetar plataformas financeiras escaláveis, com experiência comprovada em sistemas críticos e de alto risco, orquestração de pagamentos e inteligência de risco em tempo real.",
+          description1: "Arquiteto de software e CTO com foco em fintech e pagamentos. Na Upay, lidero a construção da infraestrutura de gateway de pagamentos (PIX, cartão, boleto), APIs para parceiros e ferramentas de gestão em produção. Antes, co-fundei a PagueSafe, onde arquitetei o gateway do zero e a plataforma atingiu R$ 504 milhões em volume processado em um ano.",
+          description2: "Especializado em sistemas de pagamento escaláveis, orquestração de múltiplos gateways, APIs para desenvolvedores e plataformas white-label. Trabalho com TypeScript/Node.js, Next.js e arquiteturas que priorizam simplicidade de integração e confiabilidade em ambiente de produção.",
         },
         work: {
           title: "Experiência Profissional",
           timeframe: "Atual",
           achievements: {
-            upay1: "Liderando o desenvolvimento de infraestrutura moderna de pagamentos com foco em performance, segurança e flexibilidade.",
-            upay2: "Arquitetando sistemas de gateway de pagamentos e infraestrutura bancária digital de próxima geração.",
-            upay3: "Desenvolvendo plataformas financeiras de alta performance com foco em banco digital, orquestração de pagamentos e inteligência de risco em tempo real.",
+            upay1: "Liderar o desenvolvimento e a operação do gateway: API REST, PIX/cartão/boleto, documentação e onboarding de parceiros.",
+            upay2: "Desenvolver e manter os SDKs oficiais (Node, Python, PHP) e o middleware Hopy Split para facilitar a integração dos parceiros.",
+            upay3: "Construir e manter o dashboard administrativo, webhooks e ferramentas internas para operação e suporte.",
             paguesafe1: "Liderança técnica e estratégica na construção de um gateway de pagamentos do zero, focando em integrações com parceiros comerciais e adquirentes.",
             paguesafe2: "Desenvolvimento e implementação de novas tecnologias para processamento de pagamentos e integração com múltiplos provedores.",
             paguesafe3: "Alcançou R$ 504 milhões em faturamento processado em um único ano, demonstrando escalabilidade e confiabilidade da plataforma.",
@@ -96,6 +96,16 @@ export function getContent(lang: Language = 'pt') {
         },
         technical: {
           title: "Habilidades Técnicas",
+          projectsLabel: "Projetos",
+          projectNames: {
+            upayGateway: "Upay Gateway",
+            paguestream: "PagueStream",
+            paguesafe: "PagueSafe Landing",
+            alpa: "Alpa",
+            igaming: "iGaming Platform",
+            hopyMiddleware: "Hopy Middleware",
+            upaySdks: "Upay SDKs",
+          },
           skills: {
             architecture: {
               title: "Arquitetura de Software & Fintech",
@@ -109,6 +119,14 @@ export function getContent(lang: Language = 'pt') {
               title: "Desenvolvimento Full Stack",
               description: "Desenvolvimento full stack com foco em performance, escalabilidade e experiência do usuário.",
             },
+            backend: {
+              title: "Backend & APIs",
+              description: "APIs REST, middlewares, SDKs e serviços em Node.js, TypeScript e PHP. Foco em integração com gateways, webhooks e processamento assíncrono.",
+            },
+            frontend: {
+              title: "Frontend & UI",
+              description: "Interfaces responsivas e acessíveis com React, Next.js, Vue e Tailwind. Landing pages, dashboards e aplicações com foco em conversão e performance.",
+            },
           },
         },
       },
@@ -120,7 +138,7 @@ export function getContent(lang: Language = 'pt') {
       work: {
         label: "Projetos",
         title: "Projetos",
-        description: "Projetos de desenvolvimento e arquitetura por",
+        description: "Sistemas em produção, gateways de pagamento e produtos digitais desenvolvidos por",
       },
       gallery: {
         label: "Galeria",
@@ -131,7 +149,7 @@ export function getContent(lang: Language = 'pt') {
       portfolio: {
         title: "Portfolio of",
         description: "Portfolio of",
-        description2: "Building the next generation of fintech infrastructure",
+        description2: "Payment infrastructure, gateways and financial systems in production",
       },
       home: {
         label: "Home",
@@ -146,16 +164,16 @@ export function getContent(lang: Language = 'pt') {
         rolePrefix: "Software architect focused on fintech",
         intro: {
           title: "Introduction",
-          description1: "Software architect and product strategist focused on fintechs. Currently Software Engineer at Upay, leading the development of high-performance financial systems, payment gateways and digital banking infrastructures.",
-          description2: "Specialized in architecting scalable financial platforms, with proven experience in critical and high-risk systems, payment orchestration and real-time risk intelligence.",
+          description1: "Software architect and CTO focused on fintech and payments. At Upay, I lead the build of the payment gateway infrastructure (PIX, card, boleto), partner APIs, and management tools—all in production. Previously, I co-founded PagueSafe, where I architected the gateway from scratch and the platform reached R$ 504 million in processed volume in one year.",
+          description2: "Specialized in scalable payment systems, multi-gateway orchestration, developer-friendly APIs, and white-label platforms. I work with TypeScript/Node.js, Next.js, and architectures that prioritize integration simplicity and reliability in production.",
         },
         work: {
           title: "Work Experience",
           timeframe: "Current",
           achievements: {
-            upay1: "Leading the development of modern payment infrastructure with focus on performance, security and flexibility.",
-            upay2: "Architecting next-generation payment gateway systems and digital banking infrastructure.",
-            upay3: "Developing high-performance financial platforms focused on digital banking, payment orchestration and real-time risk intelligence.",
+            upay1: "Lead the development and operation of the gateway: REST API, PIX/card/boleto, documentation and partner onboarding.",
+            upay2: "Develop and maintain official SDKs (Node, Python, PHP) and the Hopy Split middleware to simplify partner integration.",
+            upay3: "Build and maintain the admin dashboard, webhooks and internal tools for operations and support.",
             paguesafe1: "Technical and strategic leadership in building a payment gateway from scratch, focusing on integrations with commercial partners and acquirers.",
             paguesafe2: "Development and implementation of new technologies for payment processing and integration with multiple providers.",
             paguesafe3: "Achieved R$ 504 million in processed revenue in a single year, demonstrating platform scalability and reliability.",
@@ -167,6 +185,16 @@ export function getContent(lang: Language = 'pt') {
         },
         technical: {
           title: "Technical Skills",
+          projectsLabel: "Projects",
+          projectNames: {
+            upayGateway: "Upay Gateway",
+            paguestream: "PagueStream",
+            paguesafe: "PagueSafe Landing",
+            alpa: "Alpa",
+            igaming: "iGaming Platform",
+            hopyMiddleware: "Hopy Middleware",
+            upaySdks: "Upay SDKs",
+          },
           skills: {
             architecture: {
               title: "Software Architecture & Fintech",
@@ -180,6 +208,14 @@ export function getContent(lang: Language = 'pt') {
               title: "Full Stack Development",
               description: "Full stack development with focus on performance, scalability and user experience.",
             },
+            backend: {
+              title: "Backend & APIs",
+              description: "REST APIs, middlewares, SDKs and services in Node.js, TypeScript and PHP. Focus on gateway integration, webhooks and async processing.",
+            },
+            frontend: {
+              title: "Frontend & UI",
+              description: "Responsive and accessible interfaces with React, Next.js, Vue and Tailwind. Landing pages, dashboards and apps focused on conversion and performance.",
+            },
           },
         },
       },
@@ -191,7 +227,7 @@ export function getContent(lang: Language = 'pt') {
       work: {
         label: "Projects",
         title: "Projects",
-        description: "Development and architecture projects by",
+        description: "Systems in production, payment gateways and digital products built by",
       },
       gallery: {
         label: "Gallery",
@@ -300,75 +336,129 @@ export function getContent(lang: Language = 'pt') {
     technical: {
       display: true,
       title: t.about.technical.title,
-      skills: [
-        {
-          title: t.about.technical.skills.architecture.title,
-          description: <>{t.about.technical.skills.architecture.description}</>,
-          tags: [
-            { name: "TypeScript", icon: "javascript" },
-            { name: "Node.js", icon: "javascript" },
-            { name: "Next.js", icon: "nextjs" },
-          ],
-          images: [
-            {
-              src: "/images/projects/upay/og-image.png",
-              alt: "Upay Gateway Dashboard",
-              width: 16,
-              height: 8,
-              href: "/work/upay-payment-gateway",
-            },
-          ],
-        },
-        {
-          title: t.about.technical.skills.payments.title,
-          description: <>{t.about.technical.skills.payments.description}</>,
-          tags: [
-            { name: "Payment Gateway", icon: "rocket" },
-            { name: "API Design", icon: "document" },
-          ],
-          images: [
-            {
-              src: "/images/projects/upay/og-image.png",
-              alt: "Upay Gateway Dashboard",
-              width: 16,
-              height: 8,
-              href: "/work/upay-payment-gateway",
-            },
-            {
-              src: "/images/projects/paguestream/landingpage.png",
-              alt: "PagueStream Landing Page",
-              width: 16,
-              height: 8,
-              href: "/work/paguestream",
-            },
-          ],
-        },
-        {
-          title: t.about.technical.skills.fullstack.title,
-          description: <>{t.about.technical.skills.fullstack.description}</>,
-          tags: [
-            { name: "React", icon: "javascript" },
-            { name: "Vue.js", icon: "javascript" },
-            { name: "Laravel", icon: "javascript" },
-          ],
-          images: [
-            {
-              src: "/images/projects/paguestream/landingpage.png",
-              alt: "PagueStream Landing Page",
-              width: 16,
-              height: 8,
-              href: "/work/paguestream",
-            },
-            {
-              src: "/images/projects/paguesafe/landingpage.png",
-              alt: "PagueSafe Landing Page",
-              width: 16,
-              height: 8,
-              href: "/work/paguesafe-landingpage",
-            },
-          ],
-        },
-      ],
+      projectsLabel: (t.about.technical as { projectsLabel?: string }).projectsLabel,
+      skills: (() => {
+        const pn = (t.about.technical as { projectNames: Record<string, string> }).projectNames;
+        return [
+          {
+            title: t.about.technical.skills.architecture.title,
+            description: <>{t.about.technical.skills.architecture.description}</>,
+            tags: [
+              { name: "TypeScript", icon: "javascript" },
+              { name: "Node.js", icon: "javascript" },
+              { name: "Next.js", icon: "nextjs" },
+            ],
+            projects: [
+              { name: pn.upayGateway, href: "/work/upay-payment-gateway" },
+              { name: pn.igaming, href: "/work/igaming-platform" },
+              { name: pn.hopyMiddleware, href: "/work/upay-hopy-middleware" },
+            ],
+            images: [
+              {
+                src: "/images/projects/upay/og-image.png",
+                alt: "Upay Gateway Dashboard",
+                width: 16,
+                height: 8,
+                href: "/work/upay-payment-gateway",
+              },
+            ],
+          },
+          {
+            title: t.about.technical.skills.payments.title,
+            description: <>{t.about.technical.skills.payments.description}</>,
+            tags: [
+              { name: "Payment Gateway", icon: "rocket" },
+              { name: "API Design", icon: "document" },
+              { name: "PIX", icon: "rocket" },
+            ],
+            projects: [
+              { name: pn.upayGateway, href: "/work/upay-payment-gateway" },
+              { name: pn.paguesafe, href: "/work/paguesafe-landingpage" },
+              { name: pn.hopyMiddleware, href: "/work/upay-hopy-middleware" },
+              { name: pn.upaySdks, href: "/work/upay-sdks" },
+            ],
+            images: [
+              {
+                src: "/images/projects/upay/og-image.png",
+                alt: "Upay Gateway Dashboard",
+                width: 16,
+                height: 8,
+                href: "/work/upay-payment-gateway",
+              },
+              {
+                src: "/images/projects/paguestream/landingpage.png",
+                alt: "PagueStream Landing Page",
+                width: 16,
+                height: 8,
+                href: "/work/paguestream",
+              },
+            ],
+          },
+          {
+            title: t.about.technical.skills.fullstack.title,
+            description: <>{t.about.technical.skills.fullstack.description}</>,
+            tags: [
+              { name: "React", icon: "javascript" },
+              { name: "Vue.js", icon: "javascript" },
+              { name: "Laravel", icon: "javascript" },
+            ],
+            projects: [
+              { name: pn.paguestream, href: "/work/paguestream" },
+              { name: pn.paguesafe, href: "/work/paguesafe-landingpage" },
+              { name: pn.alpa, href: "/work/alpa" },
+              { name: pn.igaming, href: "/work/igaming-platform" },
+            ],
+            images: [
+              {
+                src: "/images/projects/paguestream/landingpage.png",
+                alt: "PagueStream Landing Page",
+                width: 16,
+                height: 8,
+                href: "/work/paguestream",
+              },
+              {
+                src: "/images/projects/paguesafe/landingpage.png",
+                alt: "PagueSafe Landing Page",
+                width: 16,
+                height: 8,
+                href: "/work/paguesafe-landingpage",
+              },
+            ],
+          },
+          {
+            title: t.about.technical.skills.backend.title,
+            description: <>{t.about.technical.skills.backend.description}</>,
+            tags: [
+              { name: "TypeScript", icon: "javascript" },
+              { name: "Node.js", icon: "javascript" },
+              { name: "Express", icon: "javascript" },
+              { name: "PHP", icon: "javascript" },
+            ],
+            projects: [
+              { name: pn.upayGateway, href: "/work/upay-payment-gateway" },
+              { name: pn.upaySdks, href: "/work/upay-sdks" },
+              { name: pn.hopyMiddleware, href: "/work/upay-hopy-middleware" },
+              { name: pn.igaming, href: "/work/igaming-platform" },
+            ],
+          },
+          {
+            title: t.about.technical.skills.frontend.title,
+            description: <>{t.about.technical.skills.frontend.description}</>,
+            tags: [
+              { name: "React", icon: "javascript" },
+              { name: "Next.js", icon: "nextjs" },
+              { name: "Vue", icon: "javascript" },
+              { name: "Tailwind", icon: "javascript" },
+            ],
+            projects: [
+              { name: pn.alpa, href: "/work/alpa" },
+              { name: pn.paguesafe, href: "/work/paguesafe-landingpage" },
+              { name: pn.paguestream, href: "/work/paguestream" },
+              { name: pn.igaming, href: "/work/igaming-platform" },
+            ],
+          },
+        ];
+      })(),
     },
   };
 

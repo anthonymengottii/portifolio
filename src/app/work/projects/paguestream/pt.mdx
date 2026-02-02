@@ -1,7 +1,7 @@
 ---
 title: "PagueStream - Plataforma de Pagamentos PIX para Streamers"
 publishedAt: "2023-09-15"
-summary: "Plataforma completa para streamers receberem pagamentos PIX durante transmissões ao vivo. Sistema integrado com overlay, notificações em tempo real e gestão de doações."
+summary: "Plataforma para streamers receberem PIX em tempo real durante lives (projeto discontinuado). Widgets de alerta e QR code, IA, dashboard, StreamElements/StreamLabs. Monorepo Turborepo: Fastify, Next.js 15, React 19. Código no GitHub."
 images:
   - "/images/projects/paguestream/landingpage.png"
   - "/images/projects/paguestream/landingpage2.png"
@@ -14,6 +14,7 @@ images:
   - "/images/projects/paguestream/widget-alert.png"
   - "/images/projects/paguestream/kyc.png"
   - "/images/projects/paguestream/settings.png"
+link: "https://github.com/anthonymengottii/paguestream_public"
 team:
   - name: "Anthony Mengotti de Oliveira"
     role: "Desenvolvedor Full Stack"
@@ -23,16 +24,19 @@ team:
 
 ## Visão Geral
 
-PagueStream é uma plataforma desenvolvida especificamente para streamers receberem pagamentos PIX durante suas transmissões ao vivo. O sistema integra-se com OBS e outras ferramentas de streaming, exibindo doações em tempo real através de overlays personalizáveis.
+O **PagueStream** é uma plataforma para streamers e criadores de conteúdo receberem doações via PIX em tempo real durante transmissões ao vivo. Objetivo: conectar criadores e comunidade com uma solução segura, rápida e personalizável, sem expor dados pessoais dos doadores. Inclui processamento instantâneo de PIX, widgets de alerta e QR code customizáveis, integração com StreamElements e StreamLabs, moderação de conteúdo com IA (OpenAI), text-to-speech (Cartesia), dashboard com métricas em tempo real e fluxo de KYC. O **projeto foi discontinuado**; esteve em produção em [paguestream.com](https://paguestream.com/). O código permanece disponível como referência no [GitHub](https://github.com/anthonymengottii/paguestream_public). Licença MIT.
 
-## Funcionalidades Principais
+## Funcionalidades
 
-- **Integração com OBS**: Overlay personalizável para exibição de doações durante streams
-- **Pagamentos PIX em Tempo Real**: Processamento instantâneo de pagamentos via PIX
-- **Notificações Visuais**: Alertas animados quando uma doação é recebida
-- **Dashboard para Streamers**: Painel de controle para gestão de doações e estatísticas
-- **Sistema de Metas**: Definição e acompanhamento de metas de arrecadação
-- **Histórico de Doações**: Registro completo de todas as transações recebidas
+**Sistema de pagamentos:** PIX em tempo real, integração com gateway (ExpaySolutions/PagueSafe), cálculo automático de taxas, histórico de transações, saques automatizados.
+
+**Widgets:** Alerta (notificações animadas com áudio), QR Code para checkout rápido; personalização de cores e estilos; atualização em tempo real via WebSocket. Integração com StreamElements, StreamLabs e widgets standalone para OBS.
+
+**IA:** Moderação de conteúdo com OpenAI; text-to-speech com Cartesia; correção gramatical para áudio.
+
+**Dashboard e analytics:** Painel em tempo real de doações, métricas e insights, melhores dias/horários, gráficos interativos, relatórios financeiros.
+
+**Outros:** Saques com validação, upload e validação de documentos (KYC), emails transacionais (Resend), sistema de feedback.
 
 ## Tecnologias Utilizadas
 
@@ -42,12 +46,13 @@ PagueStream é uma plataforma desenvolvida especificamente para streamers recebe
 - **API PIX**: Integração com sistema de pagamentos instantâneos brasileiro
 - **OBS WebSocket**: Integração com OBS Studio para overlays
 
-## Desafios e Aprendizados
+## Desafios e Soluções
 
-O maior desafio foi criar um sistema que processasse pagamentos PIX e atualizasse a interface do streamer em tempo real, sem latência perceptível. A solução envolveu WebSockets para comunicação bidirecional e processamento assíncrono de webhooks.
-
-A integração com OBS exigiu conhecimento profundo da API WebSocket do OBS Studio e criação de overlays HTML/CSS que funcionassem perfeitamente durante transmissões.
+- **Tempo real:** WebSocket para comunicação bidirecional → atualizações instantâneas em todos os clientes.
+- **Moderação:** Integração com OpenAI → conteúdo inapropriado bloqueado antes de ser exibido.
+- **Text-to-speech:** Cartesia → mensagens em áudio com voz natural.
+- **Escalabilidade:** Monorepo com Turborepo → build e deploy otimizados.
 
 ## Resultado
 
-Plataforma funcional que permite streamers receberem doações PIX durante suas transmissões, com notificações visuais em tempo real. O sistema melhora significativamente a experiência de monetização para criadores de conteúdo brasileiros.
+Plataforma que esteve em produção em [paguestream.com](https://paguestream.com/) e foi **discontinuada**. Incluía checkout personalizado, widgets de alerta e QR code, dashboard em tempo real, métricas e integrações StreamElements e StreamLabs. Arquitetura com 3 aplicações principais, 15+ tecnologias. O código segue disponível no GitHub como referência de projeto full-stack com pagamentos em tempo real, IA e WebSocket.

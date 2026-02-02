@@ -1,7 +1,7 @@
 ---
 title: "Upay Hopy Middleware - Integração de Pagamentos Hopy Split"
 publishedAt: "2024-03-10"
-summary: "Middleware de pagamentos para integração Hopy Split. Suporta Pagar.me, Citrex e Zendry. TypeScript, Express, SQLite. Sistema em produção processando transações reais."
+summary: "Middleware em produção para Hopy Split: uma API unifica Pagar.me, Citrex e Zendry. Split de pagamento automático, processamento assíncrono e logging. TypeScript, Express, SQLite."
 images: []
 link: "https://github.com/anthonymengottii/upay-hopy-middleware_public"
 team:
@@ -13,7 +13,7 @@ team:
 
 ## Visão Geral
 
-Middleware especializado para integração com o sistema Hopy Split, permitindo o processamento de pagamentos através de múltiplos gateways (Pagar.me, Citrex e Zendry). Sistema desenvolvido em TypeScript com Express e SQLite, atualmente em produção processando transações reais.
+O **Hopy Middleware** é uma camada de integração entre aplicações e o fluxo **Hopy Split** (divisão de pagamentos entre múltiplos recebedores). Em vez de cada cliente integrar direto com Pagar.me, Citrex e Zendry, o middleware expõe uma única API REST que abstrai os três gateways: autenticação, formatos de requisição e split de valores. Desenvolvido em TypeScript (Express, SQLite), está em produção processando transações reais.
 
 ## Funcionalidades Principais
 
@@ -40,4 +40,4 @@ O sistema de split de pagamento exigiu lógica complexa para garantir que os val
 
 ## Resultado
 
-Middleware em produção processando transações reais com alta confiabilidade. O sistema permite que aplicações integrem facilmente com o Hopy Split, abstraindo a complexidade de múltiplos gateways através de uma única API.
+Middleware em produção: aplicações que precisam de split de pagamento (marketplaces, plataformas multi-recebedor) consomem uma única API em vez de três integrações distintas. A camada de adaptadores garante que mudanças em um gateway não quebrem os clientes; o SQLite mantém o sistema leve e adequado para deploy em ambiente controlado. Código disponível no repositório indicado no link.
