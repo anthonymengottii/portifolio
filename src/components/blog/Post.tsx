@@ -4,6 +4,7 @@ import { Card, Column, Row, Avatar, Text } from "@once-ui-system/core";
 import { formatDate } from "@/utils/formatDate";
 import { person } from "@/resources";
 import { BlogImage } from "./BlogImage";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 interface PostProps {
   post: any;
@@ -12,6 +13,8 @@ interface PostProps {
 }
 
 export default function Post({ post, thumbnail, direction }: PostProps) {
+  const { language } = useLanguage();
+
   return (
     <Card
       fillWidth
@@ -46,7 +49,7 @@ export default function Post({ post, thumbnail, direction }: PostProps) {
               <Text variant="label-default-s">{person.name}</Text>
             </Row>
             <Text variant="body-default-xs" onBackground="neutral-weak">
-              {formatDate(post.metadata.publishedAt, false)}
+              {formatDate(post.metadata.publishedAt, false, language)}
             </Text>
           </Row>
           <Text variant="heading-strong-l" wrap="balance">

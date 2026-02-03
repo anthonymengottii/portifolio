@@ -30,7 +30,7 @@ interface ProjectContentProps {
 }
 
 export function ProjectContent({ post }: ProjectContentProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const avatars =
     post.metadata.team?.map((person) => ({
@@ -43,8 +43,8 @@ export function ProjectContent({ post }: ProjectContentProps) {
         <SmartLink href="/work">
           <Text variant="label-strong-m">{t('nav.work')}</Text>
         </SmartLink>
-        <Text variant="body-default-xs" onBackground="neutral-weak" marginBottom="12">
-          {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
+        <Text variant="body-default-s" onBackground="neutral-medium" marginBottom="12">
+          {post.metadata.publishedAt && formatDate(post.metadata.publishedAt, false, language)}
         </Text>
         <Heading variant="display-strong-m">{post.metadata.title}</Heading>
       </Column>

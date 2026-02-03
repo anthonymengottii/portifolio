@@ -1,26 +1,58 @@
-export function formatDate(date: string, includeRelative = false) {
+const INTL_LOCALE: Record<"pt" | "en", string> = {
+  pt: "pt-BR",
+  en: "en",
+};
+
+const RELATIVE_STRINGS = {
+  pt: {
+    year: "ano",
+    years: "anos",
+    month: "mês",
+    months: "meses",
+    day: "dia",
+    days: "dias",
+    ago: "atrás",
+    today: "Hoje",
+  },
+  en: {
+    year: "year",
+    years: "years",
+    month: "month",
+    months: "months",
+    day: "day",
+    days: "days",
+    ago: "ago",
+    today: "Today",
+  },
+} as const;
+
+export function formatDate(
+  date: string,
+  includeRelative = false,
+  locale: "pt" | "en" = "pt"
+) {
   const currentDate = new Date();
-
   const dateString = date.includes("T") ? date : `${date}T00:00:00`;
-
   const targetDate = new Date(dateString);
   const yearsAgo = currentDate.getFullYear() - targetDate.getFullYear();
   const monthsAgo = currentDate.getMonth() - targetDate.getMonth();
   const daysAgo = currentDate.getDate() - targetDate.getDate();
 
-  let formattedDate = "";
+  const rel = RELATIVE_STRINGS[locale];
+  let formattedRelative = "";
 
   if (yearsAgo > 0) {
-    formattedDate = `${yearsAgo} ${yearsAgo === 1 ? "ano" : "anos"} atrás`;
+    formattedRelative = `${yearsAgo} ${yearsAgo === 1 ? rel.year : rel.years} ${rel.ago}`;
   } else if (monthsAgo > 0) {
-    formattedDate = `${monthsAgo} ${monthsAgo === 1 ? "mês" : "meses"} atrás`;
+    formattedRelative = `${monthsAgo} ${monthsAgo === 1 ? rel.month : rel.months} ${rel.ago}`;
   } else if (daysAgo > 0) {
-    formattedDate = `${daysAgo} ${daysAgo === 1 ? "dia" : "dias"} atrás`;
+    formattedRelative = `${daysAgo} ${daysAgo === 1 ? rel.day : rel.days} ${rel.ago}`;
   } else {
-    formattedDate = "Hoje";
+    formattedRelative = rel.today;
   }
 
-  const fullDate = targetDate.toLocaleString("pt-BR", {
+  const intlLocale = INTL_LOCALE[locale];
+  const fullDate = targetDate.toLocaleString(intlLocale, {
     month: "long",
     day: "numeric",
     year: "numeric",
@@ -30,5 +62,5 @@ export function formatDate(date: string, includeRelative = false) {
     return fullDate;
   }
 
-  return `${fullDate} (${formattedDate})`;
+  return `${fullDate} (${formattedRelative})`;
 }

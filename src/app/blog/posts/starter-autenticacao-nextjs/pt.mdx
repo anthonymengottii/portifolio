@@ -1,0 +1,50 @@
+---
+title: "Template de Autenticação em React + Vite: Fluxo Completo Pronto para Integrar"
+publishedAt: "2026-02-02"
+summary: "Template front-end com todas as telas de auth: registro, login, verificação de email, redefinição de senha, perfil e 404. React, Vite, TypeScript, Tailwind, React Router e configuração visual em um arquivo."
+tag: "Frontend"
+image: "/api/og/generate?title=Template%20Auth%20React%20Vite"
+---
+
+> **Template em destaque**  
+> Código: **[github.com/anthonymengottii/template_auth](https://github.com/anthonymengottii/template_auth)** · Demo: **[template-auth-ten.vercel.app](https://template-auth-ten.vercel.app)**
+
+O **template_auth** é um front-end completo de fluxo de autenticação em **React + Vite + TypeScript + Tailwind CSS + React Router**. Todas as telas já estão implementadas; a lógica de backend (tokens, API, proteção de rotas) fica por sua conta — você integra com Clerk, Supabase, Firebase, NextAuth ou backend próprio. Use os links acima para clonar o repositório ou ver a demo na Vercel.
+
+---
+
+## O Que Já Está no Projeto
+
+O template cobre o fluxo de auth de ponta a ponta do ponto de vista de UI:
+
+- **Registro** (`/sign-up`, `/`) — Formulário de cadastro com banner e botões sociais (Gmail, Github, Gitlab) como placeholder.
+- **Login** (`/sign-in`) — Email/senha com validação básica e os mesmos botões sociais.
+- **Verificação de email** (`/email-verification`) — Tela com código de 6 dígitos.
+- **Redefinição de senha** — Solicitar reset (`/password-reset-request`) e definir nova senha (`/set-new-password`), mais telas de confirmação de sucesso.
+- **Confirmações** — Sucesso após login e após reset de senha.
+- **Perfil** (`/profile`) — Formulário Nome e Email (persistido em localStorage por enquanto).
+- **404** — Página para rotas inexistentes.
+
+Não é só “uma tela de login”: é o conjunto de telas que a maioria dos produtos precisa antes de conectar a um backend real.
+
+## Componentes e Identidade Visual
+
+Além das telas, o projeto traz componentes reutilizáveis: **Button**, **Checkbox**, **InputField** e **LogoText**. O **LogoText** é um componente em SVG que exibe a palavra **"LOGO"** (ou o texto que você configurar) no topo dos formulários de login e registro — em vez de um ícone genérico, você tem uma marca textual editável em `LogoText.tsx`, com cor controlada via `fill`. Os ícones dos campos (email, senha, usuário, chave) e os logos sociais (Github, Google) seguem a cor da marca definida no config.
+
+## Configuração Visual Sem Mexer nos Componentes
+
+Toda a personalização visual está centralizada em **`template.config.ts`** na raiz do projeto. Um único arquivo controla:
+
+- **Tema** — claro, escuro ou sistema.
+- **Cores** — neutros (sand, gray, slate), **brand** (azul, indigo, violet, etc.) e **accent**.
+- **Estilo** — bordas (rounded, playful, conservative), superfícies (filled, translucent), botões (flat, plastic), transições e escala da UI.
+
+A cor **brand** define botões primários, logo, ícones dos inputs e estados de foco. Você altera o visual do template sem abrir os componentes: só edita o config.
+
+## Stack e Próximos Passos
+
+- **React 18+**, **Vite**, **TypeScript**, **Tailwind CSS**, **React Router**.
+- Layout responsivo: banner oculto em mobile, botões sociais em linha.
+- Próximo passo sugerido: adicionar **AuthProvider** + **useAuth**, proteção de rotas privadas e integração com o provedor de auth de sua escolha (Supabase, Clerk, Firebase ou API própria com JWT). Validação mais robusta (Zod + React Hook Form) pode ser plugada nas telas já existentes.
+
+Se você cansa de desenhar e codar as mesmas telas de auth em todo projeto, o **[template_auth](https://github.com/anthonymengottii/template_auth)** está no GitHub para clonar e a **[demo](https://template-auth-ten.vercel.app)** no Vercel para você ver o fluxo completo rodando.

@@ -107,8 +107,8 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
             <SmartLink href="/blog">
               <Text variant="label-strong-m">{blogContent.label || "Blog"}</Text>
             </SmartLink>
-            <Text variant="body-default-xs" onBackground="neutral-weak" marginBottom="12">
-              {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
+            <Text variant="body-default-s" onBackground="neutral-medium" marginBottom="12">
+              {post.metadata.publishedAt && formatDate(post.metadata.publishedAt, false, language)}
             </Text>
             <Heading variant="display-strong-m">{post.metadata.title}</Heading>
             {post.metadata.subtitle && (
