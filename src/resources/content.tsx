@@ -105,6 +105,7 @@ export function getContent(lang: Language = 'pt') {
             igaming: "iGaming Platform",
             hopyMiddleware: "Hopy Middleware",
             upaySdks: "Upay SDKs",
+            silvapencil: "Silva Pencil",
           },
           skills: {
             architecture: {
@@ -194,6 +195,7 @@ export function getContent(lang: Language = 'pt') {
             igaming: "iGaming Platform",
             hopyMiddleware: "Hopy Middleware",
             upaySdks: "Upay SDKs",
+            silvapencil: "Silva Pencil",
           },
           skills: {
             architecture: {
@@ -455,6 +457,7 @@ export function getContent(lang: Language = 'pt') {
               { name: pn.paguesafe, href: "/work/paguesafe-landingpage" },
               { name: pn.paguestream, href: "/work/paguestream" },
               { name: pn.igaming, href: "/work/igaming-platform" },
+              { name: pn.silvapencil, href: "/work/silvapencil-portfolio" },
             ],
           },
         ];
