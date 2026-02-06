@@ -24,6 +24,9 @@ team:
 
 O **Upay** é uma plataforma de pagamentos completa e escalável em produção, usada por parceiros e lojistas para processar transações reais. Desenvolvida com **Clean Architecture**, permite que empresas processem pagamentos de forma independente, com controle total sobre taxas, clientes, transações e relatórios. A stack é **TypeScript/Node.js 20+** no backend (Express, Prisma, PostgreSQL, Redis), **React 18** no frontend (Tailwind CSS, shadcn/ui, React Router, Chart.js/Recharts) e documentação interativa via **Swagger/OpenAPI**. O repositório do projeto está em [github.com/anthonymengottii/upay_sistema](https://github.com/anthonymengottii/upay_sistema).
 
+![Dashboard da plataforma Upay](/images/projects/upay/dashboard.png)
+*Dashboard com métricas em tempo real e acesso às principais funcionalidades.*
+
 ## Funcionalidades Principais
 
 ### Pagamentos e Checkout
@@ -58,6 +61,9 @@ O **Upay** é uma plataforma de pagamentos completa e escalável em produção, 
 
 O **Checkout Builder** permite que cada link de pagamento tenha um layout de checkout próprio, sem alterar código. No painel, o lojista escolhe variantes por bloco: **dados pessoais** (Padrão, Clássico, Compact, Inline), **endereço** (mesmas opções), **resumo do pedido** (Padrão, Clássico, Compact, Minimal, List), **forma de pagamento** (Padrão, Clássico, Tabs, List, Compact) e **prova social** (Padrão, Clássico, Carrossel, Badges, Grid, Minimal). Assim, um mesmo produto pode ser vendido com checkouts mais enxutos (Compact, Minimal) ou mais completos (Clássico, com carrossel de avaliações), dependendo do canal ou da campanha. A configuração fica na criação ou edição do link, com a imagem do checkout refletindo as opções escolhidas.
 
+![Checkout Builder](/images/projects/upay/checkout_builder.png)
+*Configuração do layout do checkout por bloco (dados pessoais, endereço, resumo, pagamento, prova social).*
+
 ## Tecnologias Utilizadas
 
 - **Backend**: TypeScript, Node.js 20+, Express, Prisma ORM, PostgreSQL 13+, Redis 6+ (cache)
@@ -73,3 +79,23 @@ O principal desafio foi evoluir de um gateway focado em API para uma **plataform
 ## Resultado
 
 A plataforma está **em produção** em [app.upaybr.com](https://app.upaybr.com/), com transações reais processadas diariamente. Inclui dashboard para lojistas, checkout público customizável por link, SDKs oficiais (Node, Python, PHP), documentação da API e fluxos completos de KYC, saques e recompensas. A documentação Swagger (`/api/docs`) e o OpenAPI permitem integração rápida por novos parceiros. Código-fonte disponível em [github.com/anthonymengottii/upay_sistema](https://github.com/anthonymengottii/upay_sistema).
+
+## Galeria do Projeto
+
+![Listagem de transações](/images/projects/upay/transações.png)
+*Listagem de transações com filtros e status.*
+
+![Detalhes da transação](/images/projects/upay/detalhes_transação.png)
+*Tela de detalhes da transação com informações completas do pagamento.*
+
+![Produtos](/images/projects/upay/produtos.png)
+*Gestão de produtos do catálogo.*
+
+![Criar produto](/images/projects/upay/criar_produto.png)
+*Formulário de criação de produto.*
+
+![Taxas personalizadas](/images/projects/upay/taxas.png)
+*Configuração de taxas por método e empresa.*
+
+![Login](/images/projects/upay/login.png)
+*Tela de login da aplicação.*

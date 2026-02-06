@@ -24,6 +24,9 @@ team:
 
 **Upay** is a full payment platform in production, used by partners and merchants to process real transactions. Built with **Clean Architecture**, it lets businesses process payments independently with full control over fees, customers, transactions and reports. The stack is **TypeScript/Node.js 20+** on the backend (Express, Prisma, PostgreSQL, Redis), **React 18** on the frontend (Tailwind CSS, shadcn/ui, React Router, Chart.js/Recharts), and interactive **Swagger/OpenAPI** documentation. The project repository is at [github.com/anthonymengottii/upay_sistema](https://github.com/anthonymengottii/upay_sistema).
 
+![Upay platform dashboard](/images/projects/upay/dashboard.png)
+*Dashboard with real-time metrics and access to main features.*
+
 ## Key Features
 
 ### Payments and Checkout
@@ -58,6 +61,9 @@ team:
 
 The **Checkout Builder** lets each payment link have its own checkout layout without changing code. In the dashboard, the merchant selects variants per block: **personal data** (Default, Classic, Compact, Inline), **address** (same options), **order summary** (Default, Classic, Compact, Minimal, List), **payment method** (Default, Classic, Tabs, List, Compact), and **social proof** (Default, Classic, Carousel, Badges, Grid, Minimal). So the same product can be sold with leaner checkouts (Compact, Minimal) or fuller ones (Classic, with review carousel), depending on channel or campaign. Configuration is done when creating or editing the link, and the checkout screen reflects the chosen options.
 
+![Checkout Builder](/images/projects/upay/checkout_builder.png)
+*Checkout layout configuration by block (personal data, address, summary, payment, social proof).*
+
 ## Technologies Used
 
 - **Backend**: TypeScript, Node.js 20+, Express, Prisma ORM, PostgreSQL 13+, Redis 6+ (cache)
@@ -73,3 +79,23 @@ The main challenge was evolving from an API-focused gateway into a **full platfo
 ## Outcome
 
 The platform is **live in production** at [app.upaybr.com](https://app.upaybr.com/), with real transactions processed daily. It includes a dashboard for merchants, a public checkout customizable per link, official SDKs (Node, Python, PHP), API documentation and full flows for KYC, withdrawals and rewards. Swagger docs (`/api/docs`) and OpenAPI enable fast onboarding for new partners. Source code is available at [github.com/anthonymengottii/upay_sistema](https://github.com/anthonymengottii/upay_sistema).
+
+## Project Gallery
+
+![Transaction list](/images/projects/upay/transações.png)
+*Transaction list with filters and status.*
+
+![Transaction details](/images/projects/upay/detalhes_transação.png)
+*Transaction details screen with full payment information.*
+
+![Products](/images/projects/upay/produtos.png)
+*Product catalog management.*
+
+![Create product](/images/projects/upay/criar_produto.png)
+*Product creation form.*
+
+![Custom fees](/images/projects/upay/taxas.png)
+*Fee configuration by method and company.*
+
+![Login](/images/projects/upay/login.png)
+*Application login screen.*
