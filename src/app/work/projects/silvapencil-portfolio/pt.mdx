@@ -1,58 +1,63 @@
 ---
-title: "Silva Pencil – Site de portfólio"
-publishedAt: "2025-01-15"
-summary: "Site de portfólio para designer (Silva Pencil): hero cinematográfico, animações de entrada e scroll, projetos, depoimentos, planos e FAQ. Projeto comissionado, front-end completo. Next.js, React, TypeScript."
+title: "Silva Pencil | Social Media & Design Portfolio"
+publishedAt: "2025-02-08"
+summary: "Portfolio ultra-premium e responsivo desenvolvido para Silva Pencil, especialista em Identidade Visual e Social Media. Um site projetado para converter e impressionar através de uma experiência visual imersiva e tecnológica."
 images:
   - "/images/projects/silvapencil-portfolio/hero.png"
+  - "/images/projects/silvapencil-portfolio/hero_dark.png"
   - "/images/projects/silvapencil-portfolio/trabalhos.png"
+  - "/images/projects/silvapencil-portfolio/trabalhos_dark.png"
   - "/images/projects/silvapencil-portfolio/depoimentos.png"
+  - "/images/projects/silvapencil-portfolio/depoimentos_dark.png"
   - "/images/projects/silvapencil-portfolio/planos.png"
+  - "/images/projects/silvapencil-portfolio/planos_dark.png"
   - "/images/projects/silvapencil-portfolio/FAQ.png"
+  - "/images/projects/silvapencil-portfolio/FAQ_dark.png"
   - "/images/projects/silvapencil-portfolio/footer.png"
+  - "/images/projects/silvapencil-portfolio/footer_dark.png"
 link: "https://silvapencil-portifolio.vercel.app"
 team:
   - name: "Anthony Mengotti de Oliveira"
-    role: "Desenvolvedor Frontend"
+    role: "Desenvolvedor Full Stack"
     avatar: "/images/avatar.png"
     linkedIn: "https://www.linkedin.com/in/anthony-mengotti-50026424a"
 ---
 
 ## Visão Geral
 
-Site de portfólio desenvolvido para o **Silva Pencil**, designer gráfico e especialista em social media. Projeto **comissionado** (repositório privado). 100% front-end: página institucional com hero cinematográfico, animações em toda a experiência, trabalhos recentes, depoimentos, planos de gestão de redes sociais e identidade visual, FAQ e CTAs para WhatsApp. Foco em impacto e conversão. Em produção em [silvapencil-portifolio.vercel.app](https://silvapencil-portifolio.vercel.app).
+O portfólio do **Silva Pencil** foi construído para entregar não apenas beleza, mas performance e interatividade extrema. Transformamos a apresentação de projetos de design em uma experiência viva, onde cada interação do usuário gera uma resposta visual sofisticada. O site é focado em conversão e impacto, utilizando as tecnologias mais modernas do ecossistema Web.
 
-## Hero cinematográfico
+## Diferenciais de Design e Tecnologia
 
-O hero ocupa a viewport com estética de vídeo: tipografia em destaque, entrada em camadas e sensação de narrativa. Elementos entram em sequência (staggered), com transições suaves e ritmo pensado para prender a atenção antes do scroll. Fundo e texto trabalham juntos para um primeiro impacto forte e memorável.
+### 🔦 Interactive Grid Background
+Um fundo de grade dinâmico que reage ao cursor do mouse. Utiliza `framer-motion` e variáveis CSS para criar um rastro de luz azul (ambient glow) que segue o usuário por todo o site, proporcionando profundidade e fluidez.
 
-## Animações
+### 🖼️ Behance Auto-Cover Scraper
+Sistema inteligente que permite adicionar apenas a URL de um projeto do Behance. O site automaticamente busca a capa em alta definição, título e autor via API interna, eliminando a necessidade de upload manual de imagens.
 
-- **Hero**: Entrada em sequência (stagger) de título, subtítulo e CTA; transições suaves (fade/slide).
-- **Scroll**: Animações disparadas ao entrar na viewport (scroll-triggered) nas seções de projetos, depoimentos e planos.
-- **Interações**: Hover nos cards de projeto e depoimentos; accordion animado no FAQ; micro-interações em botões e links.
-- **Parallax / profundidade**: Uso de movimento em camadas para dar sensação de profundidade onde aplicável.
+### 🕹️ 3D Project Tilt & Glare
+Galeria de projetos interativa onde os cards possuem inclinação 3D e reflexo dinâmico (glare) baseados na posição do mouse, proporcionando uma sensação de profundidade física aos trabalhos apresentados.
 
-Tudo implementado com performance em mente (CSS e/ou bibliotecas leves) para manter o site fluido em dispositivos móveis.
+### 📱 Smart Mobile Experience
+No celular, onde não existe hover, o site detecta automaticamente qual card de projeto está centralizado na tela (via `useInView`) e exibe as informações dinamicamente, garantindo que o usuário mobile tenha a mesma riqueza de informações que o de desktop.
 
 ## Funcionalidades e Seções
 
-- **Hero**: Apresentação cinematográfica do Silva Pencil com headline de impacto e CTA para projetos
-- **Projetos**: Grid de trabalhos recentes com filtros (Identidade Visual, Redes Sociais, Motion Design)
-- **Depoimentos**: Cards com depoimentos de clientes
-- **Planos Social Media**: Tabela de preços (Essencial, Profissional, Expert) com benefícios
-- **Pacotes Identidade Visual**: Níveis 1, 2 e 3 com descrição e preços
-- **FAQ**: Perguntas frequentes em accordion animado
-- **CTA final**: Contato via WhatsApp
-- **Footer**: Informações legais e contato
+- **Hero Cinematográfico**: Apresentação com headline de impacto e animações em camadas.
+- **Galeria Inteligente**: Grid de trabalhos com integração automática ao Behance.
+- **Planos Estratégicos**: Seção de precificação com hierarquia visual clara e badges de popularidade.
+- **FAQ Animado**: Perguntas frequentes em accordion sofisticado.
+- **Conversão**: CTAs estratégicos para contato direto via WhatsApp.
 
 ## Stack Tecnológico
 
-- **Next.js**: Framework React para produção e SEO
-- **React** e **TypeScript**: Interface e tipagem
-- **Animações**: CSS (transitions/keyframes) e/ou biblioteca de motion (ex.: Framer Motion)
-- **Estilização**: CSS modules ou Tailwind
-- **Deploy**: Vercel
+- **Next.js 15.2.4**: App Router e API Routes para o motor de scraping.
+- **React 19.0**: Performance otimizada com as últimas features do React.
+- **Framer Motion 12**: Animações de alto nível e interações 3D complexas.
+- **Tailwind CSS 4**: Estilização moderna e utilitária.
+- **TypeScript 5.0**: Segurança e escalabilidade no desenvolvimento.
+- **Zustand**: Gerenciamento de estado leve e rápido.
 
 ## Resultado
 
-Site responsivo e focado em conversão, com hero cinematográfico e animações que elevam a experiência sem prejudicar performance. Navegação clara e seções alinhadas aos serviços do designer. Projeto comissionado; desenvolvimento front-end completo, sem backend.
+Um site ultra-premium que eleva o padrão de portfólios de design, unindo estética cinematográfica com engenharia de software de ponta. Totalmente responsivo e otimizado para conversão.

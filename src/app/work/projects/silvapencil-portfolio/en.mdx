@@ -1,58 +1,64 @@
 ---
-title: "Silva Pencil – Portfolio site"
-publishedAt: "2025-01-15"
-summary: "Portfolio site for designer Silva Pencil: cinematic hero, entrance and scroll animations, projects, testimonials, plans and FAQ. Commissioned project, full front-end. Next.js, React, TypeScript."
+title: "Silva Pencil | Social Media & Design Portfolio"
+publishedAt: "2025-02-08"
+summary: "Ultra-premium and responsive portfolio built for Silva Pencil, specialist in Visual Identity and Social Media. A site designed to convert and impress through an immersive and technological visual experience."
 images:
   - "/images/projects/silvapencil-portfolio/hero.png"
+  - "/images/projects/silvapencil-portfolio/hero_dark.png"
   - "/images/projects/silvapencil-portfolio/trabalhos.png"
+  - "/images/projects/silvapencil-portfolio/trabalhos_dark.png"
   - "/images/projects/silvapencil-portfolio/depoimentos.png"
+  - "/images/projects/silvapencil-portfolio/depoimentos_dark.png"
   - "/images/projects/silvapencil-portfolio/planos.png"
+  - "/images/projects/silvapencil-portfolio/planos_dark.png"
   - "/images/projects/silvapencil-portfolio/FAQ.png"
+  - "/images/projects/silvapencil-portfolio/FAQ_dark.png"
   - "/images/projects/silvapencil-portfolio/footer.png"
+  - "/images/projects/silvapencil-portfolio/footer_dark.png"
 link: "https://silvapencil-portifolio.vercel.app"
 team:
   - name: "Anthony Mengotti de Oliveira"
-    role: "Frontend Developer"
+    role: "Full Stack Developer"
     avatar: "/images/avatar.png"
     linkedIn: "https://www.linkedin.com/in/anthony-mengotti-50026424a"
 ---
 
 ## Overview
 
-Portfolio site built for **Silva Pencil**, graphic designer and social media specialist. **Commissioned project** (repository private). Front-end only: institutional page with a cinematic hero, animations across the experience, recent work, testimonials, social media and visual identity plans, FAQ and WhatsApp CTAs. Focus on impact and conversion. Live at [silvapencil-portifolio.vercel.app](https://silvapencil-portifolio.vercel.app).
+The **Silva Pencil** portfolio was built to deliver not just beauty, but extreme performance and interactivity. We transformed the presentation of design projects into a living experience, where every user interaction generates a sophisticated visual response. The site is focused on conversion and impact, using the most modern technologies in the Web ecosystem.
 
-## Cinematic hero
+## Design and Technology Highlights
 
-The hero fills the viewport with a video-like feel: bold typography, layered entrance and a narrative feel. Elements appear in sequence (staggered), with smooth transitions and a rhythm designed to capture attention before scroll. Background and copy work together for a strong, memorable first impression.
+### 🔦 Interactive Grid Background
+A dynamic grid background that reacts to the mouse cursor. It uses `framer-motion` and CSS variables to create a blue light trail (ambient glow) that follows the user throughout the site, providing depth and fluidity.
 
-## Animations
+### 🖼️ Behance Auto-Cover Scraper
+An intelligent system that allows adding just a Behance project URL. The site automatically fetches the high-definition cover, title, and author via an internal API, eliminating the need for manual image uploads.
 
-- **Hero**: Staggered entrance for title, subtitle and CTA; smooth fade/slide transitions.
-- **Scroll**: Scroll-triggered animations as sections (projects, testimonials, plans) enter the viewport.
-- **Interactions**: Hover on project and testimonial cards; animated accordion in the FAQ; micro-interactions on buttons and links.
-- **Parallax / depth**: Layered motion where used to add a sense of depth.
+### 🕹️ 3D Project Tilt & Glare
+An interactive project gallery where cards have 3D tilt and dynamic reflection (glare) based on mouse position, providing a physical sense of depth to the presented works.
 
-All implemented with performance in mind (CSS and/or light libraries) to keep the site smooth on mobile.
+### 📱 Smart Mobile Experience
+On mobile, where there is no hover, the site automatically detects which project card is centered on the screen (via `useInView`) and displays information dynamically, ensuring mobile users have the same richness of information as desktop users.
 
 ## Features and Sections
 
-- **Hero**: Cinematic intro for Silva Pencil with impact headline and CTA to projects
-- **Projects**: Grid of recent work with filters (Visual Identity, Social Media, Motion Design)
-- **Testimonials**: Client testimonial cards
-- **Social Media Plans**: Pricing (Essencial, Profissional, Expert) with benefits
-- **Visual Identity Packages**: Levels 1, 2 and 3 with description and pricing
-- **FAQ**: Frequently asked questions in animated accordion
-- **Final CTA**: Contact via WhatsApp
-- **Footer**: Legal info and contact
+- **Cinematic Hero**: Presentation with impact headline and layered animations.
+- **Smart Gallery**: Project grid with automatic Behance integration.
+- **Strategic Plans**: Pricing section with clear visual hierarchy and popularity badges.
+- **Animated FAQ**: Frequently asked questions in a sophisticated accordion.
+- **Conversion**: Strategic CTAs for direct contact via WhatsApp.
 
 ## Tech Stack
 
-- **Next.js**: React framework for production and SEO
-- **React** and **TypeScript**: UI and typing
-- **Animations**: CSS (transitions/keyframes) and/or motion library (e.g. Framer Motion)
-- **Styling**: CSS modules or Tailwind
-- **Deploy**: Vercel
+- **Next.js 15.2.4**: App Router and API Routes for the scraping engine.
+- **React 19.0**: Optimized performance with the latest React features.
+- **Framer Motion 12**: High-level animations and complex 3D interactions.
+- **Tailwind CSS 4**: Modern utility-first styling.
+- **TypeScript 5.0**: Security and scalability in development.
+- **Zustand**: Lightweight and fast state management.
 
 ## Outcome
 
-Responsive, conversion-focused site with a cinematic hero and animations that elevate the experience without hurting performance. Clear navigation and sections aligned to the designer’s services. Commissioned project; full front-end implementation, no backend.
+An ultra-premium site that raises the bar for design portfolios, joining cinematic aesthetics with cutting-edge software engineering. Fully responsive and optimized for conversion.
+
