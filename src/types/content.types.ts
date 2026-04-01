@@ -25,6 +25,8 @@ export type Person = {
   email: string;
   /** IANA time zone location */
   location: IANATimeZone;
+  /** Display label for location (e.g. "Florianópolis, SC") */
+  locationLabel?: string;
   /** Languages spoken */
   languages?: string[];
 };
@@ -101,6 +103,16 @@ export interface Home extends BasePageConfig {
   };
   /** The sub text which appears below the headline */
   subline: React.ReactNode;
+  /** Availability status indicator */
+  availability?: {
+    display: boolean;
+    label: string;
+  };
+  /** Key metrics displayed on the home page */
+  stats?: Array<{
+    value: string;
+    label: string;
+  }>;
 }
 
 /**

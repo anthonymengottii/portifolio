@@ -13,6 +13,7 @@ export function getContent(lang: Language = 'pt') {
     avatar: "/images/avatar.png",
     email: "anthonymengottii@gmail.com",
     location: "America/Sao_Paulo",
+    locationLabel: "Florianópolis, SC",
     languages: ["Português", "Inglês"],
   };
 
@@ -67,6 +68,12 @@ export function getContent(lang: Language = 'pt') {
         headline: "Arquiteto de software focado em fintech",
         featuredTitle: "Projeto em destaque",
         subline: "Software Engineer da Upay, arquitetando sistemas financeiros de alta performance e infraestruturas de pagamento escaláveis.",
+        availability: "Disponível para projetos freelance",
+        stats: [
+          { value: "R$ 504M+", label: "volume processado" },
+          { value: "8+", label: "projetos em produção" },
+          { value: "2+", label: "anos em fintech" },
+        ],
       },
       about: {
         label: "Sobre",
@@ -80,7 +87,8 @@ export function getContent(lang: Language = 'pt') {
         },
         work: {
           title: "Experiência Profissional",
-          timeframe: "Atual",
+          timeframe: "Out 2025 - Atual",
+            paguesafeTimeframe: "Fev 2024 - Set 2025",
           achievements: {
             upay1: "Liderar o desenvolvimento e a operação do gateway: API REST, PIX/cartão/boleto, documentação e onboarding de parceiros.",
             upay2: "Desenvolver e manter os SDKs oficiais (Node, Python, PHP) e o middleware Hopy Split para facilitar a integração dos parceiros.",
@@ -106,6 +114,7 @@ export function getContent(lang: Language = 'pt') {
             hopyMiddleware: "Hopy Middleware",
             upaySdks: "Upay SDKs",
             silvapencil: "Silva Pencil",
+            voraxAi: "Vorax.ai",
           },
           skills: {
             architecture: {
@@ -127,6 +136,10 @@ export function getContent(lang: Language = 'pt') {
             frontend: {
               title: "Frontend & UI",
               description: "Interfaces responsivas e acessíveis com React, Next.js, Vue e Tailwind. Landing pages, dashboards e aplicações com foco em conversão e performance.",
+            },
+            ai: {
+              title: "IA & Automação",
+              description: "Integração de LLMs (Groq/Llama 3) em produtos reais, automação via WhatsApp e construção de SaaS multi-tenant orientado a IA.",
             },
           },
         },
@@ -157,6 +170,12 @@ export function getContent(lang: Language = 'pt') {
         headline: "Software architect focused on fintech",
         featuredTitle: "Featured Project",
         subline: "Software Engineer at Upay, architecting high-performance financial systems and scalable payment infrastructures.",
+        availability: "Available for freelance projects",
+        stats: [
+          { value: "R$ 504M+", label: "processed volume" },
+          { value: "8+", label: "projects in production" },
+          { value: "2+", label: "years in fintech" },
+        ],
       },
       about: {
         label: "About",
@@ -170,7 +189,8 @@ export function getContent(lang: Language = 'pt') {
         },
         work: {
           title: "Work Experience",
-          timeframe: "Current",
+          timeframe: "Oct 2025 - Present",
+          paguesafeTimeframe: "Feb 2024 - Sep 2025",
           achievements: {
             upay1: "Lead the development and operation of the gateway: REST API, PIX/card/boleto, documentation and partner onboarding.",
             upay2: "Develop and maintain official SDKs (Node, Python, PHP) and the Hopy Split middleware to simplify partner integration.",
@@ -196,6 +216,7 @@ export function getContent(lang: Language = 'pt') {
             hopyMiddleware: "Hopy Middleware",
             upaySdks: "Upay SDKs",
             silvapencil: "Silva Pencil",
+            voraxAi: "Vorax.ai",
           },
           skills: {
             architecture: {
@@ -217,6 +238,10 @@ export function getContent(lang: Language = 'pt') {
             frontend: {
               title: "Frontend & UI",
               description: "Responsive and accessible interfaces with React, Next.js, Vue and Tailwind. Landing pages, dashboards and apps focused on conversion and performance.",
+            },
+            ai: {
+              title: "AI & Automation",
+              description: "LLM integration (Groq/Llama 3) in real products, WhatsApp automation and multi-tenant AI-driven SaaS development.",
             },
           },
         },
@@ -261,6 +286,11 @@ export function getContent(lang: Language = 'pt') {
       href: "/work/upay-payment-gateway",
     },
     subline: t.home.subline,
+    availability: {
+      display: true,
+      label: t.home.availability,
+    },
+    stats: t.home.stats,
   };
 
   const about: About = {
@@ -308,7 +338,7 @@ export function getContent(lang: Language = 'pt') {
         },
         {
           company: "PagueSafe",
-          timeframe: "Fev 2024 - Set 2025",
+          timeframe: t.about.work.paguesafeTimeframe,
           role: "Co-Founder & CTO",
           achievements: [
             t.about.work.achievements.paguesafe1,
@@ -346,8 +376,8 @@ export function getContent(lang: Language = 'pt') {
             title: t.about.technical.skills.architecture.title,
             description: <>{t.about.technical.skills.architecture.description}</>,
             tags: [
-              { name: "TypeScript", icon: "javascript" },
-              { name: "Node.js", icon: "javascript" },
+              { name: "TypeScript", icon: "typescript" },
+              { name: "Node.js", icon: "nodejs" },
               { name: "Next.js", icon: "nextjs" },
             ],
             projects: [
@@ -357,7 +387,7 @@ export function getContent(lang: Language = 'pt') {
             ],
             images: [
               {
-                src: "/images/projects/upay/og-image.png",
+                src: "/images/projects/upay/hero.png",
                 alt: "Upay Gateway Dashboard",
                 width: 16,
                 height: 8,
@@ -381,7 +411,7 @@ export function getContent(lang: Language = 'pt') {
             ],
             images: [
               {
-                src: "/images/projects/upay/og-image.png",
+                src: "/images/projects/upay/hero.png",
                 alt: "Upay Gateway Dashboard",
                 width: 16,
                 height: 8,
@@ -400,9 +430,9 @@ export function getContent(lang: Language = 'pt') {
             title: t.about.technical.skills.fullstack.title,
             description: <>{t.about.technical.skills.fullstack.description}</>,
             tags: [
-              { name: "React", icon: "javascript" },
-              { name: "Vue.js", icon: "javascript" },
-              { name: "Laravel", icon: "javascript" },
+              { name: "React", icon: "react" },
+              { name: "Vue.js", icon: "vue" },
+              { name: "Laravel", icon: "laravel" },
             ],
             projects: [
               { name: pn.paguestream, href: "/work/paguestream" },
@@ -431,26 +461,27 @@ export function getContent(lang: Language = 'pt') {
             title: t.about.technical.skills.backend.title,
             description: <>{t.about.technical.skills.backend.description}</>,
             tags: [
-              { name: "TypeScript", icon: "javascript" },
-              { name: "Node.js", icon: "javascript" },
-              { name: "Express", icon: "javascript" },
-              { name: "PHP", icon: "javascript" },
+              { name: "TypeScript", icon: "typescript" },
+              { name: "Node.js", icon: "nodejs" },
+              { name: "Express", icon: "express" },
+              { name: "PHP", icon: "php" },
             ],
             projects: [
               { name: pn.upayGateway, href: "/work/upay-payment-gateway" },
               { name: pn.upaySdks, href: "/work/upay-sdks" },
               { name: pn.hopyMiddleware, href: "/work/upay-hopy-middleware" },
               { name: pn.igaming, href: "/work/igaming-platform" },
+              { name: pn.voraxAi, href: "/work/vorax-ai" },
             ],
           },
           {
             title: t.about.technical.skills.frontend.title,
             description: <>{t.about.technical.skills.frontend.description}</>,
             tags: [
-              { name: "React", icon: "javascript" },
+              { name: "React", icon: "react" },
               { name: "Next.js", icon: "nextjs" },
-              { name: "Vue", icon: "javascript" },
-              { name: "Tailwind", icon: "javascript" },
+              { name: "Vue", icon: "vue" },
+              { name: "Tailwind", icon: "tailwind" },
             ],
             projects: [
               { name: pn.alpa, href: "/work/alpa" },
@@ -458,6 +489,18 @@ export function getContent(lang: Language = 'pt') {
               { name: pn.paguestream, href: "/work/paguestream" },
               { name: pn.igaming, href: "/work/igaming-platform" },
               { name: pn.silvapencil, href: "/work/silvapencil-portfolio" },
+            ],
+          },
+          {
+            title: t.about.technical.skills.ai.title,
+            description: <>{t.about.technical.skills.ai.description}</>,
+            tags: [
+              { name: "Groq / Llama 3", icon: "rocket" },
+              { name: "Node.js", icon: "nodejs" },
+              { name: "TypeScript", icon: "typescript" },
+            ],
+            projects: [
+              { name: pn.voraxAi, href: "/work/vorax-ai" },
             ],
           },
         ];

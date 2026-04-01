@@ -1,12 +1,12 @@
 ---
 title: "Upay - Full Payment Platform"
 publishedAt: "2026-02-05"
-summary: "White-label payment platform in production. PIX, card and boleto; Checkout Builder; admin dashboard; MFA, KYC, rewards, referral program, coupons, financial management and multiple PSPs. React 18, TypeScript, Node.js 20+, PostgreSQL, Redis. Code at github.com/anthonymengottii/upay_sistema."
+summary: "White-label payment platform in production. PIX, card and boleto; 8+ PSPs with dynamic routing; Checkout Builder; MFA, KYC, rewards, referral program, coupons, order bumps, upsells, community features and full financial management. React 18, TypeScript, Node.js 20+, PostgreSQL, Redis, Sentry. 1037 tests with CI/CD."
 images:
-  - "/images/projects/upay/login.png"
-  - "/images/projects/upay/checkout_builder.png"
+  - "/images/projects/upay/hero.png"
   - "/images/projects/upay/og-image.png"
   - "/images/projects/upay/dashboard.png"
+  - "/images/projects/upay/checkout_builder.png"
   - "/images/projects/upay/transações.png"
   - "/images/projects/upay/detalhes_transação.png"
   - "/images/projects/upay/produtos.png"
@@ -20,73 +20,114 @@ team:
     avatar: "/images/avatar.png"
     linkedIn: "https://www.linkedin.com/in/anthony-mengotti-50026424a"
 ---
+
 ## Overview
 
-**Upay** is a full payment platform in production, used by partners and merchants to process real transactions. Built with **Clean Architecture**, it lets businesses process payments independently with full control over fees, customers, transactions and reports. The stack is **TypeScript/Node.js 20+** on the backend (Express, Prisma, PostgreSQL, Redis), **React 18** on the frontend (Tailwind CSS, shadcn/ui, React Router, Chart.js/Recharts), and interactive **Swagger/OpenAPI** documentation. The project repository is at [github.com/anthonymengottii/upay_sistema](https://github.com/anthonymengottii/upay_sistema).
+**Upay** is a white-label payment platform in production, used by partners and merchants to process real transactions. Built with **Clean Architecture**, it allows companies to process PIX, card and boleto with full control over fees, customers, transactions and reports.
 
-![Upay platform dashboard](/images/projects/upay/dashboard.png)
+The stack is **TypeScript/Node.js 20+** on the backend (Express, Prisma 6, PostgreSQL, Redis), **React 18 + Vite** on the frontend (Tailwind CSS, shadcn/ui, React Query v5, Chart.js/Recharts), interactive documentation via **Swagger/OpenAPI** and production monitoring with **Sentry**. Source code available at [github.com/anthonymengottii/upay_sistema](https://github.com/anthonymengottii/upay_sistema).
+
+![Upay Platform Dashboard](/images/projects/upay/dashboard.png)
 *Dashboard with real-time metrics and access to main features.*
 
-## Key Features
+## Main Features
 
-### Payments and Checkout
-- **PIX, Card and Boleto**: Processing with multiple PSPs (Fyntra, Pagar.me, Citrex), configurable priority and automatic retry
-- **Payment Links**: Unique slug, flexible settings, automatic stock control and Meta Pixel per link
-- **Public Checkout**: Responsive UI with customizable theme (color, logo, copy)
-- **Checkout Builder**: Checkout layout configurable per link — variants by category: personal data (Default, Classic, Compact, Inline), address (Default, Classic, Compact, Inline), order summary (Default, Classic, Compact, Minimal, List), payment method (Default, Classic, Tabs, List, Compact), social proof (Default, Classic, Carousel, Badges, Grid, Minimal)
-- **Installments**: Up to 12x with differentiated fees; automatic release of card transactions (full amount at 30 days, installments one per 30 days)
-- **Payment Split**: Automatic split between gateway and merchants (Pagar.me recipients), calculation from registered fees
-- **Idempotency**: Protection against duplicate requests
+### Payments & Checkout
+- **PIX, Card and Boleto** with 8+ integrated PSPs: Pagar.me, Fyntra, Citrex, Pagflex, Axis, Ezzy, Ameii and CelCoin — automatic dynamic routing by business rules, fees and availability
+- **Payment Links** with unique slug, automatic stock control and Meta Pixel per link
+- **Public Checkout** with customizable theme (color, logo, texts) on a separate subdomain (`checkout.[domain].com`)
+- **Checkout Builder**: configurable layout per section — personal data, address, order summary, payment method and social proof, each with up to 6 visual variants
+- **Installment Payments** up to 12x with automatic release (30-day lump sum, 1 installment/month for installment plans)
+- **Split Payments** via Pagar.me recipients with automatic margin calculation and remittance
+- **Idempotency** across all methods — duplicate request protection with PostgreSQL advisory locks
+- **Automatic Retry** with backoff on PSP failures
 
-### Security and Compliance
-- **MFA (Google Authenticator)**: TOTP, automatic QR code, activation only after validation
-- **KYC**: Document verification (individual and business), smart home screen by status, feature lock until approval
-- **API Keys**: Programmatic access with rate limiting (100 req/15 min), audit logs
-- **Webhooks**: Real-time notifications; Swagger docs and examples in multiple languages
+### Conversion Optimization
+- **Order Bumps** — one-click additional offer post-payment
+- **Upsells and Downsells** — dynamic recommendations based on order
+- **Cart Abandonment Recovery** — automatic tracking and re-engagement
+- **Coupons** — percentage or fixed discount with expiration, usage limits and rate limiting on validation
+- **UTMify** — advanced sales attribution by UTM (source, medium, campaign, etc.)
+- **Shopify Integration** — e-commerce product and order synchronization
 
-### Finance and Operations
-- **Financial Management**: Custom fees per method and company, reserve, PIX transfers, withdrawals, receivables anticipation
-- **Stock Control**: Auto-decrement on payment, link deactivation at zero stock, digital and physical products
-- **Coupon System**: Percent or fixed discount, validity, usage limits, checkout validation and rate limiting on validate API
-- **Rewards (Upay Rewards)**: Tiers by revenue, progress in header, reward claiming, admin panel for tiers
-- **Referral Program**: Unique code per user, configurable fixed reward and recurring commission, dashboard panel
+### Security & Compliance
+- **MFA (Google Authenticator)** — TOTP with automatic QR code, required for sensitive operations
+- **Progressive KYC** — PF/PJ verification with approval levels, transaction limits per level and feature blocking until approval
+- **Granular RBAC** — 15+ admin roles with specific permissions per resource
+- **API Keys** with rate limiting (100 req/15 min) and complete audit logs
+- **Webhooks** with signature verification, automatic retry and event history
+- **Audit Trail** — all relevant actions recorded (KYC approvals, logins, configuration changes, withdrawals)
 
-### Infrastructure and UX
-- **Cloudinary**: Image storage (products, KYC, reward tiers), automatic optimizations (WebP, cache)
-- **Subdomains**: `app.[domain].com` (app) and `checkout.[domain].com` (public checkout), detection and dynamic CORS
-- **Email**: Handlebars templates (.hbs), PDF receipt on payment confirmation, dark-mode prevention, test send in admin
-- **Admin Panel**: Company, transaction and client management; KYC, rewards, email templates; profit reports and security dashboard
+### Financial & Operations
+- **Wallet & Balance** — complete credit/debit ledger in real time
+- **Withdrawals and Transfers** — approval workflow with BaaS integration
+- **Receivables Advance** — early settlement request for future installments
+- **Custom Fees** — per method and company, with history and reports
+- **Financial Reserve** — blocked balance control for transactions in processing
+- **Inventory** — automatic decrement, reservation and link deactivation at zero stock
+
+### Rewards & Community
+- **Rewards System** — revenue-based tiers with header progression and benefit claiming
+- **Referral Program ("Indique e Ganhe")** — unique code per user, fixed reward and recurring commission with KYC validation
+- **Suggestions Board** — public feed with categories (New, Suggestion, Trending, Improvement, Bug) and community votes
+- **Public Roadmap** — feature kanban (Idea → In Development → Done) with voting
+
+### Infrastructure
+- **Cloudinary CDN** — image storage and automatic optimization (products, KYC, avatars)
+- **Dynamic Subdomains** — `app.[domain].com` and `checkout.[domain].com` with dynamic CORS
+- **Professional Emails** — Handlebars templates, PDF receipt as attachment, dark mode prevention
+- **Sentry** — production error tracking with alerts
+- **Prometheus Metrics** — performance metrics for monitoring
+- **Frontend Logging** — client-side error aggregation
+- **Health Checks** — database and service monitoring with query optimization recommendations
+
+## Official SDKs
+
+Published SDKs for fast partner integration:
+
+- **JavaScript/TypeScript** (`@upay/upay-js`) — npm
+- **Python** (`upay-python`) — pip
+- **PHP** (`upay/upay-php`) — Composer
+- **Java** — in development
+
+All support: link creation and management, transactions, products, customers, coupon validation and webhook signature verification.
 
 ## Checkout Builder
 
-The **Checkout Builder** lets each payment link have its own checkout layout without changing code. In the dashboard, the merchant selects variants per block: **personal data** (Default, Classic, Compact, Inline), **address** (same options), **order summary** (Default, Classic, Compact, Minimal, List), **payment method** (Default, Classic, Tabs, List, Compact), and **social proof** (Default, Classic, Carousel, Badges, Grid, Minimal). So the same product can be sold with leaner checkouts (Compact, Minimal) or fuller ones (Classic, with review carousel), depending on channel or campaign. Configuration is done when creating or editing the link, and the checkout screen reflects the chosen options.
+Each payment link can have its own layout without changing code. The merchant configures variants per block in the dashboard: **personal data**, **address**, **order summary**, **payment method** and **social proof** — each with up to 6 visual options (Standard, Classic, Compact, Minimal, Tabs, Carousel, etc.). Configuration is saved per link and reflects immediately in the public checkout.
 
 ![Checkout Builder](/images/projects/upay/checkout_builder.png)
-*Checkout layout configuration by block (personal data, address, summary, payment, social proof).*
+*Layout configuration per block — each link can have a different checkout.*
+
+## Quality & Testing
+
+- **1,037 tests**: 900 unit + 137 E2E
+- **17 unit test suites** — services, utilities, financial calculations
+- **13 E2E suites** — critical flows: authentication, KYC, withdrawals, transfers, PSP webhooks, payment links
+- **CI/CD with GitHub Actions**: unit tests on every push (~30s); E2E on main/PRs with real PostgreSQL (~6min)
+- **External technical audit**: 9.5/10 for a 7-month project with a small team
+- **17 critical bugs fixed** in the hardening phase — race conditions, atomicity and TOCTOU vulnerabilities in financial routes
 
 ## Technologies Used
 
-- **Backend**: TypeScript, Node.js 20+, Express, Prisma ORM, PostgreSQL 13+, Redis 6+ (cache)
-- **Frontend**: React 18, TypeScript, Tailwind CSS, shadcn/ui, React Router, Zod, Chart.js, Recharts
-- **API**: REST, Swagger/OpenAPI, pagination sanitization (page/limit), strict validation
-- **Architecture**: Clean Architecture (controllers by domain, services, auth/security/validation middlewares)
-- **Quality**: Automated tests (40+ files), integration tests (payment, withdraw, KYC, auth), test helpers
+- **Frontend**: React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui, React Query v5, Recharts, Framer Motion
+- **Backend**: Node.js 20+, TypeScript, Express 4, Prisma 6, PostgreSQL 13+, Redis 6+
+- **Security**: JWT, bcrypt, otplib (MFA), Helmet, rate limiting with Redis
+- **Integrations**: Pagar.me, Fyntra, Citrex, Pagflex, Axis, Ezzy, Ameii, CelCoin, Cloudinary, Twilio, Shopify, UTMify, Sentry
+- **Testing**: Jest 30, ts-jest, Supertest, Vitest (frontend)
+- **Documentation**: Swagger/OpenAPI
 
-## Challenges and Learnings
+## Result
 
-The main challenge was evolving from an API-focused gateway into a **full platform**: configurable checkout, KYC, rewards, referrals and financial management while keeping the API simple and operations stable. The approach was Clean Architecture, component variants (Checkout Builder) and integrations (Cloudinary, multiple PSPs) without blocking the payment core. Idempotency, rate limiting and strict validation reduced production errors and abuse on public endpoints (e.g. coupon validation).
-
-## Outcome
-
-The platform is **live in production** at [app.upaybr.com](https://app.upaybr.com/), with real transactions processed daily. It includes a dashboard for merchants, a public checkout customizable per link, official SDKs (Node, Python, PHP), API documentation and full flows for KYC, withdrawals and rewards. Swagger docs (`/api/docs`) and OpenAPI enable fast onboarding for new partners. Source code is available at [github.com/anthonymengottii/upay_sistema](https://github.com/anthonymengottii/upay_sistema).
+Platform in production at [app.upaybr.com](https://app.upaybr.com/) with real transactions processed daily. The Swagger documentation (`/api/docs`) and official SDKs enable fast integration. The public roadmap and suggestions board are active, with partners and users contributing votes.
 
 ## Project Gallery
 
-![Transaction list](/images/projects/upay/transações.png)
-*Transaction list with filters and status.*
+![Transaction listing](/images/projects/upay/transações.png)
+*Transaction listing with filters and real-time status.*
 
 ![Transaction details](/images/projects/upay/detalhes_transação.png)
-*Transaction details screen with full payment information.*
+*Details screen with complete payment information.*
 
 ![Products](/images/projects/upay/produtos.png)
 *Product catalog management.*
@@ -95,7 +136,7 @@ The platform is **live in production** at [app.upaybr.com](https://app.upaybr.co
 *Product creation form.*
 
 ![Custom fees](/images/projects/upay/taxas.png)
-*Fee configuration by method and company.*
+*Fee configuration per method and company.*
 
 ![Login](/images/projects/upay/login.png)
 *Application login screen.*

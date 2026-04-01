@@ -98,28 +98,63 @@ export default async function Home() {
           </RevealFx>
 
           <RevealFx paddingTop="12" delay={0.4} horizontal="center" paddingLeft="12">
-            <Button
-              id="about"
-              data-border="rounded"
-              href={about.path}
-              variant="secondary"
-              size="m"
-              weight="default"
-              arrowIcon
-            >
-              <Row gap="8" vertical="center" paddingRight="4">
-                {about.avatar.display && (
-                  <Avatar
-                    marginRight="8"
-                    style={{ marginLeft: "-0.75rem" }}
-                    src={person.avatar}
-                    size="m"
-                  />
-                )}
-                {about.title}
-              </Row>
-            </Button>
+            <Column gap="16" horizontal="center">
+              <Button
+                id="about"
+                data-border="rounded"
+                href={about.path}
+                variant="secondary"
+                size="m"
+                weight="default"
+                arrowIcon
+              >
+                <Row gap="8" vertical="center" paddingRight="4">
+                  {about.avatar.display && (
+                    <Avatar
+                      marginRight="8"
+                      style={{ marginLeft: "-0.75rem" }}
+                      src={person.avatar}
+                      size="m"
+                    />
+                  )}
+                  {about.title}
+                </Row>
+              </Button>
+
+              {home.availability?.display && (
+                <Row gap="8" vertical="center">
+                  <span style={{
+                    width: 8,
+                    height: 8,
+                    borderRadius: "50%",
+                    backgroundColor: "var(--color-success-medium, #22c55e)",
+                    display: "inline-block",
+                    flexShrink: 0,
+                  }} />
+                  <Text variant="body-default-s" onBackground="neutral-weak">
+                    {home.availability.label}
+                  </Text>
+                </Row>
+              )}
+            </Column>
           </RevealFx>
+
+          {home.stats && home.stats.length > 0 && (
+            <RevealFx translateY="8" delay={0.55} fillWidth horizontal="center" paddingTop="32">
+              <Row gap="32" horizontal="center" wrap>
+                {home.stats.map((stat, i) => (
+                  <Column key={i} horizontal="center" gap="4">
+                    <Text variant="display-strong-s" onBackground="neutral-strong">
+                      {stat.value}
+                    </Text>
+                    <Text variant="body-default-s" onBackground="neutral-weak">
+                      {stat.label}
+                    </Text>
+                  </Column>
+                ))}
+              </Row>
+            </RevealFx>
+          )}
         </Column>
       </Column>
 

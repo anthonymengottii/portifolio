@@ -1,0 +1,57 @@
+---
+title: "Vorax.ai - Assistente Comercial no WhatsApp com IA"
+publishedAt: "2026-03-01"
+summary: "SaaS multi-tenant de atendimento comercial via WhatsApp com IA (Groq/Llama 3). Responde clientes, agenda compromissos, gerencia recorrências e entrega dashboard com métricas em tempo real. Node.js, TypeScript, Prisma, PostgreSQL, Evolution API, Next.js 15."
+images: []
+team:
+  - name: "Anthony Mengotti de Oliveira"
+    role: "Fundador & Desenvolvedor"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/anthony-mengotti-50026424a"
+---
+
+## Visão Geral
+
+O **Vorax.ai** é um SaaS de atendimento comercial via WhatsApp com inteligência artificial. A plataforma conecta a **Evolution API** (servidor WhatsApp) ao modelo **Llama 3** via **Groq** para responder clientes de forma autônoma, mantendo contexto de conversa, agendando compromissos e gerenciando cobranças recorrentes.
+
+A arquitetura é **multi-tenant**: cada empresa tem sua própria instância do WhatsApp, base de clientes, configurações de IA e histórico isolado. O backend em **Node.js + TypeScript + Express 5** se comunica com o **PostgreSQL** via **Prisma 7**, e o dashboard em **Next.js 15** oferece visibilidade em tempo real.
+
+## Funcionalidades
+
+### Atendimento com IA
+- Resposta automática a mensagens via WhatsApp com contexto de conversa
+- Modelo Llama 3 (Groq) com prompt configurável por tenant
+- Histórico de conversas persistido por cliente
+
+### Agendamentos e Recorrências
+- Criação e listagem de agendamentos vinculados a clientes
+- Sistema de recorrências: cobranças e lembretes automáticos enviados no WhatsApp na data configurada
+- Gerenciamento completo via dashboard
+
+### Dashboard Analítico
+- Métricas em tempo real: conversas ativas, mensagens enviadas/recebidas, clientes cadastrados
+- Páginas: `/dashboard` (métricas), `/customers`, `/conversations`, `/recurrences`, `/schedules`
+- Stack: **Next.js 15** + Tailwind CSS + **shadcn/ui** + **React Query v5**
+
+### Infraestrutura Multi-Tenant
+- Cada empresa com instância própria da Evolution API
+- Isolamento completo de dados entre tenants
+- Configuração de IA (prompt, comportamento) por tenant via painel
+
+## Tecnologias Utilizadas
+
+- **Backend**: Node.js, TypeScript, Express 5, Prisma 7, PostgreSQL (Render)
+- **IA**: Groq API (Llama 3)
+- **WhatsApp**: Evolution API
+- **Dashboard**: Next.js 15, Tailwind CSS, shadcn/ui, React Query v5
+- **Infra**: Railway (backend), Render (banco de dados)
+
+## Desafios e Aprendizados
+
+O principal desafio foi o **Prisma 7**, que introduziu mudanças de breaking em relação à v6: a URL do banco migrou para `prisma.config.ts`, o `PrismaClient` passou a exigir um adapter (`PrismaPg`), e o import do cliente gerado mudou. Adaptar a stack sem documentação consolidada acelerou o entendimento da nova arquitetura do ORM.
+
+Outro ponto foi manter o **contexto de conversa** por cliente sem explodir o token limit do Groq — a solução foi persistir apenas as últimas N mensagens por sessão e resumir o histórico anterior.
+
+## Resultado
+
+Plataforma funcional com backend em produção no Railway, banco no Render e dashboard rodando em desenvolvimento. O fluxo completo — receber mensagem no WhatsApp → processar com IA → responder → registrar no banco → exibir no dashboard — está operacional. Próximos passos: onboarding de novos tenants e integração com Google Agenda.
