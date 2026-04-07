@@ -82,7 +82,7 @@ export function getContent(lang: Language = 'pt') {
         rolePrefix: "Arquiteto de software focado em fintech",
         intro: {
           title: "Introdução",
-          description1: "Arquiteto de software e CTO com foco em fintech e pagamentos. Na Upay, lidero a construção da infraestrutura de gateway de pagamentos (PIX, cartão, boleto), APIs para parceiros e ferramentas de gestão em produção. Antes, co-fundei a PagueSafe, onde arquitetei o gateway do zero e a plataforma atingiu R$ 504 milhões em volume processado em um ano.",
+          description1: "Arquiteto de software e Co-founder com foco em fintech e pagamentos. Na Upay, lidero a construção da infraestrutura de gateway de pagamentos (PIX, cartão, boleto), APIs para parceiros e ferramentas de gestão em produção. Antes, co-fundei a PagueSafe, onde arquitetei o gateway do zero e a plataforma atingiu R$ 504 milhões em volume processado em um ano.",
           description2: "Especializado em sistemas de pagamento escaláveis, orquestração de múltiplos gateways, APIs para desenvolvedores e plataformas white-label. Trabalho com TypeScript/Node.js, Next.js e arquiteturas que priorizam simplicidade de integração e confiabilidade em ambiente de produção.",
         },
         work: {
@@ -184,7 +184,7 @@ export function getContent(lang: Language = 'pt') {
         rolePrefix: "Software architect focused on fintech",
         intro: {
           title: "Introduction",
-          description1: "Software architect and CTO focused on fintech and payments. At Upay, I lead the build of the payment gateway infrastructure (PIX, card, boleto), partner APIs, and management tools—all in production. Previously, I co-founded PagueSafe, where I architected the gateway from scratch and the platform reached R$ 504 million in processed volume in one year.",
+          description1: "Software architect and Co-founder focused on fintech and payments. At Upay, I lead the build of the payment gateway infrastructure (PIX, card, boleto), partner APIs, and management tools—all in production. Previously, I co-founded PagueSafe, where I architected the gateway from scratch and the platform reached R$ 504 million in processed volume in one year.",
           description2: "Specialized in scalable payment systems, multi-gateway orchestration, developer-friendly APIs, and white-label platforms. I work with TypeScript/Node.js, Next.js, and architectures that prioritize integration simplicity and reliability in production.",
         },
         work: {
@@ -328,7 +328,7 @@ export function getContent(lang: Language = 'pt') {
         {
           company: "Upay LTDA",
           timeframe: t.about.work.timeframe,
-          role: "CTO (Chief Technology Officer)",
+          role: "Co-founder",
           achievements: [
             t.about.work.achievements.upay1,
             t.about.work.achievements.upay2,
