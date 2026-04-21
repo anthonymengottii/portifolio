@@ -11,23 +11,184 @@ team:
     linkedIn: "https://www.linkedin.com/in/anthony-mengotti"
 ---
 
+<!-- 🏦 Upay | Payment Gateway -->
+
+<div align="center">
+
+<h1>🏦 Upay</h1>
+<h3>Full-Stack Payment Gateway</h3>
+<p><em>Comprehensive payment gateway with an affiliate marketplace, financial management, and advanced administrative dashboard.</em></p>
+
+<p>
+  <img src="https://img.shields.io/badge/Version-2.22.0-6D28D9?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/TypeScript-100%25-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/Node.js-20+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" />
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
+  <img src="https://img.shields.io/badge/PostgreSQL-13+-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/Prisma-ORM-2D3748?style=for-the-badge&logo=prisma&logoColor=white" />
+</p>
+
+<p>
+  <a href="https://github.com/anthonymengottii" target="_blank">
+    <img src="https://img.shields.io/badge/Author-Anthony_Mengotti-1C1C1C?style=for-the-badge&logo=github&logoColor=white" />
+  </a>
+  <a href="mailto:anthonymengottii@gmail.com">
+    <img src="https://img.shields.io/badge/Contact-Email-0078D4?style=for-the-badge&logo=gmail&logoColor=white" />
+  </a>
+  <a href="https://www.linkedin.com/in/anthony-mengotti-50026424a/" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+</p>
+
+</div>
+
+---
+
 ## Overview
 
-The **Upay Public** project gathers the open resources of the Upay ecosystem. It centralizes the fundamental integration pieces that allow other developers to connect with the payment platform's APIs quickly and securely.
+**Upay** is a full-stack payment gateway built from scratch. It handles the complete payment lifecycle — from PIX (instant payments) and credit cards to an affiliate marketplace, balance management, and regulatory compliance — with a security-oriented architecture and strict TypeScript throughout the project.
 
-## Project Structure
+Developed to compete in depth and reliability with major Brazilian payment platforms (Iugu, Pagar.me, Hotmart), while maintaining the flexibility to be used as a white-label solution.
 
-### 🔌 Clear and Accessible Documentation
-Developed to reduce friction when integrating payments. It includes detailed code examples, payload structures, and webhook flow explanations.
+---
 
-### 🛡️ Focus on Security and Standards
-All the code exposed here strictly follows documentation standards and best practices, reflecting the seriousness and technical level demanded by modern payment platforms.
+## Technical Highlights
 
-### 🛠️ The Construction of Upay
-Building the **Upay** ecosystem from scratch was a monumental technical milestone in my career. The entire construction of its core architecture required handling high availability, absolute security for financial transactions, and low latency under massive demand. This public repository opens up a window into that process, reflecting the architectural care, resilient systems, and precise engineering—like well-crafted microservices and modular infrastructure solutions—that make the platform scalable and robust over the long term.
+### 🔐 Security & Compliance
+- **Strict TypeScript mode** across frontend and backend
+- **KYC Flow** with document upload, administrative review, and status webhooks
+- **JWT Authentication** with bcrypt, plus API Key support for external integrations
+- **Role-Based Access Control (RBAC)** with 18 granular permission flags
+- **Rate limiting** by `userId` on authenticated routes
+- **Idempotency keys** for transaction creation
+- **HMAC-SHA256 webhook signatures** with timing-safe comparison
+- **CPF/CNPJ validation** using the mod-11 algorithm
+- **XSS sanitization** in transaction metadata
 
-## Common Technologies
+### 💳 Payment Processing
+- **Multi-method**: PIX (instant), credit/debit card (up to 12x installments), boleto (bank slip)
+- **PSP Integration**: Ameii gateway with asynchronous PIX processing and status synchronization
+- **Circuit breaker** for PSP calls to isolate failures
+- **Webhook delivery** with automatic retries
+- **Automatic card release** — 30 days upfront or per installment
+- **Payment split** via Pagar.me
+- **Advanced sales tracking** — capturing UTMs (`utm_source`, `utm_medium`, `utm_campaign`) and click IDs (`fbclid`, `gclid`) using Utmify
 
-- **Architecture:** REST / GraphQL APIs
-- **Languages:** TypeScript, Node.js
-- **Standards:** Clean Code, Webhook Security
+### 🤝 Affiliate Marketing System (v2.22.0)
+- **Marketplace**: merchants create affiliate programs per product; affiliates browse and request affiliation
+- **Unique trackable links** — `/pay/{slug}?aff={CODE}` with configurable cookie window
+- **Automatic commissions**: credited to the affiliate's wallet upon payment confirmation — types `PERCENTAGE` or `FIXED`
+- **Link metrics**: click counters, conversions, and commission statuses
+- **Program configuration**: description, rules, affiliate page, and sales page
+- Commission processing via atomic `prisma.$transaction`
+
+### 🏗️ Architecture & Engineering
+- **Monorepo** with independent `api/` (Node.js) and `src/` (React) modules
+- **Service layer**: domain services (`transactionService`, `affiliateService`, `referralService`, `webhookService`) isolated from controllers
+- **Prisma ORM** with versioned migrations on PostgreSQL
+- **Redis** for caching and rate limit counters
+- **Cloudinary** for image storage with automatic WebP optimization
+- **gzip/brotli compression** on all responses
+- **Subdomain routing**: `app.[domain].com` (dashboard) vs `checkout.[domain].com` (public checkout)
+- **OpenAPI 3.0 specification** maintained in code and published via Mintlify
+
+### 🛠️ Administrative Panel
+- **Kanban Board** — full CRUD operations with priority levels, assignees, and status columns
+- **Granular RBAC** — custom roles with permission toggles (`approve_kyc`, `view_transactions`, `approve_withdrawals`, among others)
+- **Email template management** — Handlebars templates with perfectly attached PDF receipts
+- **Audit dashboard** — KYC queue, withdrawal approvals, anticipation requests, transaction management
+
+### 🧪 Testing & CI/CD
+- **Unit test suites** (Vitest) covering transactions, wallets, payment links, profiles, anticipations, transfers, and coupons
+- **E2E Pipeline** using a real PostgreSQL instance
+- **GitHub Actions** with separate `unit.yml` and `e2e.yml` workflows
+
+---
+
+## Tech Stack
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=ts,nodejs,express,react,vite,tailwind,prisma,postgres,redis,docker" />
+</p>
+
+| Layer | Technologies |
+|--------|-------------|
+| **Frontend** | React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui, Zustand, React Query |
+| **Backend** | Node.js 20, Express, TypeScript, Zod |
+| **Database** | PostgreSQL 13+, Prisma ORM, Redis |
+| **Authentication** | JWT, bcrypt, API Keys |
+| **Storage** | Cloudinary |
+| **Payments** | Ameii (PIX), Pagar.me (split), Utmify (tracking) |
+| **DevOps** | GitHub Actions, Render (API), Vercel (Frontend) |
+| **Docs** | Mintlify, OpenAPI 3.0 |
+
+---
+
+## System Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                       React Frontend                            │
+│  Dashboard · Admin Panel · Checkout · Affiliate Marketplace     │
+└────────────────────────────┬────────────────────────────────────┘
+                             │ REST + Webhooks
+┌────────────────────────────▼────────────────────────────────────┐
+│                       Express API                               │
+│  Auth · Payments · Products · Affiliates · KYC · Admin          │
+├─────────────────────────────────────────────────────────────────┤
+│  Service Layer                                                  │
+│  transactionService · affiliateService · referralService        │
+│  balanceService · notificationService · webhookService          │
+├──────────────────┬──────────────────────┬───────────────────────┤
+│   PostgreSQL     │       Redis           │   Cloudinary / PSPs   │
+│   (Prisma ORM)   │  (cache · rate limit) │   (Ameii · Pagar.me)  │
+└──────────────────┴──────────────────────┴───────────────────────┘
+```
+
+---
+
+## Features
+
+| Feature | Status |
+|----------------|--------|
+| Instant PIX payment | ✅ Production |
+| Credit/Debit Card (12x) | ✅ Production |
+| Bank slip (Boleto) | ✅ Production |
+| KYC with administrative review | ✅ Production |
+| Webhook subscriptions | ✅ Production |
+| Coupon system (% / fixed) | ✅ Production |
+| Product catalog + inventory | ✅ Production |
+| Referral program | ✅ Production |
+| **Affiliate Marketplace** | ✅ **v2.22.0** |
+| Balance / withdrawals / anticipations | ✅ Production |
+| Admin RBAC (18 permissions) | ✅ Production |
+| Admin Kanban Board | ✅ Production |
+| Idempotency keys | ✅ Production |
+| Payment split | ✅ Production |
+| UTM / sales tracking | ✅ Production |
+| Shopify Integration | ✅ Production |
+| Rate limiting | ✅ Production |
+| HMAC signatures on webhooks | ✅ Production |
+| Circuit breaker (PSP) | ✅ Production |
+| Unit and E2E testing suites | ✅ Production |
+| OpenAPI 3.0 + public documentation | ✅ Production |
+
+---
+
+## Public Documentation
+
+Full API documentation available at **[docs.upaybr.com](https://docs.upaybr.com)**, including:
+- Quickstart and authentication guide
+- REST API Reference (OpenAPI 3.0 spec)
+- Affiliate system guide
+- Webhook event reference
+- SDKs for Node.js, Python, PHP, and Java
+
+---
+
+## Repository
+
+🔒 **Private repository** — full source code available for partners and technical reviewers upon request.
+
+📩 [anthonymengottii@gmail.com](mailto:anthonymengottii@gmail.com)  
+💼 [LinkedIn — Anthony Mengotti](https://www.linkedin.com/in/anthony-mengotti-50026424a/)
