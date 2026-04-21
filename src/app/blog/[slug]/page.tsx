@@ -51,13 +51,32 @@ export async function generateMetadata({
   const content = getContent(language);
   const { blog } = content;
 
-  return Meta.generate({
+  const baseMeta = Meta.generate({
     title: post.metadata.title,
     description: post.metadata.summary,
     baseURL: baseURL,
     image: post.metadata.image || `/api/og/generate?title=${encodeURIComponent(post.metadata.title)}`,
     path: `${blog.path}/${post.slug}`,
   });
+
+  return {
+    ...baseMeta,
+    keywords: [post.metadata.tag || "Blog", "Desenvolvimento", "Tech", "Software Engineering", "Anthony Mengotti", "Portfolio", "Programmer"],
+    openGraph: {
+      ...(baseMeta.openGraph || {}),
+      type: "article",
+      publishedTime: post.metadata.publishedAt,
+      authors: [person.name],
+      tags: [post.metadata.tag || "tech"],
+    },
+    twitter: {
+      ...(baseMeta.twitter || {}),
+      card: "summary_large_image",
+    },
+    alternates: {
+      canonical: `${baseURL}${blog.path}/${post.slug}`,
+    }
+  };
 }
 
 export default async function Blog({ params }: { params: Promise<{ slug: string | string[] }> }) {

@@ -13,13 +13,28 @@ export async function generateMetadata() {
   const content = getContent(language);
   const { blog } = content;
 
-  return Meta.generate({
+  const baseMeta = Meta.generate({
     title: blog.title,
     description: blog.description,
     baseURL: baseURL,
     image: `/api/og/generate?title=${encodeURIComponent(blog.title)}`,
     path: blog.path,
   });
+
+  return {
+    ...baseMeta,
+    keywords: [
+      "Blog de Programação", "Anthony Mengotti Desenvolvimento", "Engenheiro de Software",
+      "Dicas de Carreira Tech", "React", "Next.js", "TypeScript", "Frontend", "Backend"
+    ],
+    openGraph: {
+      ...(baseMeta.openGraph || {}),
+      type: "website",
+    },
+    alternates: {
+      canonical: `${baseURL}${blog.path}`,
+    }
+  };
 }
 
 export default async function Blog() {
