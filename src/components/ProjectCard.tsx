@@ -36,6 +36,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     <Column fillWidth gap="m">
       {images && images.length > 0 && (
         <Carousel
+          priority={true}
           sizes="(max-width: 960px) 100vw, 960px"
           items={images.map((image) => ({
             slide: image,
