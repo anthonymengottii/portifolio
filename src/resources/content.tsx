@@ -65,10 +65,10 @@ export function getContent(lang: Language = 'pt') {
       },
       home: {
         label: "Início",
-        headline: "Arquiteto de software focado em fintech",
+        headline: "Arquiteto de software fullstack",
         featuredTitle: "Projeto em destaque",
-        subline: "Software Engineer da Upay, arquitetando sistemas financeiros de alta performance e infraestruturas de pagamento escaláveis.",
-        availability: "Disponível para projetos freelance",
+        subline: "Software Engineer, arquitetando sistemas financeiros de alta performance e infraestruturas de pagamento.",
+        availability: "Disponível",
         stats: [
           { value: "R$ 504M+", label: "volume processado" },
           { value: "8+", label: "projetos em produção" },
@@ -79,7 +79,7 @@ export function getContent(lang: Language = 'pt') {
         label: "Sobre",
         titlePrefix: "Sobre –",
         description: "Conheça",
-        rolePrefix: "Arquiteto de software focado em fintech",
+        rolePrefix: "Arquiteto de software fullstack",
         intro: {
           title: "Introdução",
           description1: "Arquiteto de software e Co-founder com foco em fintech e pagamentos. Na Upay, lidero a construção da infraestrutura de gateway de pagamentos (PIX, cartão, boleto), APIs para parceiros e ferramentas de gestão em produção. Antes, co-fundei a PagueSafe, onde arquitetei o gateway do zero e a plataforma atingiu R$ 504 milhões em volume processado em um ano.",
@@ -167,10 +167,10 @@ export function getContent(lang: Language = 'pt') {
       },
       home: {
         label: "Home",
-        headline: "Software architect focused on fintech",
+        headline: "Software architect fullstack",
         featuredTitle: "Featured Project",
-        subline: "Software Engineer at Upay, architecting high-performance financial systems and scalable payment infrastructures.",
-        availability: "Available for freelance projects",
+        subline: "Software Engineer, architecting high-performance financial systems and scalable payment infrastructures.",
+        availability: "Available",
         stats: [
           { value: "R$ 504M+", label: "processed volume" },
           { value: "8+", label: "projects in production" },
@@ -181,7 +181,7 @@ export function getContent(lang: Language = 'pt') {
         label: "About",
         titlePrefix: "About –",
         description: "Meet",
-        rolePrefix: "Software architect focused on fintech",
+        rolePrefix: "Software architect fullstack",
         intro: {
           title: "Introduction",
           description1: "Software architect and Co-founder focused on fintech and payments. At Upay, I lead the build of the payment gateway infrastructure (PIX, card, boleto), partner APIs, and management tools—all in production. Previously, I co-founded PagueSafe, where I architected the gateway from scratch and the platform reached R$ 504 million in processed volume in one year.",
