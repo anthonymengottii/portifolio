@@ -39,8 +39,10 @@ export default async function Home() {
   const content = getContent(language);
   const { home, person, about } = content;
 
-  // Projetos no idioma atual
-  const projects = getPosts(["src", "app", "work", "projects"], language);
+  // Projetos no idioma atual (só entram na home os que têm print)
+  const projects = getPosts(["src", "app", "work", "projects"], language).filter(
+    (project) => project.metadata.images?.length > 0
+  );
 
   // Posts do blog no idioma atual (para a seção "Últimas do blog")
   const blogPosts = getPosts(["src", "app", "blog", "posts"], language);
