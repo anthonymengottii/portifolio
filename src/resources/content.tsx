@@ -65,7 +65,7 @@ export function getContent(lang: Language = 'pt') {
       },
       home: {
         label: "Início",
-        headline: "Arquiteto de pagamentos que escalam",
+        headline: "Desenvolvedor Full-Stack",
         featuredTitle: "Projeto em destaque",
         subline: "Desenvolvedor full-stack com histórico em fintech: arquitetei gateways de pagamento e sistemas financeiros críticos, já processando mais de R$ 504M em produção.",
         availability: "Disponível",
@@ -172,7 +172,7 @@ export function getContent(lang: Language = 'pt') {
       },
       home: {
         label: "Home",
-        headline: "Payment architecture that scales",
+        headline: "Full-Stack Developer",
         featuredTitle: "Featured Project",
         subline: "Full-stack developer with a fintech track record: architected payment gateways and mission-critical financial systems, with R$ 504M+ processed in production.",
         availability: "Available",

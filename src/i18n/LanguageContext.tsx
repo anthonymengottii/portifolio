@@ -79,7 +79,7 @@ const translations: Record<Language, TranslationKeys> = {
     // Not Found
     'notFound.title': 'Página não encontrada',
     'notFound.message': 'A página que você está procurando não existe.',
-    'home.headline': 'Arquiteto de pagamentos que escalam',
+    'home.headline': 'Desenvolvedor Full-Stack',
     'home.featured.title': 'Projeto em destaque',
     'about.work.title': 'Experiência Profissional',
     'about.intro.title': 'Introdução',
@@ -163,7 +163,7 @@ const translations: Record<Language, TranslationKeys> = {
     'login.incorrectPassword': 'Incorrect password',
     'notFound.title': 'Page not found',
     'notFound.message': 'The page you are looking for does not exist.',
-    'home.headline': 'Payment architecture that scales',
+    'home.headline': 'Full-Stack Developer',
     'home.featured.title': 'Featured project',
     'about.work.title': 'Professional Experience',
     'about.intro.title': 'Introduction',
