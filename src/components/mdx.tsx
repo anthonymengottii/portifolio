@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { isValidElement } from 'react';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import type { MDXComponents } from 'mdx/types';
 import { imageSize } from 'image-size';
@@ -11,6 +12,7 @@ import {
   SmartLink,
   Media,
 } from "@once-ui-system/core";
+import { Mermaid } from "./blog/Mermaid";
 
 // Media (once-ui) collapses to a zero-height box for local images unless it
 // gets an explicit aspect ratio, so markdown images need their real
@@ -79,11 +81,23 @@ const components: MDXComponents = {
       {...props}
     />
   ),
-  pre: ({ children, ...props }) => (
-    <pre {...props}>
-      {typeof children === 'string' ? <code>{children}</code> : children}
-    </pre>
-  ),
+  pre: ({ children, ...props }) => {
+    const codeElement = isValidElement<{ className?: string; children?: React.ReactNode }>(children)
+      ? children
+      : null;
+    const isMermaid = codeElement?.props.className?.includes('language-mermaid');
+
+    if (isMermaid) {
+      const chart = String(codeElement?.props.children ?? '').replace(/\n$/, '');
+      return <Mermaid chart={chart} />;
+    }
+
+    return (
+      <pre {...props}>
+        {typeof children === 'string' ? <code>{children}</code> : children}
+      </pre>
+    );
+  },
   code: ({ children, className, ...props }) => (
     <code className={className} {...props}>
       {children}
