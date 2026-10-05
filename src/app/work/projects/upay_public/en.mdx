@@ -46,7 +46,7 @@ team:
 
 ## Overview
 
-**Upay** is a full-stack payment gateway built from scratch. It handles the complete payment lifecycle — from PIX (instant payments) and credit cards to an affiliate marketplace, balance management, and regulatory compliance — with a security-oriented architecture and strict TypeScript throughout the project.
+**Upay** is a full-stack payment gateway built from scratch. It handles the complete payment lifecycle, from PIX (instant payments) and credit cards to an affiliate marketplace, balance management, and regulatory compliance, with a security-oriented architecture and strict TypeScript throughout the project.
 
 Developed to compete in depth and reliability with major Brazilian payment platforms (Iugu, Pagar.me, Hotmart), while maintaining the flexibility to be used as a white-label solution.
 
@@ -70,14 +70,14 @@ Developed to compete in depth and reliability with major Brazilian payment platf
 - **PSP Integration**: Ameii gateway with asynchronous PIX processing and status synchronization
 - **Circuit breaker** for PSP calls to isolate failures
 - **Webhook delivery** with automatic retries
-- **Automatic card release** — 30 days upfront or per installment
+- **Automatic card release**: 30 days upfront or per installment
 - **Payment split** via Pagar.me
-- **Advanced sales tracking** — capturing UTMs (`utm_source`, `utm_medium`, `utm_campaign`) and click IDs (`fbclid`, `gclid`) using Utmify
+- **Advanced sales tracking**: capturing UTMs (`utm_source`, `utm_medium`, `utm_campaign`) and click IDs (`fbclid`, `gclid`) using Utmify
 
 ### 🤝 Affiliate Marketing System (v2.22.0)
 - **Marketplace**: merchants create affiliate programs per product; affiliates browse and request affiliation
-- **Unique trackable links** — `/pay/{slug}?aff={CODE}` with configurable cookie window
-- **Automatic commissions**: credited to the affiliate's wallet upon payment confirmation — types `PERCENTAGE` or `FIXED`
+- **Unique trackable links**: `/pay/{slug}?aff={CODE}` with configurable cookie window
+- **Automatic commissions**: credited to the affiliate's wallet upon payment confirmation, types `PERCENTAGE` or `FIXED`
 - **Link metrics**: click counters, conversions, and commission statuses
 - **Program configuration**: description, rules, affiliate page, and sales page
 - Commission processing via atomic `prisma.$transaction`
@@ -93,10 +93,10 @@ Developed to compete in depth and reliability with major Brazilian payment platf
 - **OpenAPI 3.0 specification** maintained in code and published via Mintlify
 
 ### 🛠️ Administrative Panel
-- **Kanban Board** — full CRUD operations with priority levels, assignees, and status columns
-- **Granular RBAC** — custom roles with permission toggles (`approve_kyc`, `view_transactions`, `approve_withdrawals`, among others)
-- **Email template management** — Handlebars templates with perfectly attached PDF receipts
-- **Audit dashboard** — KYC queue, withdrawal approvals, anticipation requests, transaction management
+- **Kanban Board**: full CRUD operations with priority levels, assignees, and status columns
+- **Granular RBAC**: custom roles with permission toggles (`approve_kyc`, `view_transactions`, `approve_withdrawals`, among others)
+- **Email template management**: Handlebars templates with perfectly attached PDF receipts
+- **Audit dashboard**: KYC queue, withdrawal approvals, anticipation requests, transaction management
 
 ### 🧪 Testing & CI/CD
 - **Unit test suites** (Vitest) covering transactions, wallets, payment links, profiles, anticipations, transfers, and coupons
@@ -188,7 +188,7 @@ Full API documentation available at **[docs.upaybr.com](https://docs.upaybr.com)
 
 ## Repository
 
-🔒 **Private repository** — full source code available for partners and technical reviewers upon request.
+🔒 **Private repository**: full source code available for partners and technical reviewers upon request.
 
 📩 [anthonymengottii@gmail.com](mailto:anthonymengottii@gmail.com)  
-💼 [LinkedIn — Anthony Mengotti](https://www.linkedin.com/in/anthony-mengotti-50026424a/)
+💼 [LinkedIn: Anthony Mengotti](https://www.linkedin.com/in/anthony-mengotti-50026424a/)

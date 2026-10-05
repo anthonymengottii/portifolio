@@ -9,7 +9,7 @@ image: "/api/og/generate?title=Template%20Auth%20React%20Vite"
 > **Featured template**  
 > Code: **[github.com/anthonymengottii/template_auth](https://github.com/anthonymengottii/template_auth)** · Demo: **[template-auth-ten.vercel.app](https://template-auth-ten.vercel.app)**
 
-**template_auth** is a full authentication-flow front-end built with **React + Vite + TypeScript + Tailwind CSS + React Router**. All screens are already implemented; backend logic (tokens, API, route protection) is up to you — plug in Clerk, Supabase, Firebase, NextAuth, or your own API. Use the links above to clone the repo or view the demo on Vercel.
+**template_auth** is a full authentication-flow front-end built with **React + Vite + TypeScript + Tailwind CSS + React Router**. All screens are already implemented; backend logic (tokens, API, route protection) is up to you: plug in Clerk, Supabase, Firebase, NextAuth, or your own API. Use the links above to clone the repo or view the demo on Vercel.
 
 ---
 
@@ -17,29 +17,29 @@ image: "/api/og/generate?title=Template%20Auth%20React%20Vite"
 
 The template covers the full auth flow from a UI perspective:
 
-- **Sign up** (`/sign-up`, `/`) — Registration form with banner and social buttons (Gmail, Github, Gitlab) as placeholders.
-- **Sign in** (`/sign-in`) — Email/password with basic validation and the same social buttons.
-- **Email verification** (`/email-verification`) — Screen with 6-digit code input.
-- **Password reset** — Request reset (`/password-reset-request`) and set new password (`/set-new-password`), plus success confirmation screens.
-- **Confirmations** — Success after login and after password reset.
-- **Profile** (`/profile`) — Name and email form (persisted in localStorage for now).
-- **404** — Page for unknown routes.
+- **Sign up** (`/sign-up`, `/`): Registration form with banner and social buttons (Gmail, Github, Gitlab) as placeholders.
+- **Sign in** (`/sign-in`): Email/password with basic validation and the same social buttons.
+- **Email verification** (`/email-verification`): Screen with 6-digit code input.
+- **Password reset**: Request reset (`/password-reset-request`) and set new password (`/set-new-password`), plus success confirmation screens.
+- **Confirmations**: Success after login and after password reset.
+- **Profile** (`/profile`): Name and email form (persisted in localStorage for now).
+- **404**: Page for unknown routes.
 
 It’s not just “a login screen”: it’s the set of screens most products need before wiring up a real backend.
 
 ## Components and Branding
 
-Besides the screens, the project includes reusable components: **Button**, **Checkbox**, **InputField**, and **LogoText**. **LogoText** is an SVG component that displays the word **“LOGO”** (or whatever text you set) at the top of the login and signup forms — instead of a generic icon, you get an editable text brand in `LogoText.tsx`, with color controlled via `fill`. Field icons (email, password, user, key) and social logos (Github, Google) follow the brand color defined in the config.
+Besides the screens, the project includes reusable components: **Button**, **Checkbox**, **InputField**, and **LogoText**. **LogoText** is an SVG component that displays the word **“LOGO”** (or whatever text you set) at the top of the login and signup forms: instead of a generic icon, you get an editable text brand in `LogoText.tsx`, with color controlled via `fill`. Field icons (email, password, user, key) and social logos (Github, Google) follow the brand color defined in the config.
 
 ## Visual Config Without Touching Components
 
 All visual customization lives in **`template.config.ts`** at the project root. A single file controls:
 
-- **Theme** — light, dark, or system.
-- **Colors** — neutrals (sand, gray, slate), **brand** (blue, indigo, violet, etc.) and **accent**.
-- **Style** — borders (rounded, playful, conservative), surfaces (filled, translucent), buttons (flat, plastic), transitions and UI scaling.
+- **Theme**: light, dark, or system.
+- **Colors**: neutrals (sand, gray, slate), **brand** (blue, indigo, violet, etc.) and **accent**.
+- **Style**: borders (rounded, playful, conservative), surfaces (filled, translucent), buttons (flat, plastic), transitions and UI scaling.
 
-The **brand** color drives primary buttons, logo, input icons and focus states. You change the template’s look without opening components — just edit the config.
+The **brand** color drives primary buttons, logo, input icons and focus states. You change the template’s look without opening components, just edit the config.
 
 ## Stack and Next Steps
 

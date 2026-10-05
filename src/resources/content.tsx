@@ -67,7 +67,7 @@ export function getContent(lang: Language = 'pt') {
         label: "Início",
         headline: "Arquiteto de pagamentos que escalam",
         featuredTitle: "Projeto em destaque",
-        subline: "Desenvolvedor full-stack com histórico em fintech — arquitetei gateways de pagamento e sistemas financeiros críticos, já processando mais de R$ 504M em produção.",
+        subline: "Desenvolvedor full-stack com histórico em fintech: arquitetei gateways de pagamento e sistemas financeiros críticos, já processando mais de R$ 504M em produção.",
         availability: "Disponível",
         stats: [
           { value: "R$ 504M+", label: "volume processado" },
@@ -174,7 +174,7 @@ export function getContent(lang: Language = 'pt') {
         label: "Home",
         headline: "Payment architecture that scales",
         featuredTitle: "Featured Project",
-        subline: "Full-stack developer with a fintech track record — architected payment gateways and mission-critical financial systems, with R$ 504M+ processed in production.",
+        subline: "Full-stack developer with a fintech track record: architected payment gateways and mission-critical financial systems, with R$ 504M+ processed in production.",
         availability: "Available",
         stats: [
           { value: "R$ 504M+", label: "processed volume" },
@@ -189,7 +189,7 @@ export function getContent(lang: Language = 'pt') {
         rolePrefix: "ex-CTO at Upay, fintech & payments specialist",
         intro: {
           title: "Introduction",
-          description1: "Full-stack developer in the Innovation & Technology department of Grupo Essentia, working on Easy Health. Previously, I was CTO and software architect at Upay, leading the build of the payment gateway infrastructure (PIX, card, boleto), partner APIs, and management tools—all in production. Before that, I co-founded PagueSafe, where I architected the gateway from scratch and the platform reached R$ 504 million in processed volume in one year.",
+          description1: "Full-stack developer in the Innovation & Technology department of Grupo Essentia, working on Easy Health. Previously, I was CTO and software architect at Upay, leading the build of the payment gateway infrastructure (PIX, card, boleto), partner APIs, and management tools, all running in production. Before that, I co-founded PagueSafe, where I architected the gateway from scratch and the platform reached R$ 504 million in processed volume in one year.",
           description2: "Specialized in scalable payment systems, multi-gateway orchestration, developer-friendly APIs, and white-label platforms. I work with TypeScript/Node.js, Next.js, and architectures that prioritize integration simplicity and reliability in production.",
         },
         work: {

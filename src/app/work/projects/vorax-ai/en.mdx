@@ -50,8 +50,8 @@ The architecture is **multi-tenant**: each company has its own WhatsApp instance
 
 The main challenge was **Prisma 7**, which introduced breaking changes from v6: the database URL moved to `prisma.config.ts`, `PrismaClient` now requires an adapter (`PrismaPg`), and the generated client import path changed. Adapting the stack without consolidated documentation accelerated understanding of the ORM's new architecture.
 
-Another challenge was maintaining **conversation context** per customer without hitting Groq's token limit — the solution was to persist only the last N messages per session and summarize the previous history.
+Another challenge was maintaining **conversation context** per customer without hitting Groq's token limit: the solution was to persist only the last N messages per session and summarize the previous history.
 
 ## Result
 
-Functional platform with backend in production on Railway, database on Render, and dashboard running in development. The complete flow — receive WhatsApp message → process with AI → respond → save to database → display on dashboard — is operational. Next steps: onboarding new tenants and Google Calendar integration.
+Functional platform with backend in production on Railway, database on Render, and dashboard running in development. The complete flow (receive WhatsApp message → process with AI → respond → save to database → display on dashboard) is operational. Next steps: onboarding new tenants and Google Calendar integration.

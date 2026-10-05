@@ -50,8 +50,8 @@ A arquitetura é **multi-tenant**: cada empresa tem sua própria instância do W
 
 O principal desafio foi o **Prisma 7**, que introduziu mudanças de breaking em relação à v6: a URL do banco migrou para `prisma.config.ts`, o `PrismaClient` passou a exigir um adapter (`PrismaPg`), e o import do cliente gerado mudou. Adaptar a stack sem documentação consolidada acelerou o entendimento da nova arquitetura do ORM.
 
-Outro ponto foi manter o **contexto de conversa** por cliente sem explodir o token limit do Groq — a solução foi persistir apenas as últimas N mensagens por sessão e resumir o histórico anterior.
+Outro ponto foi manter o **contexto de conversa** por cliente sem explodir o token limit do Groq: a solução foi persistir apenas as últimas N mensagens por sessão e resumir o histórico anterior.
 
 ## Resultado
 
-Plataforma funcional com backend em produção no Railway, banco no Render e dashboard rodando em desenvolvimento. O fluxo completo — receber mensagem no WhatsApp → processar com IA → responder → registrar no banco → exibir no dashboard — está operacional. Próximos passos: onboarding de novos tenants e integração com Google Agenda.
+Plataforma funcional com backend em produção no Railway, banco no Render e dashboard rodando em desenvolvimento. O fluxo completo (receber mensagem no WhatsApp → processar com IA → responder → registrar no banco → exibir no dashboard) está operacional. Próximos passos: onboarding de novos tenants e integração com Google Agenda.
