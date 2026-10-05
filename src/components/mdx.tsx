@@ -1,5 +1,8 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import type { MDXComponents } from 'mdx/types';
+import { imageSize } from 'image-size';
 import {
   Heading,
   Text,
@@ -8,6 +11,21 @@ import {
   SmartLink,
   Media,
 } from "@once-ui-system/core";
+
+// Media (once-ui) collapses to a zero-height box for local images unless it
+// gets an explicit aspect ratio, so markdown images need their real
+// dimensions read from disk before rendering.
+function getLocalImageAspectRatio(src: string): number | undefined {
+  if (!src.startsWith('/')) return undefined;
+  try {
+    const buffer = readFileSync(join(process.cwd(), 'public', src));
+    const { width, height } = imageSize(buffer);
+    if (width && height) return width / height;
+  } catch {
+    // Remote or missing file: fall back to Media's default behavior.
+  }
+  return undefined;
+}
 
 // Componentes customizados
 const components: MDXComponents = {
@@ -56,6 +74,8 @@ const components: MDXComponents = {
       alt={alt as string}
       radius="m"
       enlarge
+      objectFit="contain"
+      aspectRatio={getLocalImageAspectRatio(src as string)}
       {...props}
     />
   ),
