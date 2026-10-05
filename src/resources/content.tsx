@@ -65,9 +65,9 @@ export function getContent(lang: Language = 'pt') {
       },
       home: {
         label: "Início",
-        headline: "Arquiteto de software fullstack",
+        headline: "Arquiteto de pagamentos que escalam",
         featuredTitle: "Projeto em destaque",
-        subline: "Software Engineer, arquitetando sistemas financeiros de alta performance e infraestruturas de pagamento.",
+        subline: "Co-founder e engenheiro de software especializado em gateways de pagamento e sistemas financeiros críticos — já processei mais de R$ 504M em produção.",
         availability: "Disponível",
         stats: [
           { value: "R$ 504M+", label: "volume processado" },
@@ -167,9 +167,9 @@ export function getContent(lang: Language = 'pt') {
       },
       home: {
         label: "Home",
-        headline: "Software architect fullstack",
+        headline: "Payment architecture that scales",
         featuredTitle: "Featured Project",
-        subline: "Software Engineer, architecting high-performance financial systems and scalable payment infrastructures.",
+        subline: "Co-founder and software engineer specialized in payment gateways and mission-critical financial systems — R$ 504M+ processed in production.",
         availability: "Available",
         stats: [
           { value: "R$ 504M+", label: "processed volume" },
