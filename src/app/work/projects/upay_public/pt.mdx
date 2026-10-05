@@ -46,7 +46,7 @@ team:
 
 ## Visão Geral
 
-**Upay** é um gateway de pagamentos full-stack construído do zero. Gerencia o ciclo completo de pagamentos — do PIX e cartão ao marketplace de afiliados, gestão de saldo e conformidade regulatória — com arquitetura orientada a segurança e TypeScript strict em todo o projeto.
+**Upay** é um gateway de pagamentos full-stack construído do zero. Gerencia o ciclo completo de pagamentos (do PIX e cartão ao marketplace de afiliados, gestão de saldo e conformidade regulatória) com arquitetura orientada a segurança e TypeScript strict em todo o projeto.
 
 Desenvolvido para competir em profundidade e confiabilidade com as principais plataformas de pagamento brasileiras (Iugu, Pagar.me, Hotmart), mantendo flexibilidade para uso como solução white-label.
 
@@ -70,14 +70,14 @@ Desenvolvido para competir em profundidade e confiabilidade com as principais pl
 - **Integração PSP**: gateway Ameii com processamento PIX assíncrono e sincronização de status
 - **Circuit breaker** nas chamadas ao PSP para isolamento de falhas
 - **Entrega de webhooks** com retry automático
-- **Liberação automática de cartão** — 30 dias à vista ou por parcela
+- **Liberação automática de cartão**: 30 dias à vista ou por parcela
 - **Split de pagamentos** via Pagar.me
-- **Rastreamento avançado de vendas** — captura de UTMs (`utm_source`, `utm_medium`, `utm_campaign`) e click IDs (`fbclid`, `gclid`) via Utmify
+- **Rastreamento avançado de vendas**: captura de UTMs (`utm_source`, `utm_medium`, `utm_campaign`) e click IDs (`fbclid`, `gclid`) via Utmify
 
 ### 🤝 Sistema de Marketing de Afiliados (v2.22.0)
 - **Marketplace**: merchants criam programas de afiliados por produto; afiliados navegam e solicitam afiliação
-- **Links rastreáveis únicos** — `/pay/{slug}?aff={CODIGO}` com janela de cookie configurável
-- **Comissões automáticas**: creditadas na carteira do afiliado após confirmação do pagamento — tipos `PERCENTAGE` ou `FIXED`
+- **Links rastreáveis únicos**: `/pay/{slug}?aff={CODIGO}` com janela de cookie configurável
+- **Comissões automáticas**: creditadas na carteira do afiliado após confirmação do pagamento, tipos `PERCENTAGE` ou `FIXED`
 - **Métricas por link**: contadores de cliques, conversões e status de comissão
 - **Configuração de programa**: descrição, regras, página de afiliados e página de vendas
 - Processamento de comissão via `prisma.$transaction` atômico
@@ -93,10 +93,10 @@ Desenvolvido para competir em profundidade e confiabilidade com as principais pl
 - **Especificação OpenAPI 3.0** mantida no código e publicada via Mintlify
 
 ### 🛠️ Painel Administrativo
-- **Quadro Kanban** — CRUD completo com níveis de prioridade, responsáveis e colunas de status
-- **RBAC granular** — papéis personalizados com toggles de permissão (`approve_kyc`, `view_transactions`, `approve_withdrawals`, entre outros)
-- **Gestão de templates de email** — templates Handlebars com comprovantes PDF anexados
-- **Dashboard de auditoria** — fila de KYC, aprovações de saque, solicitações de antecipação, gestão de transações
+- **Quadro Kanban**: CRUD completo com níveis de prioridade, responsáveis e colunas de status
+- **RBAC granular**: papéis personalizados com toggles de permissão (`approve_kyc`, `view_transactions`, `approve_withdrawals`, entre outros)
+- **Gestão de templates de email**: templates Handlebars com comprovantes PDF anexados
+- **Dashboard de auditoria**: fila de KYC, aprovações de saque, solicitações de antecipação, gestão de transações
 
 ### 🧪 Testes e CI/CD
 - **Suítes de testes unitários** (Vitest) cobrindo transações, carteira, links de pagamento, perfil, antecipações, transferências e cupons
@@ -188,7 +188,7 @@ Documentação completa da API disponível em **[docs.upaybr.com](https://docs.u
 
 ## Repositório
 
-🔒 **Repositório privado** — código completo disponível para parceiros e revisores técnicos mediante solicitação.
+🔒 **Repositório privado**: código completo disponível para parceiros e revisores técnicos mediante solicitação.
 
 📩 [anthonymengottii@gmail.com](mailto:anthonymengottii@gmail.com)  
-💼 [LinkedIn — Anthony Mengotti](https://www.linkedin.com/in/anthony-mengotti-50026424a/)
+💼 [LinkedIn: Anthony Mengotti](https://www.linkedin.com/in/anthony-mengotti-50026424a/)

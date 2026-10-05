@@ -33,80 +33,80 @@ The stack is **TypeScript/Node.js 20+** on the backend (Express, Prisma 6, Postg
 ## Main Features
 
 ### Payments & Checkout
-- **PIX, Card and Boleto** with 8+ integrated PSPs: Pagar.me, Fyntra, Citrex, Pagflex, Axis, Ezzy, Ameii and CelCoin — automatic dynamic routing by business rules, fees and availability
+- **PIX, Card and Boleto** with 8+ integrated PSPs: Pagar.me, Fyntra, Citrex, Pagflex, Axis, Ezzy, Ameii and CelCoin, with automatic dynamic routing by business rules, fees and availability
 - **Payment Links** with unique slug, automatic stock control and Meta Pixel per link
 - **Public Checkout** with customizable theme (color, logo, texts) on a separate subdomain (`checkout.[domain].com`)
-- **Checkout Builder**: configurable layout per section — personal data, address, order summary, payment method and social proof, each with up to 6 visual variants
+- **Checkout Builder**: configurable layout per section (personal data, address, order summary, payment method and social proof), each with up to 6 visual variants
 - **Installment Payments** up to 12x with automatic release (30-day lump sum, 1 installment/month for installment plans)
 - **Split Payments** via Pagar.me recipients with automatic margin calculation and remittance
-- **Idempotency** across all methods — duplicate request protection with PostgreSQL advisory locks
+- **Idempotency** across all methods: duplicate request protection with PostgreSQL advisory locks
 - **Automatic Retry** with backoff on PSP failures
 
 ### Conversion Optimization
-- **Order Bumps** — one-click additional offer post-payment
-- **Upsells and Downsells** — dynamic recommendations based on order
-- **Cart Abandonment Recovery** — automatic tracking and re-engagement
-- **Coupons** — percentage or fixed discount with expiration, usage limits and rate limiting on validation
-- **UTMify** — advanced sales attribution by UTM (source, medium, campaign, etc.)
-- **Shopify Integration** — e-commerce product and order synchronization
+- **Order Bumps**: one-click additional offer post-payment
+- **Upsells and Downsells**: dynamic recommendations based on order
+- **Cart Abandonment Recovery**: automatic tracking and re-engagement
+- **Coupons**: percentage or fixed discount with expiration, usage limits and rate limiting on validation
+- **UTMify**: advanced sales attribution by UTM (source, medium, campaign, etc.)
+- **Shopify Integration**: e-commerce product and order synchronization
 
 ### Security & Compliance
-- **MFA (Google Authenticator)** — TOTP with automatic QR code, required for sensitive operations
-- **Progressive KYC** — PF/PJ verification with approval levels, transaction limits per level and feature blocking until approval
-- **Granular RBAC** — 15+ admin roles with specific permissions per resource
+- **MFA (Google Authenticator)**: TOTP with automatic QR code, required for sensitive operations
+- **Progressive KYC**: PF/PJ verification with approval levels, transaction limits per level and feature blocking until approval
+- **Granular RBAC**: 15+ admin roles with specific permissions per resource
 - **API Keys** with rate limiting (100 req/15 min) and complete audit logs
 - **Webhooks** with signature verification, automatic retry and event history
-- **Audit Trail** — all relevant actions recorded (KYC approvals, logins, configuration changes, withdrawals)
+- **Audit Trail**: all relevant actions recorded (KYC approvals, logins, configuration changes, withdrawals)
 
 ### Financial & Operations
-- **Wallet & Balance** — complete credit/debit ledger in real time
-- **Withdrawals and Transfers** — approval workflow with BaaS integration
-- **Receivables Advance** — early settlement request for future installments
-- **Custom Fees** — per method and company, with history and reports
-- **Financial Reserve** — blocked balance control for transactions in processing
-- **Inventory** — automatic decrement, reservation and link deactivation at zero stock
+- **Wallet & Balance**: complete credit/debit ledger in real time
+- **Withdrawals and Transfers**: approval workflow with BaaS integration
+- **Receivables Advance**: early settlement request for future installments
+- **Custom Fees**: per method and company, with history and reports
+- **Financial Reserve**: blocked balance control for transactions in processing
+- **Inventory**: automatic decrement, reservation and link deactivation at zero stock
 
 ### Rewards & Community
-- **Rewards System** — revenue-based tiers with header progression and benefit claiming
-- **Referral Program ("Indique e Ganhe")** — unique code per user, fixed reward and recurring commission with KYC validation
-- **Suggestions Board** — public feed with categories (New, Suggestion, Trending, Improvement, Bug) and community votes
-- **Public Roadmap** — feature kanban (Idea → In Development → Done) with voting
+- **Rewards System**: revenue-based tiers with header progression and benefit claiming
+- **Referral Program ("Indique e Ganhe")**: unique code per user, fixed reward and recurring commission with KYC validation
+- **Suggestions Board**: public feed with categories (New, Suggestion, Trending, Improvement, Bug) and community votes
+- **Public Roadmap**: feature kanban (Idea → In Development → Done) with voting
 
 ### Infrastructure
-- **Cloudinary CDN** — image storage and automatic optimization (products, KYC, avatars)
-- **Dynamic Subdomains** — `app.[domain].com` and `checkout.[domain].com` with dynamic CORS
-- **Professional Emails** — Handlebars templates, PDF receipt as attachment, dark mode prevention
-- **Sentry** — production error tracking with alerts
-- **Prometheus Metrics** — performance metrics for monitoring
-- **Frontend Logging** — client-side error aggregation
-- **Health Checks** — database and service monitoring with query optimization recommendations
+- **Cloudinary CDN**: image storage and automatic optimization (products, KYC, avatars)
+- **Dynamic Subdomains**: `app.[domain].com` and `checkout.[domain].com` with dynamic CORS
+- **Professional Emails**: Handlebars templates, PDF receipt as attachment, dark mode prevention
+- **Sentry**: production error tracking with alerts
+- **Prometheus Metrics**: performance metrics for monitoring
+- **Frontend Logging**: client-side error aggregation
+- **Health Checks**: database and service monitoring with query optimization recommendations
 
 ## Official SDKs
 
 Published SDKs for fast partner integration:
 
-- **JavaScript/TypeScript** (`@upay/upay-js`) — npm
-- **Python** (`upay-python`) — pip
-- **PHP** (`upay/upay-php`) — Composer
-- **Java** — in development
+- **JavaScript/TypeScript** (`@upay/upay-js`): npm
+- **Python** (`upay-python`): pip
+- **PHP** (`upay/upay-php`): Composer
+- **Java**: in development
 
 All support: link creation and management, transactions, products, customers, coupon validation and webhook signature verification.
 
 ## Checkout Builder
 
-Each payment link can have its own layout without changing code. The merchant configures variants per block in the dashboard: **personal data**, **address**, **order summary**, **payment method** and **social proof** — each with up to 6 visual options (Standard, Classic, Compact, Minimal, Tabs, Carousel, etc.). Configuration is saved per link and reflects immediately in the public checkout.
+Each payment link can have its own layout without changing code. The merchant configures variants per block in the dashboard: **personal data**, **address**, **order summary**, **payment method** and **social proof**, each with up to 6 visual options (Standard, Classic, Compact, Minimal, Tabs, Carousel, etc.). Configuration is saved per link and reflects immediately in the public checkout.
 
 ![Checkout Builder](/images/projects/upay/checkout_builder.png)
-*Layout configuration per block — each link can have a different checkout.*
+*Layout configuration per block: each link can have a different checkout.*
 
 ## Quality & Testing
 
 - **1,037 tests**: 900 unit + 137 E2E
-- **17 unit test suites** — services, utilities, financial calculations
-- **13 E2E suites** — critical flows: authentication, KYC, withdrawals, transfers, PSP webhooks, payment links
+- **17 unit test suites**: services, utilities, financial calculations
+- **13 E2E suites**, covering critical flows: authentication, KYC, withdrawals, transfers, PSP webhooks, payment links
 - **CI/CD with GitHub Actions**: unit tests on every push (~30s); E2E on main/PRs with real PostgreSQL (~6min)
 - **External technical audit**: 9.5/10 for a 7-month project with a small team
-- **17 critical bugs fixed** in the hardening phase — race conditions, atomicity and TOCTOU vulnerabilities in financial routes
+- **17 critical bugs fixed** in the hardening phase: race conditions, atomicity and TOCTOU vulnerabilities in financial routes
 
 ## Technologies Used
 

@@ -11,15 +11,14 @@ export function ThemeToggle() {
   useEffect(() => {
     setMounted(true);
 
-    // Exemplo comum: theme salvo no localStorage
-    const storedTheme = window.localStorage.getItem("theme") as
+    // Tema já aplicado pelo script de inicialização em layout.tsx
+    const appliedTheme = document.documentElement.dataset.theme as
       | "light"
       | "dark"
-      | null;
+      | undefined;
 
-    if (storedTheme) {
-      setTheme(storedTheme);
-      document.documentElement.dataset.theme = storedTheme;
+    if (appliedTheme) {
+      setTheme(appliedTheme);
     }
   }, []);
 
@@ -33,7 +32,7 @@ export function ThemeToggle() {
 
     setTheme(newTheme);
     document.documentElement.dataset.theme = newTheme;
-    window.localStorage.setItem("theme", newTheme);
+    window.localStorage.setItem("data-theme", newTheme);
   }
 
   return (

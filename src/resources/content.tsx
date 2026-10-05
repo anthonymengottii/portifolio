@@ -9,7 +9,7 @@ export function getContent(lang: Language = 'pt') {
     firstName: "Anthony",
     lastName: "Mengotti de Oliveira",
     name: "Anthony Mengotti de Oliveira",
-    role: "Software Engineer @ Upay",
+    role: "Full-stack Developer @ Essentia (Easy Health)",
     avatar: "/images/avatar.png",
     email: "anthonymengottii@gmail.com",
     location: "America/Sao_Paulo",
@@ -65,9 +65,9 @@ export function getContent(lang: Language = 'pt') {
       },
       home: {
         label: "Início",
-        headline: "Arquiteto de software fullstack",
+        headline: "Desenvolvedor Full-Stack",
         featuredTitle: "Projeto em destaque",
-        subline: "Software Engineer, arquitetando sistemas financeiros de alta performance e infraestruturas de pagamento.",
+        subline: "Desenvolvedor full-stack com histórico em fintech: arquitetei gateways de pagamento e sistemas financeiros críticos, já processando mais de R$ 504M em produção.",
         availability: "Disponível",
         stats: [
           { value: "R$ 504M+", label: "volume processado" },
@@ -79,17 +79,22 @@ export function getContent(lang: Language = 'pt') {
         label: "Sobre",
         titlePrefix: "Sobre –",
         description: "Conheça",
-        rolePrefix: "Arquiteto de software fullstack",
+        rolePrefix: "ex-CTO da Upay, especialista em fintech e pagamentos",
         intro: {
           title: "Introdução",
-          description1: "Arquiteto de software e Co-founder com foco em fintech e pagamentos. Na Upay, lidero a construção da infraestrutura de gateway de pagamentos (PIX, cartão, boleto), APIs para parceiros e ferramentas de gestão em produção. Antes, co-fundei a PagueSafe, onde arquitetei o gateway do zero e a plataforma atingiu R$ 504 milhões em volume processado em um ano.",
+          description1: "Desenvolvedor full-stack no setor de Inovação e Tecnologia do Grupo Essentia, atuando na Easy Health. Anteriormente, fui CTO e arquiteto de software na Upay, liderando a construção da infraestrutura de gateway de pagamentos (PIX, cartão, boleto), APIs para parceiros e ferramentas de gestão em produção. Antes disso, co-fundei a PagueSafe, onde arquitetei o gateway do zero e a plataforma atingiu R$ 504 milhões em volume processado em um ano.",
           description2: "Especializado em sistemas de pagamento escaláveis, orquestração de múltiplos gateways, APIs para desenvolvedores e plataformas white-label. Trabalho com TypeScript/Node.js, Next.js e arquiteturas que priorizam simplicidade de integração e confiabilidade em ambiente de produção.",
         },
         work: {
           title: "Experiência Profissional",
-          timeframe: "Out 2025 - Atual",
+          essentiaTimeframe: "Jul 2026 - Atual",
+          essentiaRole: "Desenvolvedor Full-stack",
+          timeframe: "Out 2025 - Jul 2026",
             paguesafeTimeframe: "Fev 2024 - Set 2025",
           achievements: {
+            essentia1: "Atuo como desenvolvedor full-stack no setor de Inovação e Tecnologia do Grupo Essentia, dedicado à Easy Health.",
+            essentia2: "Desenvolvo funcionalidades end-to-end para produtos digitais de saúde, do backend à interface, com foco em qualidade e performance.",
+            essentia3: "Colaboro com times multidisciplinares para evoluir a plataforma Easy Health em ambiente de produção.",
             upay1: "Liderar o desenvolvimento e a operação do gateway: API REST, PIX/cartão/boleto, documentação e onboarding de parceiros.",
             upay2: "Desenvolver e manter os SDKs oficiais (Node, Python, PHP) e o middleware Hopy Split para facilitar a integração dos parceiros.",
             upay3: "Construir e manter o dashboard administrativo, webhooks e ferramentas internas para operação e suporte.",
@@ -126,8 +131,8 @@ export function getContent(lang: Language = 'pt') {
               description: "Desenvolvimento de sistemas de pagamento, orquestração de gateways, processamento de transações e integração com múltiplos provedores.",
             },
             fullstack: {
-              title: "Desenvolvimento Full Stack",
-              description: "Desenvolvimento full stack com foco em performance, escalabilidade e experiência do usuário.",
+              title: "Desenvolvimento Full-Stack",
+              description: "Desenvolvimento full-stack com foco em performance, escalabilidade e experiência do usuário.",
             },
             backend: {
               title: "Backend & APIs",
@@ -167,9 +172,9 @@ export function getContent(lang: Language = 'pt') {
       },
       home: {
         label: "Home",
-        headline: "Software architect fullstack",
+        headline: "Full-Stack Developer",
         featuredTitle: "Featured Project",
-        subline: "Software Engineer, architecting high-performance financial systems and scalable payment infrastructures.",
+        subline: "Full-stack developer with a fintech track record: architected payment gateways and mission-critical financial systems, with R$ 504M+ processed in production.",
         availability: "Available",
         stats: [
           { value: "R$ 504M+", label: "processed volume" },
@@ -181,17 +186,22 @@ export function getContent(lang: Language = 'pt') {
         label: "About",
         titlePrefix: "About –",
         description: "Meet",
-        rolePrefix: "Software architect fullstack",
+        rolePrefix: "ex-CTO at Upay, fintech & payments specialist",
         intro: {
           title: "Introduction",
-          description1: "Software architect and Co-founder focused on fintech and payments. At Upay, I lead the build of the payment gateway infrastructure (PIX, card, boleto), partner APIs, and management tools—all in production. Previously, I co-founded PagueSafe, where I architected the gateway from scratch and the platform reached R$ 504 million in processed volume in one year.",
+          description1: "Full-stack developer in the Innovation & Technology department of Grupo Essentia, working on Easy Health. Previously, I was CTO and software architect at Upay, leading the build of the payment gateway infrastructure (PIX, card, boleto), partner APIs, and management tools, all running in production. Before that, I co-founded PagueSafe, where I architected the gateway from scratch and the platform reached R$ 504 million in processed volume in one year.",
           description2: "Specialized in scalable payment systems, multi-gateway orchestration, developer-friendly APIs, and white-label platforms. I work with TypeScript/Node.js, Next.js, and architectures that prioritize integration simplicity and reliability in production.",
         },
         work: {
           title: "Work Experience",
-          timeframe: "Oct 2025 - Present",
+          essentiaTimeframe: "Jul 2026 - Present",
+          essentiaRole: "Full-Stack Developer",
+          timeframe: "Oct 2025 - Jul 2026",
           paguesafeTimeframe: "Feb 2024 - Sep 2025",
           achievements: {
+            essentia1: "Working as a full-stack developer in the Innovation & Technology department of Grupo Essentia, dedicated to Easy Health.",
+            essentia2: "Build end-to-end features for digital health products, from backend to interface, with a focus on quality and performance.",
+            essentia3: "Collaborate with cross-functional teams to evolve the Easy Health platform in production.",
             upay1: "Lead the development and operation of the gateway: REST API, PIX/card/boleto, documentation and partner onboarding.",
             upay2: "Develop and maintain official SDKs (Node, Python, PHP) and the Hopy Split middleware to simplify partner integration.",
             upay3: "Build and maintain the admin dashboard, webhooks and internal tools for operations and support.",
@@ -228,8 +238,8 @@ export function getContent(lang: Language = 'pt') {
               description: "Development of payment systems, gateway orchestration, transaction processing and integration with multiple providers.",
             },
             fullstack: {
-              title: "Full Stack Development",
-              description: "Full stack development with focus on performance, scalability and user experience.",
+              title: "Full-Stack Development",
+              description: "Full-stack development with focus on performance, scalability and user experience.",
             },
             backend: {
               title: "Backend & APIs",
@@ -326,9 +336,20 @@ export function getContent(lang: Language = 'pt') {
       title: t.about.work.title,
       experiences: [
         {
+          company: "Grupo Essentia (Easy Health)",
+          timeframe: t.about.work.essentiaTimeframe,
+          role: t.about.work.essentiaRole,
+          achievements: [
+            t.about.work.achievements.essentia1,
+            t.about.work.achievements.essentia2,
+            t.about.work.achievements.essentia3,
+          ],
+          images: [],
+        },
+        {
           company: "Upay LTDA",
           timeframe: t.about.work.timeframe,
-          role: "Co-founder",
+          role: "CTO",
           achievements: [
             t.about.work.achievements.upay1,
             t.about.work.achievements.upay2,

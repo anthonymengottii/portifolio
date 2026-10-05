@@ -1,0 +1,59 @@
+---
+title: "Alpa SDKs"
+publishedAt: "2024-05-01"
+summary: "Official Alpa SDKs for payment integration (PIX, card, boleto) in Node.js, Python, PHP and Java. Payment Links, transactions, products, subscriptions, wallet and webhooks with HMAC-SHA256 verification. MIT."
+images: []
+link: "https://github.com/anthonymengottii/alpa-nodejs-sdk"
+team:
+  - name: "Anthony Mengotti de Oliveira"
+    role: "Maintainer"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/anthony-mengotti-50026424a"
+---
+
+<div align="center">
+  # Official Alpa SDKs
+</div>
+
+A set of **official SDKs** to integrate the Alpa payment platform (a gateway supporting PIX, credit card and boleto) across four different languages, each in its own repository. Instead of calling the REST API manually, developers install the package for their stack and use typed methods to create payment links, manage transactions, products, subscriptions, wallet balances and verify webhooks. Same API philosophy across every language, to keep the integration experience consistent regardless of the partner's stack.
+
+## Available Packages
+
+- **Node.js / TypeScript** · `@alpa/alpa-js` · [alpa-nodejs-sdk](https://github.com/anthonymengottii/alpa-nodejs-sdk) · `npm install github:anthonymengottii/alpa-nodejs-sdk`
+- **Python** · `alpa-python-sdk` · [alpa-python-sdk](https://github.com/anthonymengottii/alpa-python-sdk) · `pip install git+https://github.com/anthonymengottii/alpa-python-sdk.git`
+- **PHP** · `alpa/alpa-php` · [alpa-php-sdk](https://github.com/anthonymengottii/alpa-php-sdk) · `composer require alpa/alpa-php:dev-main`
+- **Java** · `com.alpa` · [alpa-java-sdk](https://github.com/anthonymengottii/alpa-java-sdk) · Maven/Gradle, local build via `mvn install`
+
+Consolidated API documentation available at [documentation_alpa](https://github.com/anthonymengottii/documentation_alpa).
+
+## Implemented Features
+
+The SDKs abstract authentication and HTTP calls, offering typed methods for:
+
+- **Payment Links**: creation and checkout URL generation.
+- **Transactions**: creating and managing PIX, card and boleto charges.
+- **Products and Coupons**: catalog management and discount validation.
+- **Clients, Subscriptions, Withdrawals and Wallet**: business operations beyond simple checkout.
+- **Webhooks**: HMAC-SHA256 signature verification to process events securely.
+
+## Quick Start (Node.js / TypeScript)
+
+```typescript
+import AlpaClient from '@alpa/alpa-js';
+
+const alpa = new AlpaClient({
+  apiKey: process.env.ALPA_API_KEY,
+});
+
+// Create a payment link
+const paymentLink = await alpa.paymentLinks.create({
+  title: 'Premium Product',
+  amount: 10000, // $100.00 in cents
+});
+```
+
+Requires Node.js 18+ (compatible with Bun and edge runtimes).
+
+## Result
+
+Four SDKs sharing the same API philosophy, lowering the integration curve for partners regardless of their language of choice. Static typing (TypeScript, Python type hints, PHP docblocks, Java types) reduces common integration mistakes with payment gateways, and the built-in webhook verification prevents partners from shipping insecure signature-validation code of their own.

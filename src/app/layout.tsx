@@ -63,7 +63,7 @@ export default async function RootLayout({
               (function() {
                 try {
                   const root = document.documentElement;
-                  const defaultTheme = 'system';
+                  const defaultTheme = '${style.theme}';
                   
                   // Set defaults from config
                   const config = ${JSON.stringify({
@@ -86,16 +86,24 @@ export default async function RootLayout({
                   
                   // Resolve theme
                   const resolveTheme = (themeValue) => {
-                    if (!themeValue || themeValue === 'system') {
+                    const value = themeValue || defaultTheme;
+                    if (value === 'system') {
                       return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
                     }
-                    return themeValue;
+                    return value;
                   };
-                  
+
                   // Apply saved theme
                   const savedTheme = localStorage.getItem('data-theme');
                   const resolvedTheme = resolveTheme(savedTheme);
                   root.setAttribute('data-theme', resolvedTheme);
+
+                  // Persist the resolved theme so later theme providers
+                  // (which read localStorage on mount) don't recompute it
+                  // from the OS preference and override our default.
+                  if (!savedTheme) {
+                    localStorage.setItem('data-theme', resolvedTheme);
+                  }
                   
                   // Apply any saved style overrides
                   const styleKeys = Object.keys(config);
