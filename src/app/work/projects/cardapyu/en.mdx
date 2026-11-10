@@ -3,9 +3,10 @@ title: "Cardapyu - Digital Menu and Order Management"
 publishedAt: "2026-11-08"
 summary: "Multi-tenant SaaS digital menu in the style of iFood, with no per-order commission: delivery, pickup or table-tablet ordering, Pix via BR Code, loyalty, coupons, WhatsApp notifications and a full admin panel. React (Vite), Node/Express, Postgres, Vercel and Docker."
 images:
-  - "/images/projects/cardapyu/hero-mockup.webp"
-  - "/images/projects/cardapyu/video-capa.webp"
-  - "/images/projects/cardapyu/card-pedido.webp"
+  - "/images/projects/cardapyu/site-inicio.webp"
+  - "/images/projects/cardapyu/site-cardapio.webp"
+  - "/images/projects/cardapyu/site-recursos.webp"
+  - "/images/projects/cardapyu/site-planos.webp"
 link: "https://cardapyu.com"
 team:
   - name: "Anthony Mengotti de Oliveira"
@@ -18,6 +19,8 @@ team:
 
 **Cardapyu** is a SaaS digital menu platform for restaurants and delivery, in the style of iFood but with **no per-order commission**. Customers order from their phone (delivery or pickup) or from the table tablet, track the order in real time, earn points and favorite dishes. The store owner manages everything in a full admin panel: menu, orders, tables, payments, staff, reports and WhatsApp. Many stores run on the same deployment, each on its own domain or subdomain, with plans, free trial and monthly billing. Live at [cardapyu.com](https://cardapyu.com).
 
+![cardapyu.com home page in production](/images/projects/cardapyu/site-inicio.webp)
+
 ## Customer Experience
 
 - **Menu**: categories with scroll-spy, search, highlights, "order again" and five visual themes (classic, list, compact, magazine, minimal).
@@ -28,11 +31,21 @@ team:
 - **WhatsApp login**: a 6-digit code sent to the customer's number, no password.
 - **PWA**: installable, with an icon generated from the store logo, offline menu and direct product and category links with WhatsApp previews.
 
+![Menu section on cardapyu.com: banners, promotions, ordering in a few taps and real-time status](/images/projects/cardapyu/site-cardapio.webp)
+
+## 3D Dishes and Augmented Reality
+
+On AR plans, customers open the menu from the table QR Code or the link, tap "View in 3D" and see the dish in 3D or in augmented reality, at real size, on top of the table, right in the phone's browser with no app to install. The viewer uses `model-viewer` and the models are generated through the Meshy.ai integration.
+
+![Augmented reality section on cardapyu.com](/images/projects/cardapyu/site-realidade-aumentada.webp)
+
 ## Table Mode (tablets)
 
 Table tablets open the menu in kiosk mode, without login, using a per-table token in the link/QR. Orders go to the kitchen and add up on the table's open tab; customers can call the waiter or ask for the bill, and staff close the tab choosing the payment method. After inactivity, the tablet returns to a welcome screen with the store's promotions.
 
 ## Admin Panel
+
+![Overview of the system's features on cardapyu.com](/images/projects/cardapyu/site-recursos.webp)
 
 - **Orders and kitchen (KDS)**: real-time queue filtered by status, columns per stage, wait time and sound alert.
 - **Menu**: products, categories, banners, options, image cropping and a sold-out toggle (the server also rejects sold-out items).
@@ -49,6 +62,8 @@ Table tablets open the menu in kiosk mode, without login, using a per-table toke
 ## Platform (Superadmin)
 
 Platform panel with MRR, store management, plans with product, table and user limits, free trial with activation tracking ("at risk: call the owner"), billing with grace period and automatic suspension, Mercado Pago integration, per-store WhatsApp health, audit log and an "enter as the store" support mode.
+
+![Monthly, quarterly and annual plans on cardapyu.com](/images/projects/cardapyu/site-planos.webp)
 
 ## Tech Stack
 

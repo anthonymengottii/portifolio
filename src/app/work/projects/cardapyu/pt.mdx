@@ -3,9 +3,10 @@ title: "Cardapyu - Cardápio Digital e Gestão de Pedidos"
 publishedAt: "2026-11-08"
 summary: "SaaS multi-loja de cardápio digital estilo iFood, sem comissão por pedido: pedidos por entrega, retirada ou tablet na mesa, Pix com BR Code, fidelidade, cupons, avisos por WhatsApp e painel admin completo. React (Vite), Node/Express, Postgres, Vercel e Docker."
 images:
-  - "/images/projects/cardapyu/hero-mockup.webp"
-  - "/images/projects/cardapyu/video-capa.webp"
-  - "/images/projects/cardapyu/card-pedido.webp"
+  - "/images/projects/cardapyu/site-inicio.webp"
+  - "/images/projects/cardapyu/site-cardapio.webp"
+  - "/images/projects/cardapyu/site-recursos.webp"
+  - "/images/projects/cardapyu/site-planos.webp"
 link: "https://cardapyu.com"
 team:
   - name: "Anthony Mengotti de Oliveira"
@@ -18,6 +19,8 @@ team:
 
 O **Cardapyu** é uma plataforma SaaS de cardápio digital para restaurantes e delivery, no estilo iFood, mas **sem comissão por pedido**. O cliente pede pelo celular (entrega ou retirada) ou pelo tablet da mesa, acompanha o pedido em tempo real, acumula pontos e favorita pratos. O dono da loja gerencia tudo em um painel completo: cardápio, pedidos, mesas, pagamento, equipe, relatórios e WhatsApp. Várias lojas rodam no mesmo deploy, cada uma no próprio domínio ou subdomínio, com planos, teste grátis e cobrança mensal. Em produção em [cardapyu.com](https://cardapyu.com).
 
+![Página inicial do cardapyu.com em produção](/images/projects/cardapyu/site-inicio.webp)
+
 ## Área do Cliente
 
 - **Cardápio**: categorias com scroll-spy, busca, destaques, "peça de novo" e cinco temas visuais (clássico, lista, compacto, revista, minimal).
@@ -28,11 +31,21 @@ O **Cardapyu** é uma plataforma SaaS de cardápio digital para restaurantes e d
 - **Login por WhatsApp**: código de 6 dígitos enviado ao número do cliente, sem senha.
 - **PWA**: instalável, com ícone gerado a partir da logo da loja, cardápio offline e links diretos de produto e categoria com prévia no WhatsApp.
 
+![Seção do cardápio no cardapyu.com: banners, promoções, pedido em poucos toques e status em tempo real](/images/projects/cardapyu/site-cardapio.webp)
+
+## Pratos em 3D e Realidade Aumentada
+
+Nos planos com AR, o cliente abre o cardápio pelo QR Code da mesa ou pelo link, toca em "Ver em 3D" e vê o prato em 3D ou em realidade aumentada, no tamanho real, em cima da mesa, direto no navegador do celular, sem instalar aplicativo. A visualização usa `model-viewer` e os modelos são gerados pela integração com a Meshy.ai.
+
+![Seção de realidade aumentada no cardapyu.com](/images/projects/cardapyu/site-realidade-aumentada.webp)
+
 ## Modo Mesa (tablets)
 
 Tablets nas mesas abrem o cardápio em modo quiosque, sem login, com token por mesa no link/QR. Os pedidos caem na cozinha e somam na conta aberta da mesa; o cliente chama o garçom ou pede a conta, e a equipe fecha a conta escolhendo a forma de pagamento. Após inatividade, o tablet volta para uma tela de boas-vindas com as promoções da loja.
 
 ## Painel Admin
+
+![Resumo dos recursos do sistema no cardapyu.com](/images/projects/cardapyu/site-recursos.webp)
 
 - **Pedidos e cozinha (KDS)**: fila em tempo real com filtro por status, colunas por etapa, tempo de espera e alerta sonoro.
 - **Cardápio**: produtos, categorias, banners, opções, recorte de imagens e botão de esgotado (o servidor também recusa itens esgotados).
@@ -49,6 +62,8 @@ Tablets nas mesas abrem o cardápio em modo quiosque, sem login, com token por m
 ## Plataforma (Superadmin)
 
 Painel da plataforma com MRR, gestão de lojas, planos com limites de produtos, mesas e usuários, teste grátis com acompanhamento de ativação ("em risco: chame o dono"), cobrança com carência e bloqueio automático, integração com Mercado Pago, saúde do WhatsApp por loja, auditoria e modo "entrar como a loja" para suporte.
+
+![Planos mensal, trimestral e anual no cardapyu.com](/images/projects/cardapyu/site-planos.webp)
 
 ## Stack Tecnológico
 
