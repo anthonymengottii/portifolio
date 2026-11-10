@@ -1,0 +1,63 @@
+---
+title: "Cardapyu - Cardápio Digital e Gestão de Pedidos"
+publishedAt: "2026-11-08"
+summary: "SaaS multi-loja de cardápio digital estilo iFood, sem comissão por pedido: pedidos por entrega, retirada ou tablet na mesa, Pix com BR Code, fidelidade, cupons, avisos por WhatsApp e painel admin completo. React (Vite), Node/Express, Postgres, Vercel e Docker."
+images:
+  - "/images/projects/cardapyu/hero-mockup.webp"
+  - "/images/projects/cardapyu/video-capa.webp"
+  - "/images/projects/cardapyu/card-pedido.webp"
+link: "https://cardapyu.com"
+team:
+  - name: "Anthony Mengotti de Oliveira"
+    role: "Full-Stack Developer"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/anthony-mengotti-50026424a"
+---
+
+## Sobre o Projeto
+
+O **Cardapyu** é uma plataforma SaaS de cardápio digital para restaurantes e delivery, no estilo iFood, mas **sem comissão por pedido**. O cliente pede pelo celular (entrega ou retirada) ou pelo tablet da mesa, acompanha o pedido em tempo real, acumula pontos e favorita pratos. O dono da loja gerencia tudo em um painel completo: cardápio, pedidos, mesas, pagamento, equipe, relatórios e WhatsApp. Várias lojas rodam no mesmo deploy, cada uma no próprio domínio ou subdomínio, com planos, teste grátis e cobrança mensal. Em produção em [cardapyu.com](https://cardapyu.com).
+
+## Área do Cliente
+
+- **Cardápio**: categorias com scroll-spy, busca, destaques, "peça de novo" e cinco temas visuais (clássico, lista, compacto, revista, minimal).
+- **Opções e complementos**: grupos obrigatórios/opcionais com mínimo, máximo e preço ao vivo; o servidor valida a escolha e calcula o preço.
+- **Checkout**: entrega com endereços salvos e busca de CEP (ViaCEP), cupons e observações.
+- **Pix real (BR Code)**: QR code e "copia e cola" na chave da loja; o pedido fica "Aguardando Pix" até a loja confirmar e a tela do cliente atualiza sozinha. Cartão na maquininha e dinheiro com troco.
+- **Fidelidade e cupons**: pontos por real gasto, cupons por segmento (primeiro pedido, clientes inativos, VIP) e programa "Indique e ganhe".
+- **Login por WhatsApp**: código de 6 dígitos enviado ao número do cliente, sem senha.
+- **PWA**: instalável, com ícone gerado a partir da logo da loja, cardápio offline e links diretos de produto e categoria com prévia no WhatsApp.
+
+## Modo Mesa (tablets)
+
+Tablets nas mesas abrem o cardápio em modo quiosque, sem login, com token por mesa no link/QR. Os pedidos caem na cozinha e somam na conta aberta da mesa; o cliente chama o garçom ou pede a conta, e a equipe fecha a conta escolhendo a forma de pagamento. Após inatividade, o tablet volta para uma tela de boas-vindas com as promoções da loja.
+
+## Painel Admin
+
+- **Pedidos e cozinha (KDS)**: fila em tempo real com filtro por status, colunas por etapa, tempo de espera e alerta sonoro.
+- **Cardápio**: produtos, categorias, banners, opções, recorte de imagens e botão de esgotado (o servidor também recusa itens esgotados).
+- **Relatórios**: faturamento, ticket médio, horários de pico, mais vendidos e melhores clientes, com exportação CSV.
+- **Equipe e papéis**: dono, caixa e cozinha, cada um com o seu acesso.
+- **SEO renderizado no servidor**: título, descrição, Open Graph, favicon e JSON-LD (`Restaurant`) injetados no HTML a cada requisição, além de `robots.txt` e `sitemap.xml` dinâmicos. No deploy estático, a mesma lógica roda em um Vercel Edge Middleware.
+- **Guia de primeiros passos**: checklist lateral que detecta sozinho o que o dono já configurou.
+
+## WhatsApp: Dois Provedores por Loja
+
+- **Cloud API da Meta (oficial)**: conexão guiada só com o token, descoberta dos números, criação automática dos modelos de mensagem e cadastro do webhook. Avisos de status do pedido com textos editáveis e um atendente com respostas pré-definidas (palavras-chave, fora do horário, boas-vindas, transbordo para humano), com assinatura `X-Hub-Signature-256` verificada.
+- **QR Code (worker)**: serviço Node sempre ligado (Baileys) com uma conexão por loja, sessões criptografadas com AES-256-GCM no Postgres, lease para impedir duas instâncias na mesma sessão e limites de envio para proteger o número.
+
+## Plataforma (Superadmin)
+
+Painel da plataforma com MRR, gestão de lojas, planos com limites de produtos, mesas e usuários, teste grátis com acompanhamento de ativação ("em risco: chame o dono"), cobrança com carência e bloqueio automático, integração com Mercado Pago, saúde do WhatsApp por loja, auditoria e modo "entrar como a loja" para suporte.
+
+## Stack Tecnológico
+
+- **Front-end**: React 18, Vite, React Router, Chart.js, HugeIcons, model-viewer.
+- **Back-end**: Node.js com Express em monorepo com npm workspaces.
+- **Dados**: Postgres (Supabase compatível, com RLS) em produção e JSON com gravação atômica em desenvolvimento; fotos no Vercel Blob com nome por hash do conteúdo.
+- **Notificações**: Web Push e WhatsApp (Cloud API e Baileys).
+- **Infra**: Vercel (client e server), Docker e Caddy para o worker, CI com testes e build a cada push e pull request.
+
+## Segurança
+
+Pedidos validados e totais calculados no servidor, upload de imagens com verificação do conteúdo (SVG recusado), sessões com token assinado, credenciais e tokens criptografados, limite de tentativas de login com bloqueio e API pública que nunca expõe tokens, segredos nem pedidos.
